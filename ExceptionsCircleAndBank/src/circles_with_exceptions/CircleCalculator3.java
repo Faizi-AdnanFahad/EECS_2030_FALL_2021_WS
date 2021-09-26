@@ -2,7 +2,7 @@ package circles_with_exceptions;
 
 import java.util.Scanner;
 
-public class CircleCalculator1 {
+public class CircleCalculator3 {
 	public static void main(String[] args) {
 		// If we choose not to handle the InvalidRadiusException,
 		// we can specify it as part of the signature
@@ -19,7 +19,6 @@ public class CircleCalculator1 {
 		// that throws InvalidRadiusException.
 		// We can either specify it or catch it.
 		// To catch the exception, we use a try-catch block.
-					
 		try {
 			c.setRadius(r); /* Error if r from the user is negative */
 			System.out.print("Circle with radius " + r);
@@ -27,23 +26,7 @@ public class CircleCalculator1 {
 		}
 		catch(InvalidRadiusException e) {
 			// Do something to handle the error.
-			while (r < 0) {
-				System.out.println("Enter a radius:");
- 				r = input.nextDouble();
-				try {
-					c.setRadius(r); /* Error if r from the user is negative */
-					System.out.print("Circle with radius " + r);
-					System.out.println("has area: "+ c.getArea());
-				}
-				catch(InvalidRadiusException f) {
-					// Do something to handle the error.
-				}
-			}
 		}
-		
-		
-//		
-		
 		
 		input.close();
 	}

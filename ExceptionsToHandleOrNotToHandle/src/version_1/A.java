@@ -3,7 +3,7 @@ package version_1;
 public class A {
 	A() {}
 	
-	void ma(int i) throws NegValException {
+	void ma(int i) throws NegValException { // *throws* will specify the exception meaning that it will forward it the caller of this callee
 		if(i < 0) {
 			/* Error */
 			// To handle this exception below,

@@ -10,7 +10,7 @@ public class Tester {
 		int i = input.nextInt();
 		B ob = new B();
 		// From the method call below,
-		// we know B.mb is the callee of Tester.main.
+		// we  know B.mb is the callee of Tester.main.
 		// In Tester.main, we are required to 
 		// handle the NegValException, because it was only
 		// specified in the callee.
