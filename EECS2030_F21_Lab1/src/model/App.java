@@ -4,7 +4,7 @@ public class App {
 	
 	private String appName;
 	private Log[] logHistory;
-	private int nol; // records the number of log history
+	private int nol; // records the number of log update history
 	private final int MAX_NUM_OF_UPADATE_LOG = 20;
 	
 	private int[] arrayOfRatings;
@@ -25,6 +25,12 @@ public class App {
 		return this.appName;
 	}
 	
+	/****************************/
+	public int getNol() {
+		return this.nol;
+	}
+	/****************************/
+
 	public String getWhatIsNew() {
 		String result = "";
 		if (this.nol == 0) {
