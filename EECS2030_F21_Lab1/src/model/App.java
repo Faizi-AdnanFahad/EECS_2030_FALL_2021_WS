@@ -10,7 +10,7 @@ public class App {
 	private int[] arrayOfRatings;
 	private int nor; // Number of Ratings
 	
-	private int[] arrayForNumOfRatingRecording;
+	private int[] arrayForNumOfRatingRecording; // Stores the frequency of counts for each rating score (1-6)
 	private double average;
 	
 	
@@ -31,7 +31,7 @@ public class App {
 	}
 	/****************************/
 
-	public String getWhatIsNew() {
+	public String getWhatIsNew() { // Returns some information about the last update.
 		String result = "";
 		if (this.nol == 0) {
 			result = "n/a";
@@ -43,7 +43,7 @@ public class App {
 		return result;
 	}
 	
-	public Log[] getUpdateHistory() {
+	public Log[] getUpdateHistory() { // Returns a list of all update history.
 		Log[] templogArray = new Log[this.nol];
 		for (int i = 0; i < this.nol; i ++) {
 			templogArray[i] = this.logHistory[i];
@@ -122,29 +122,4 @@ public class App {
 		}
 		return result;
 	}
-
-	
 }
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

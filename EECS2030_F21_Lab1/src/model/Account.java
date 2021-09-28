@@ -5,21 +5,22 @@ public class Account {
 	private String name;
 	private AppStore appStore;
 	
-	private String[] arrayOfNamesDownload;
+	private String[] arrayOfNamesDownload; // Stores "ONLY" the name of the downloaded apps
 	private final int MAX_NUM_DOWNLOAD = 50;
 	private int nod; // Number of Downloads
 	
-	private App[] arrayOfObjectDownload;
+	private App[] arrayOfObjectDownload; // Stores "ONLY" the object of the downloaded apps
 	
-	private String errorMsg;
-	private boolean someAppUninstalled;
+	private String statusMsg;
+	private boolean someAppUninstalled; // used for tracking if there's an installed app so it can carefully return its arrays in *getNamesOfDownloadedApps* 
+										// and *getObjectsOfDownloadedApps* methods
 	
 	public Account(String name, AppStore appStore) {
 		this.name = name;
 		this.appStore = appStore;
 		this.arrayOfNamesDownload = new String[MAX_NUM_DOWNLOAD];
 		this.arrayOfObjectDownload = new App[MAX_NUM_DOWNLOAD];
-		this.errorMsg = "An account linked to the " + this.appStore.getBranch() + " store is created for " + this.name + ".";
+		this.statusMsg = "An account linked to the " + this.appStore.getBranch() + " store is created for " + this.name + ".";
 
 	}
 	
@@ -40,7 +41,6 @@ public class Account {
 					index ++;
 				}
 			}
-//			someAppUninstalled = false;
 			return updatedArray;
 		}
 	}
@@ -72,7 +72,7 @@ public class Account {
 		boolean found = false;
 		this.someAppUninstalled = false;
 		if (this.nod == 0) {
-			this.errorMsg = "Error: " + appName + " has not been downloaded for " + this.name + ".";
+			this.statusMsg = "Error: " + appName + " has not been downloaded for " + this.name + ".";
 		}
 		else {
 			for (int i = 0; stay && i < this.nod; i ++) {
@@ -85,38 +85,38 @@ public class Account {
 					found = true;
 				}	
 			}
-			this.errorMsg = appName + " is successfully uninstalled for " + this.name + ".";
+			this.statusMsg = appName + " is successfully uninstalled for " + this.name + ".";
 		}
 		
 		if (!found) {
-			this.errorMsg = "Error: " + appName + " has not been downloaded for " + this.name + ".";
+			this.statusMsg = "Error: " + appName + " has not been downloaded for " + this.name + ".";
 		}
 	}
 	
 	public void submitRating(String appName, int rate) {
 		boolean found = false;
 		if (this.nod == 0) {
-			this.errorMsg = "Error: " + appName + " is not a downloaded app for " + this.name + ".";
+			this.statusMsg = "Error: " + appName + " is not a downloaded app for " + this.name + ".";
 		}
 		else {
 			for (int i = 0; i < this.nod; i ++) {
 				App app = this.arrayOfObjectDownload[i];
 				if (app.getName().equals(appName)) {
 					app.submitRating(rate);
-					this.errorMsg = "Rating score " + rate + " of " + this.name + " is successfully submitted for " + appName + ".";
+					this.statusMsg = "Rating score " + rate + " of " + this.name + " is successfully submitted for " + appName + ".";
 					found = true;
 				}	
 			}
 		}
 		
 		if (!found) {
-			this.errorMsg = "Error: " + appName + " is not a downloaded app for " + this.name + ".";
+			this.statusMsg = "Error: " + appName + " is not a downloaded app for " + this.name + ".";
 		}
 	}
 	
 	public void switchStore(AppStore newAppStore) {
 		this.appStore = newAppStore;
-		this.errorMsg = "Account for " + this.name + " is now linked to the " + newAppStore.getBranch() + " store.";
+		this.statusMsg = "Account for " + this.name + " is now linked to the " + newAppStore.getBranch() + " store.";
 	}
 	
 	public void download(String appName) {
@@ -125,7 +125,7 @@ public class Account {
 		for (int i = 0; stay && i < this.nod; i ++) {
 			if (this.arrayOfNamesDownload[i].equals(appName) || this.arrayOfObjectDownload[i].getName().equals(appName)) {
 				search = false;
-				this.errorMsg = "Error: " + appName + " has already been downloaded for " + this.name + ".";
+				this.statusMsg = "Error: " + appName + " has already been downloaded for " + this.name + ".";
 				stay = false;
 			}
 		}
@@ -140,49 +140,12 @@ public class Account {
 					this.nod ++;
 				}	
 			}
-			this.errorMsg = appName + " is successfully downloaded for " + this.name + ".";
+			this.statusMsg = appName + " is successfully downloaded for " + this.name + ".";
 		}
 		
 	}
 	
 	public String toString() {
-		String result = "";
-		return this.errorMsg;
+		return this.statusMsg;
 	}
-	
-	
-	
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

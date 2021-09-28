@@ -25,7 +25,6 @@ public class AppStore {
 	}
 	/***************************************************/
 
-	
 	public App getApp(String appName) {
 		App result = null;
 		boolean stay = true;
@@ -61,34 +60,5 @@ public class AppStore {
 	public void addApp(App newApp) {
 		this.arrayOfApps[this.noa] = newApp;
 		this.noa ++;
-	}
-	
-	
-	
+	}	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

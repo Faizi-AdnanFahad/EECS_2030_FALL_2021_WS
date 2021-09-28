@@ -9,8 +9,8 @@ public class Log {
 	
 	public Log(String versionNum) {
 		this.versionNum = versionNum;
-		this.nof = 0;
 		this.arrayOfFixes = new String[MAX_NUM_OF_FIX];
+		this.nof = 0;
 	}
 	
 	public String getVersion() {
@@ -21,7 +21,7 @@ public class Log {
 		return this.nof;
 	}
 	
-	public String getFixes() {
+	public String getFixes() { // Returns an array consisting of update lists done. 
 		String result = "[";
 		for (int i = 0; i < this.nof; i ++) {
 			if (i == this.nof - 1) {
@@ -43,29 +43,4 @@ public class Log {
 	public String toString() {
 		return "Version " + this.versionNum + " contains " + this.nof + " fixes " + this.getFixes(); 
 	}
-	
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

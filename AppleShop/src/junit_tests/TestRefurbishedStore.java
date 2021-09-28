@@ -2,7 +2,6 @@ package junit_tests;
 
 import static org.junit.Assert.*;
 
-import java.util.Arrays;
 
 import model.RefurbishedStore;
 
