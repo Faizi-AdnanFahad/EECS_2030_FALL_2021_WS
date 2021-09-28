@@ -655,8 +655,10 @@ public class StarterTests {
 		Account acc3 = new Account("Heeyeon", canadianStore);
 		
 		acc1.download(app1.getName());
+		
 		acc2.download(app1.getName());
-		acc2.download(app2.getName());		
+		acc2.download(app2.getName());
+		
 		acc3.download(app1.getName());
 		acc3.download(app2.getName());		
 		acc3.download(app3.getName());
@@ -727,8 +729,10 @@ public class StarterTests {
 		Account acc3 = new Account("Heeyeon", canadianStore);
 		
 		acc1.download(app1.getName());
+		
 		acc2.download(app1.getName());
-		acc2.download(app2.getName());		
+		acc2.download(app2.getName());
+		
 		acc3.download(app1.getName());
 		acc3.download(app2.getName());		
 		acc3.download(app3.getName());
