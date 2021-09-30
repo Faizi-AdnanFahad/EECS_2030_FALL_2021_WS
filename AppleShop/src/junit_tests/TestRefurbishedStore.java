@@ -187,27 +187,4 @@ public class TestRefurbishedStore {
 		assertTrue(rs.getSpaceGreyPro()[0].equals("F9FDN4NKQ1GC"));
 
 	}
-	
-	
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

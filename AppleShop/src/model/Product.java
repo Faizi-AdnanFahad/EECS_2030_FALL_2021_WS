@@ -24,10 +24,8 @@ public class Product {
 	// An overloaded version of the constructor.
 	public Product(String model, double originalPrice) {
 		this.model = model;
-		this.originalPrice = originalPrice;
-		
+		this.originalPrice = originalPrice;	
 	}
-	
 	
 	/*------------------------- Accessor -------------------------------*/
 	public String getModel() {
@@ -69,7 +67,6 @@ public class Product {
 //		StringBuilder sb = new StringBuilder();
 //		sb.append(this.model + " " + this.finish + " " + this.storage + "GB " + "(cellular connectivity: " + this.hasCellularConnectivity + "): $(" + String.format("%.2f", this.originalPrice) + " - " +
 //				String.format("%.2f", this.discountValue) + ")");
-//		
 //		s = sb.toString();
 		
 		// Method 2
@@ -95,12 +92,10 @@ public class Product {
 	public void setStorage(int storage) {
 		this.storage = storage;
 	}
-
 	
 	public void setHasCellularConnectivity(boolean hasCellularConnectivity) {
 		this.hasCellularConnectivity = hasCellularConnectivity;
 	}
-
 	
 	public void setOriginalPrice(double originalPrice) {
 		this.originalPrice = originalPrice;
@@ -110,6 +105,4 @@ public class Product {
 	public void setDiscountValue(double discountValue) {
 		this.discountValue = discountValue;
 	}
-	
-	
 }

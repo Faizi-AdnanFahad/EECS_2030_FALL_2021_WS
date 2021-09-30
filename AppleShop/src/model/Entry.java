@@ -46,27 +46,7 @@ public class Entry {
 		this.serialNumber = serialNumber;
 	}
 	
-	
 	public String toString() {
 		return "[" + this.serialNumber + "] " + this.product.toString();
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
