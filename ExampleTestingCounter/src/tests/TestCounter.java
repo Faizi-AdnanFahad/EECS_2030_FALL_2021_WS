@@ -29,7 +29,8 @@ public class TestCounter {
 			c.decrement();
 			/* reaching this line means that c.decrement() did not throw an exception */
 			fail("ValueTooSmallException was NOT thrown as expected.");
-		} catch (ValueTooSmallException e) {
+		} 
+		catch (ValueTooSmallException e) {
 			/*
 			 *  Do nothing - ValueTooSmallException thrown as expected.
 			 */
@@ -46,16 +47,18 @@ public class TestCounter {
 			c.increment();
 			c.increment();
 			c.increment();
-		} catch (ValueTooLargeException e) {
+		} 
+		catch (ValueTooLargeException e) {
 			fail("ValueTooLargeException was thrown unexpectedly.");
 		}
 		assertEquals("Counter reaches max", Counter.MAX_VALUE, c.getValue());
 		try {
 			c.increment(); 
 			fail("ValueTooLargeException was NOT thrown as expected.");
-		} catch (ValueTooLargeException e) {
+		}
+		catch (ValueTooLargeException e) {
 			/*
-			 * Do nothing - ValueTooLargeException thrown as expected.
+			 * Do nothing - ValueTooLargeException thrown as expected. (SUCCESS)
 			 */
 		}
 	}
@@ -73,7 +76,8 @@ public class TestCounter {
 			assertEquals("Counter reaches max", Counter.MAX_VALUE, c.getValue()); 
 			c.increment(); 
 			fail("ValueTooLargeException was NOT thrown as expected.");
-		} catch (ValueTooLargeException e) {
+		} 
+		catch (ValueTooLargeException e) {
 			/*
 			 * Problem, which call to c.increment() caused this exception?
 			 * If it was either of the first calls to c.increment(), it's not right.
