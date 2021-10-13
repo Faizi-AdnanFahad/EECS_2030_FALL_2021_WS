@@ -1,1 +1,5 @@
 # EECS_2030_FALL_2021_WS
+------------------------------
+PROJECTS WORKED ON:
+  1. Simplifed Apple Store Problem (Lab 1)
+  2. Simplified Vaccination Tracker Problem (Lab 2)
