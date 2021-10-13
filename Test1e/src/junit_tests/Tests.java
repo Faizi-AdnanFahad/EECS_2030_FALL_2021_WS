@@ -385,4 +385,43 @@ public class Tests {
 		assertEquals(0.1 + 0.2 + 0.25, heeyeon.getCompletionRate(), 0.01);
 		assertEquals(0.1 * 90 + 0.2 * 100 + 0.25 * 95, heeyeon.getRawMarks(), 0.01);
 	}
+	
+	/*
+	 * Tests By Adnan
+	 */
+	@Test
+	public void test_student_record_08() {
+		/* 
+		 * Initialize a student record with course name. 
+		 */
+		StudentRecord heeyeon = new StudentRecord("EECS2030");
+		
+		/* Add two assessments. */
+		Assessment m1 = new Assessment("Midterm 1", 0.15);
+		m1.setMarks(75);
+		
+		/* 
+		 * Remove the assessment for Midterm 1
+		 * You can assume that there are no duplicates of
+		 * assessment names. 
+		 */
+		heeyeon.removeAssessment("Midterm 1"); 
+		
+		/*
+		 * Remove a non-existing assessment: do nothing.
+		 */
+		heeyeon.removeAssessment("Midterm 2");
+		
+		// Up to now, there should be just one assessment remaining in the list.
+		
+		
+		/* Three assessments. */
+		assertEquals("Number of assessments in EECS2030: 0 []", heeyeon.getAssessmentReport());
+
+	}
+	
+	
+	
+	
+	
 }

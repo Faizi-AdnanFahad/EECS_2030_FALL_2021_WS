@@ -42,7 +42,6 @@ public class StudentRecord {
 	}
 	
 	public double getRawMarks() {
-		double sum = 0.0;
 		double rawMark = 0.0;
 		for (int i = 0; i < this.noA; i ++) {
 			rawMark += this.arrayOfAssessment[i].getWeight() * this.arrayOfAssessment[i].getMarks();

@@ -42,7 +42,7 @@ public class BankApplication {
 				/* do something to handle the exception */
 				// since an exception occurred,
 				// so validAmount remains to False.
-				validAmount = false;
+//				validAmount = false;
 			}
 		}
 		input.close();
