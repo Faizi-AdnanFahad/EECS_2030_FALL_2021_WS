@@ -15,6 +15,7 @@ public class VaccinationSite {
 	private HealthRecord[] arrayOfVaccinationAppointments;
 	private int noAppointments;	
 	private String appointmentStatus;
+	private boolean appointmentExist;
 	
 	
 	public VaccinationSite(String nameOfTheSite, int limitNumOfDosesFromAddedDistribution) {
@@ -26,6 +27,10 @@ public class VaccinationSite {
 	
 	public int getNumberOfAvailableDoses() {
 		return this.accumulatedVaccineNumber;
+	}
+	
+	public boolean doesAppointmentExist() {
+		return this.appointmentExist;
 	}
 	
 	public int getNumberOfAvailableDoses(String vaccineCodeName) {
@@ -64,15 +69,45 @@ public class VaccinationSite {
 		}
 	}
 	
-	public void bookAppointment(HealthRecord healthRecord) {
+	public void bookAppointment(HealthRecord healthRecord) throws InsufficientVaccineDosesException {
 		if (this.noAppointments < this.getNumberOfAvailableDoses()) {
 			this.arrayOfVaccinationAppointments[this.noAppointments] = healthRecord;
+			String status = "Last vaccination appointment for " + healthRecord.getPatientName() + " with " + this.nameOfTheSite + " succeeded";
+			healthRecord.setAppointmentStatus(status);
 			this.noAppointments ++;
+			this.appointmentExist = true;
+		}
+		else {
+			String status = "Last vaccination appointment for " + healthRecord.getPatientName() + " with " + this.nameOfTheSite + " failed";
+			healthRecord.setAppointmentStatus(status);
+			throw new InsufficientVaccineDosesException("Unexpected exception thrown");
 		}
 	}
 	
 	public void administer(String dateOfVaccination) {
-		
+		int indexOfDistSupply = 0;
+		for (int i = 0; i < this.noAppointments; i ++) {
+			// Administrating Vaccines to patients that have booked the appointment
+//			for (int m = 0; m < this.arrayOfVaccinationDistribution[i].getSupplyNum(); m ++) {
+//				if (this.arrayOfVaccinationDistribution[i].getSupplyNum() != 0) {
+//					this.arrayOfVaccinationDistribution[i]
+//				}
+//			}
+			// Administering doses to patients with appointments based on the order doses were distributed
+			if (this.arrayOfVaccinationDistribution[indexOfDistSupply].getSupplyNum() != 0) {
+				this.arrayOfVaccinationDistribution[indexOfDistSupply].substractSupply(1);
+				this.arrayOfVaccinationAppointments[i].addRecord(this.arrayOfVaccinationDistribution[indexOfDistSupply].getVaccine(), this.nameOfTheSite, dateOfVaccination);
+			}
+			else {
+				indexOfDistSupply ++;
+				this.arrayOfVaccinationDistribution[indexOfDistSupply].substractSupply(1);
+				this.arrayOfVaccinationAppointments[i].addRecord(this.arrayOfVaccinationDistribution[indexOfDistSupply].getVaccine(), this.nameOfTheSite, dateOfVaccination);
+			}
+			
+			this.arrayOfVaccinationAppointments[i] = null;
+			this.accumulatedVaccineNumber --;
+		}
+		this.noAppointments = 0;
 	}
 	
 	public String toString() {

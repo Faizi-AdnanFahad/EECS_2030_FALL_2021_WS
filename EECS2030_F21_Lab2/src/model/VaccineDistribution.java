@@ -43,6 +43,10 @@ public class VaccineDistribution {
 		this.supplyNum += supplyNum;
 	}
 	
+	public void substractSupply(int supplyNum) {
+		this.supplyNum -= supplyNum;
+	}
+	
 	
 	public String toString() {
 		return this.supplyNum + " doses of " + this.vaccine.getCodeNameVaccine() + " by " 

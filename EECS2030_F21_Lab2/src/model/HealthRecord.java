@@ -8,11 +8,17 @@ public class HealthRecord {
 	private VaccineDistribution[] arrayOfRecords;
 	private int noR;
 	
+	private String appointmentStatus;
+	
 	public HealthRecord(String patientName, int numOfDosesLimit) {
 		this.patientName = patientName;
 		this.numOfDosesLimit = numOfDosesLimit;
 //		this.arrayOfRecords = new String[numOfDosesLimit][5];
 		this.arrayOfRecords = new VaccineDistribution[numOfDosesLimit];
+	}
+	
+	public String getPatientName() {
+		return this.patientName;
 	}
 	
 	public String getVaccinationReceipt() {
@@ -42,7 +48,18 @@ public class HealthRecord {
 	}
 	
 	public String getAppointmentStatus() {
-		return "No vaccination appointment for " + this.patientName + " yet";
+		String result = "";
+		if (this.appointmentStatus == null) {
+			result = "No vaccination appointment for " + this.patientName + " yet";
+		}
+		else {
+			result = this.appointmentStatus;
+		}
+		return result;
+	}
+	
+	public void setAppointmentStatus(String newStatus) {
+		this.appointmentStatus = newStatus;
 	}
 	
 	
