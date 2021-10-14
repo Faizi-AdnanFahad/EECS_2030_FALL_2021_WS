@@ -496,7 +496,7 @@ public class StarterTests {
 		assertEquals(9, vs.getNumberOfAvailableDoses());
 		
 		try {
-			vs.addDistribution(v3, 2);  
+			vs.addDistribution(v4, 2);  
 			fail("Expected exception not thrown");
 		}
 		catch(UnrecognizedVaccineCodeNameException e) {
@@ -738,5 +738,109 @@ public class StarterTests {
 		 * Suggestion: write a case to add distributions in a different order,
 		 * 	so that when appointments are administered, avaialble vaccines will be consumed in a different order accordingly.
 		 */
+	}
+	
+	@Test
+	public void test_vaccination_site_05() {
+		VaccinationSite vs = new VaccinationSite("North York General Hospital", 10);
+		
+		/* Add distributions of three recognized vaccines (identified by their codenames) */
+		Vaccine v1 = new Vaccine("mRNA-1273", "RNA", "Moderna");
+		Vaccine v2 = new Vaccine("BNT162b2", "RNA", "Pfizer/BioNTech");
+		Vaccine v3 = new Vaccine("AZD1222", "Non Replicating Viral Vector", "Oxford/AstraZeneca");
+		
+		try { 
+			vs.addDistribution(v3, 1); /* 1st distribution of AZ */
+			vs.addDistribution(v1, 1); /* 1st distribution of Moderna */
+			vs.addDistribution(v3, 1);
+			vs.addDistribution(v2, 1); /* 1st distribution of Pfizer */
+			vs.addDistribution(v1, 1);
+			assertEquals("North York General Hospital has 5 available doses: <2 doses of Oxford/AstraZeneca, 2 doses of Moderna, 1 doses of Pfizer/BioNTech>", vs.toString());
+			
+			HealthRecord alan = new HealthRecord("Alan", 5);
+			HealthRecord mark = new HealthRecord("Mark", 5);
+			HealthRecord tom = new HealthRecord("Tom", 5);
+			HealthRecord jim = new HealthRecord("Jim", 5);
+			HealthRecord john = new HealthRecord("John", 5);
+
+			
+			/* Book 1st-dose appointments */
+			vs.bookAppointment(alan);
+			vs.bookAppointment(mark);
+			vs.bookAppointment(tom); 
+			vs.bookAppointment(jim); 
+			vs.bookAppointment(john); 
+			
+			vs.administer("April-23-2021");
+			/* updated site */
+			assertEquals("North York General Hospital has 0 available doses: <0 doses of Oxford/AstraZeneca, 0 doses of Moderna, 0 doses of Pfizer/BioNTech>", vs.toString());
+			
+			/* updated patients */
+			assertEquals("Number of doses Alan has received: 1 [Recognized vaccine: AZD1222 (Non Replicating Viral Vector; Oxford/AstraZeneca) in North York General Hospital on April-23-2021]", alan.getVaccinationReceipt());
+			assertEquals("Number of doses Mark has received: 1 [Recognized vaccine: AZD1222 (Non Replicating Viral Vector; Oxford/AstraZeneca) in North York General Hospital on April-23-2021]", mark.getVaccinationReceipt());
+			assertEquals("Number of doses Tom has received: 1 [Recognized vaccine: mRNA-1273 (RNA; Moderna) in North York General Hospital on April-23-2021]", tom.getVaccinationReceipt());
+			assertEquals("Number of doses Jim has received: 1 [Recognized vaccine: mRNA-1273 (RNA; Moderna) in North York General Hospital on April-23-2021]", jim.getVaccinationReceipt());
+			assertEquals("Number of doses John has received: 1 [Recognized vaccine: BNT162b2 (RNA; Pfizer/BioNTech) in North York General Hospital on April-23-2021]", john.getVaccinationReceipt());
+
+		}
+		catch(UnrecognizedVaccineCodeNameException e) {
+			fail("Unexpected exception thrown");
+		}
+		catch(TooMuchDistributionException e) {
+			fail("Unexpected exception thrown");
+		}
+		catch(InsufficientVaccineDosesException e) {
+			fail("Unexpected exception thrown");
+		}
+	}
+	
+	@Test
+	public void test_vaccination_site_06() {
+		VaccinationSite vs = new VaccinationSite("North York General Hospital", 10);
+		
+		/* Add distributions of three recognized vaccines (identified by their codenames) */
+		Vaccine v1 = new Vaccine("mRNA-1273", "RNA", "Moderna");
+		Vaccine v2 = new Vaccine("BNT162b2", "RNA", "Pfizer/BioNTech");
+		Vaccine v3 = new Vaccine("AZD1222", "Non Replicating Viral Vector", "Oxford/AstraZeneca");
+		
+		try { 
+			vs.addDistribution(v1, 1); /* 1st distribution of AZ */
+			vs.addDistribution(v1, 1); /* 1st distribution of Moderna */
+			vs.addDistribution(v2, 1);
+			vs.addDistribution(v2, 1); /* 1st distribution of Pfizer */
+			vs.addDistribution(v3, 1);
+			assertEquals("North York General Hospital has 5 available doses: <2 doses of Moderna, 2 doses of Pfizer/BioNTech, 1 doses of Oxford/AstraZeneca>", vs.toString());
+			
+			HealthRecord alan = new HealthRecord("Alan", 5);
+			HealthRecord mark = new HealthRecord("Mark", 5);
+			HealthRecord tom = new HealthRecord("Tom", 5);
+			HealthRecord jim = new HealthRecord("Jim", 5);
+			HealthRecord john = new HealthRecord("John", 5);
+
+			
+			/* Book 1st-dose appointments */
+			vs.bookAppointment(alan);
+			vs.bookAppointment(mark);
+			vs.bookAppointment(tom);  
+			
+			vs.administer("April-23-2021");
+			/* updated site */
+			assertEquals("North York General Hospital has 2 available doses: <0 doses of Moderna, 1 doses of Pfizer/BioNTech, 1 doses of Oxford/AstraZeneca>", vs.toString());
+			
+			
+			assertEquals("Number of doses Alan has received: 1 [Recognized vaccine: mRNA-1273 (RNA; Moderna) in North York General Hospital on April-23-2021]", alan.getVaccinationReceipt());
+			assertEquals("Number of doses Mark has received: 1 [Recognized vaccine: mRNA-1273 (RNA; Moderna) in North York General Hospital on April-23-2021]", mark.getVaccinationReceipt());
+			assertEquals("Number of doses Tom has received: 1 [Recognized vaccine: BNT162b2 (RNA; Pfizer/BioNTech) in North York General Hospital on April-23-2021]", tom.getVaccinationReceipt());
+
+		}
+		catch(UnrecognizedVaccineCodeNameException e) {
+			fail("Unexpected exception thrown");
+		}
+		catch(TooMuchDistributionException e) {
+			fail("Unexpected exception thrown");
+		}
+		catch(InsufficientVaccineDosesException e) {
+			fail("Unexpected exception thrown");
+		}
 	}
 } 
