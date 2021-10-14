@@ -10,6 +10,7 @@ public class Vaccine {
 	private boolean recognizedVaccine;
 	
 	public Vaccine(String codeNameVaccine, String typeVaccine, String manufacturerVaccine) {
+		// Checking to see if the vaccine is amongst one of the approved ones in Canada.
 		this.recognizedVaccine = false;
 		for (int i = 0; !this.recognizedVaccine && i < this.RECOGNIZED_VACCINES.length; i ++) {
 			if (this.RECOGNIZED_VACCINES[i].equals(codeNameVaccine)) {
@@ -23,8 +24,6 @@ public class Vaccine {
 	}
 	
 	/* Additional Getters retrieving the values of private attributes in this class. */
-
-	
 	public String getCodeNameVaccine() {
 		return this.codeNameVaccine;
 	}
@@ -41,6 +40,7 @@ public class Vaccine {
 		return this.recognizedVaccine;
 	}
 
+	
 	public String toString() {
 		String result = "";
 		if (this.recognizedVaccine) {
@@ -55,33 +55,4 @@ public class Vaccine {
 		}
 		return result;
 	}
-	
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

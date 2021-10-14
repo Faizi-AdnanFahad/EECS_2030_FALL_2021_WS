@@ -9,12 +9,11 @@ public class VaccinationSite {
 	private int limitNumOfDosesFromAddedDistribution;
 	
 	private VaccineDistribution[] arrayOfVaccinationDistribution;
-	private int noDist;
+	private int numDistribution;
 	private int accumulatedVaccineNumber;
 	
 	private HealthRecord[] arrayOfVaccinationAppointments;
-	private int noAppointments;	
-	private String appointmentStatus;
+	private int numAppointment;	
 	private boolean appointmentExist;
 	
 	
@@ -35,7 +34,7 @@ public class VaccinationSite {
 	
 	public int getNumberOfAvailableDoses(String vaccineCodeName) {
 		int result = 0;
-		for (int i = 0; i < this.noDist; i ++) {
+		for (int i = 0; i < this.numDistribution; i ++) {
 			VaccineDistribution vd = this.arrayOfVaccinationDistribution[i];
 			if (vd.getVaccine().getCodeNameVaccine().equals(vaccineCodeName)) {
 				result = vd.getSupplyNum();
@@ -46,19 +45,19 @@ public class VaccinationSite {
 	
 	public void addDistribution(Vaccine vaccine, int supplyNum) throws UnrecognizedVaccineCodeNameException, TooMuchDistributionException {
 		if (vaccine.isVaccineRecognized() && (supplyNum <= this.limitNumOfDosesFromAddedDistribution - this.accumulatedVaccineNumber)) {
-			// Check to see if the vaccine is already included in the array before adding it as a new distribution
+			// Checking to see if the vaccine is already included in the array before adding it as a new distribution
 			boolean found = false;
-			for (int i = 0; !found && i < this.noDist; i ++) {
+			for (int i = 0; !found && i < this.numDistribution; i ++) {
 				if (this.arrayOfVaccinationDistribution[i].getVaccine().getCodeNameVaccine().equals(vaccine.getCodeNameVaccine())) {
 					this.arrayOfVaccinationDistribution[i].addSupply(supplyNum);
 					found = true;
 				}
 			}
 			if (!found) {
-				this.arrayOfVaccinationDistribution[this.noDist] = new VaccineDistribution(vaccine, supplyNum);
-				this.noDist ++;
+				this.arrayOfVaccinationDistribution[this.numDistribution] = new VaccineDistribution(vaccine, supplyNum);
+				this.numDistribution ++;
 			}
-			
+			// Done in both cases
 			this.accumulatedVaccineNumber += supplyNum;
 		}
 		else if (!vaccine.isVaccineRecognized()) {
@@ -70,11 +69,11 @@ public class VaccinationSite {
 	}
 	
 	public void bookAppointment(HealthRecord healthRecord) throws InsufficientVaccineDosesException {
-		if (this.noAppointments < this.getNumberOfAvailableDoses()) {
-			this.arrayOfVaccinationAppointments[this.noAppointments] = healthRecord;
+		if (this.numAppointment < this.getNumberOfAvailableDoses()) {
+			this.arrayOfVaccinationAppointments[this.numAppointment] = healthRecord;
 			String status = "Last vaccination appointment for " + healthRecord.getPatientName() + " with " + this.nameOfTheSite + " succeeded";
 			healthRecord.setAppointmentStatus(status);
-			this.noAppointments ++;
+			this.numAppointment ++;
 			this.appointmentExist = true;
 		}
 		else {
@@ -86,13 +85,7 @@ public class VaccinationSite {
 	
 	public void administer(String dateOfVaccination) {
 		int indexOfDistSupply = 0;
-		for (int i = 0; i < this.noAppointments; i ++) {
-			// Administrating Vaccines to patients that have booked the appointment
-//			for (int m = 0; m < this.arrayOfVaccinationDistribution[i].getSupplyNum(); m ++) {
-//				if (this.arrayOfVaccinationDistribution[i].getSupplyNum() != 0) {
-//					this.arrayOfVaccinationDistribution[i]
-//				}
-//			}
+		for (int i = 0; i < this.numAppointment; i ++) {
 			// Administering doses to patients with appointments based on the order doses were distributed
 			if (this.arrayOfVaccinationDistribution[indexOfDistSupply].getSupplyNum() != 0) {
 				this.arrayOfVaccinationDistribution[indexOfDistSupply].substractSupply(1);
@@ -104,17 +97,19 @@ public class VaccinationSite {
 				this.arrayOfVaccinationAppointments[i].addRecord(this.arrayOfVaccinationDistribution[indexOfDistSupply].getVaccine(), this.nameOfTheSite, dateOfVaccination);
 			}
 			
+			// when the vaccine is distributed, make the index of that null.
 			this.arrayOfVaccinationAppointments[i] = null;
+			// Decrement the supply by 1.
 			this.accumulatedVaccineNumber --;
 		}
-		this.noAppointments = 0;
+		this.numAppointment = 0;
 	}
 	
 	public String toString() {
 		String result = "";
 		String seq = "<";
-		for (int i = 0; i < this.noDist; i ++) {
-			if (i < this.noDist - 1) {
+		for (int i = 0; i < this.numDistribution; i ++) {
+			if (i < this.numDistribution - 1) {
 				seq += this.arrayOfVaccinationDistribution[i].getSupplyNum() + " doses of " + this.arrayOfVaccinationDistribution[i].getVaccine().getManufacturerVaccine() + ", ";
 			}
 			else {
@@ -126,32 +121,4 @@ public class VaccinationSite {
 
 		return result;
 	}
-	
-	
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

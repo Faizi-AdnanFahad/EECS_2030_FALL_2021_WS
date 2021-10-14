@@ -3,9 +3,9 @@ package model;
 public class VaccineDistribution {
 	
 	private Vaccine vaccine;
-	private int supplyNum;
+	private int supplyNum; // Number of doses
 	
-	// Attribute for arrayOfRecords in HealthRecord class;
+	// Attribute for arrayOfRecords to be used in HealthRecord class;
 	private String siteName;
 	private String dateOfVaccination;
 	
@@ -21,10 +21,10 @@ public class VaccineDistribution {
 	}
 	
 	/* Getters for attributes of arrayOfRecords in HealthRecord class*/
-	/*********************************************/
 	public Vaccine getVaccine() {
 		return this.vaccine;
 	}
+	
 	public String getSiteName() {
 		return this.siteName;
 	}
@@ -32,8 +32,6 @@ public class VaccineDistribution {
 	public String getDateOfVaccination() {
 		return this.dateOfVaccination;
 	}
-	
-	/*********************************************/
 	
 	public int getSupplyNum() {
 		return this.supplyNum;
@@ -52,38 +50,4 @@ public class VaccineDistribution {
 		return this.supplyNum + " doses of " + this.vaccine.getCodeNameVaccine() + " by " 
 					+ this.vaccine.getManufacturerVaccine();
 	}
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

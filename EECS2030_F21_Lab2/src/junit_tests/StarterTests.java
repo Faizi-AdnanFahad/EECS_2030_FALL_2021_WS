@@ -2,7 +2,6 @@ package junit_tests;
 
 import static org.junit.Assert.*;
 import model.*;
-
 import org.junit.Test;
 
 /*
@@ -161,6 +160,33 @@ public class StarterTests {
 		 * 		+ the name of vaccination site
 		 * 		+ the date of vaccination
 		 */
+		assertEquals("Number of doses Alan has received: 1 [Recognized vaccine: mRNA-1273 (RNA; Moderna) in North York General Hospital on April-20-2021]", rec.getVaccinationReceipt());
+		
+		/* Add a record for the patient's 2nd received dose. */
+		rec.addRecord(v2, "Humber River Hospital", "June-30-2021");
+		assertEquals("Number of doses Alan has received: 2 [Recognized vaccine: mRNA-1273 (RNA; Moderna) in North York General Hospital on April-20-2021; Recognized vaccine: BNT162b2 (RNA; Pfizer/BioNTech) in Humber River Hospital on June-30-2021]", rec.getVaccinationReceipt());
+		
+		/* 
+		 * Patient's appointment status does not get changed by adding records.
+		 * It's only changed when the `bookAppointment` method is invoked on a VaccinationSite object.
+		 * (See below.) 
+		 */
+		assertEquals("No vaccination appointment for Alan yet", rec.getAppointmentStatus());
+	}
+	
+	@Test
+	public void test_health_record_03() {
+		/* 
+		 * Create a health record with the patient name and 
+		 * 	the limit on the number of doses appearing on their vaccination history.
+		 */
+		HealthRecord rec = new HealthRecord("Alan", 5);
+		
+		Vaccine v1 = new Vaccine("mRNA-1273", "RNA", "Moderna");
+		Vaccine v2 = new Vaccine("BNT162b2", "RNA", "Pfizer/BioNTech");
+		
+		rec.addRecord(v1, "North York General Hospital", "April-20-2021");
+	
 		assertEquals("Number of doses Alan has received: 1 [Recognized vaccine: mRNA-1273 (RNA; Moderna) in North York General Hospital on April-20-2021]", rec.getVaccinationReceipt());
 		
 		/* Add a record for the patient's 2nd received dose. */
@@ -335,7 +361,7 @@ public class StarterTests {
 	public void test_vaccination_site_02c() {
 		/* 
 		 * Create a vaccination site with its name and
-		 * the limit on the number of doses accumulated from the added distributions.
+		 * 	the limit on the number of doses accumulated from the added distributions.
 		 * For illustration, the limit is set with a small number.
 		 */
 		VaccinationSite vs = new VaccinationSite("North York General Hospital", 10);
@@ -548,56 +574,6 @@ public class StarterTests {
 	}
 	
 	@Test
-	public void test_vaccination_site_03c() {
-		VaccinationSite vs = new VaccinationSite("North York General Hospital", 10);
-		
-		Vaccine v1 = new Vaccine("mRNA-1273", "RNA", "Moderna");
-		Vaccine v2 = new Vaccine("BNT162b2", "RNA", "Pfizer/BioNTech");
-		try {
-			/* Add distributions of two recognized vaccines. */
-			vs.addDistribution(v1, 1);   
-			vs.addDistribution(v2, 1); 
-		}
-		catch(UnrecognizedVaccineCodeNameException e) {
-			fail("Unexpected exception thrown");
-		}
-		catch(TooMuchDistributionException e) {
-			fail("Unexpected exception thrown");
-		}
-		
-		/* 3 doses are available: 3 appointments are possible */
-		assertEquals(2, vs.getNumberOfAvailableDoses());
-		
-		HealthRecord alan = new HealthRecord("Alan", 5);
-		HealthRecord mark = new HealthRecord("Mark", 5);
-		HealthRecord tom = new HealthRecord("Tom", 5);
-		
-		try {
-			vs.bookAppointment(alan);
-			/* success of appointment is reflected on the patient's appointment status */
-			assertEquals("Last vaccination appointment for Alan with North York General Hospital succeeded", alan.getAppointmentStatus());
-			vs.bookAppointment(mark);
-			assertEquals("Last vaccination appointment for Mark with North York General Hospital succeeded", mark.getAppointmentStatus());
-			vs.bookAppointment(tom);
-			fail("Expected exception not thrown");
-		}
-		catch(InsufficientVaccineDosesException e) {
-			// expected
-		}
-		
-		assertEquals(2, vs.getNumberOfAvailableDoses());
-		
-		HealthRecord jim = new HealthRecord("Jim", 5);
-		try {
-			vs.bookAppointment(jim);
-			fail("Expeted exception not thrown");
-		}
-		catch(InsufficientVaccineDosesException e) {
-			assertEquals("Last vaccination appointment for Jim with North York General Hospital failed", jim.getAppointmentStatus());
-		}
-	}
-	
-	@Test
 	public void test_vaccination_site_03b() {
 		/* 
 		 * Create two vaccination sites with their names and
@@ -656,12 +632,12 @@ public class StarterTests {
 			fail("Unexpected exception thrown");
 		}
 	}
-//	
-//	/*
-//	 * Recommended exercises: 
-//	 * 	Visualizing and tracing (on both debugger and paper) on how objects are created and manipulated
-//	 * 	in each test would be extremely valuable for reinforcing your understanding.
-//	 */
+	
+	/*
+	 * Recommended exercises: 
+	 * 	Visualizing and tracing (on both debugger and paper) on how objects are created and manipulated
+	 * 	in each test would be extremely valuable for reinforcing your understanding.
+	 */
 	@Test
 	public void test_vaccination_site_04() {
 		/* 
