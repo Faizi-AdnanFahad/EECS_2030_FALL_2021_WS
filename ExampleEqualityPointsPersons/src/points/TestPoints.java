@@ -48,6 +48,7 @@ public class TestPoints {
 		// do not compile because
 		// p1 and p2's types are different
 //		assertFalse(p1 == p2);
+//		assertEquals(p1, p2); // Compiles but fails.
 //		assertFalse(p2 == p1);
 		// On the other hands, assertSame can take
 		// objects of different types and fail.

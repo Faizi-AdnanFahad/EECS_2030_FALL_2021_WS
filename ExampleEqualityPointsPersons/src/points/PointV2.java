@@ -13,6 +13,7 @@ public class PointV2 {
 	}
 
 	public boolean equals (Object obj) {
+		// Professor's way
 		if(this == obj) { 
 			return true; 
 		}
@@ -22,8 +23,24 @@ public class PointV2 {
 		if(this.getClass() != obj.getClass()) { 
 			return false; 
 		} 
-		PointV2 other = (PointV2) obj;
-		return this.x == other.x && this.y == other.y; 
+		PointV2 other = (PointV2) obj; // Reaching this line means that (this != obj and obj != null and this.getClass() == obj)
+		return this.x == other.x && this.y == other.y;
+		
+		/*---------------------------------------------------------------------------------------------------------------------*/
+		// My way: 
+//		if(this == obj) { 
+//			return true; 
+//		}
+//		if(obj == null) { 
+//			return false; 
+//		}
+//		if(this.getClass() != obj.getClass()) { 
+//			return false; 
+//		} 
+//		PointV2 other = (PointV2) obj; // Reaching this line means that (this != obj and obj != null and this.getClass() == obj)
+//		return this.x == other.x && this.y == other.y;
+		/*---------------------------------------------------------------------------------------------------------------------*/
+
 //		return this.x == obj.x && this.y == obj.y;
 	} 
 }
