@@ -23,7 +23,7 @@ public class TestPersonCollector {
 		assertFalse(p1 == p2);
 		assertTrue(p1.equals(p2));
 		assertTrue(p3 == p4);
-		assertTrue(p3.equals(p4));
+		assertTrue(p3.equals(p4)); // Reflexivity
 		
 		PersonCollector pc1 = new PersonCollector();
 		PersonCollector pc2 = new PersonCollector();
@@ -32,7 +32,7 @@ public class TestPersonCollector {
 		assertTrue(pc1.equals(pc2));
 		
 		pc1.addPerson(p1);
-		// pc1 and pc2 contain equal number of persons
+		// pc1 and pc2 contain different number of persons
 		assertFalse(pc1.equals(pc2));
 		
 		pc2.addPerson(p2);
