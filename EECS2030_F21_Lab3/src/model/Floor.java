@@ -57,21 +57,41 @@ public class Floor {
 		}
 		Floor otherFloor =  (Floor) obj;
 		boolean equivalent = false;
+		boolean forAllIndexInOtherFloorHasntFoundSimilar = false;
 		if (this.noU != 0) {
-			for (int i = 0; i < this.noU; i ++) {
+			for (int i = 0; !forAllIndexInOtherFloorHasntFoundSimilar && i < this.noU; i ++) {
+				int reachedTheLastIndexThisNoU = 0; // this being equal to this.noU && equivalent being false mean that one unit in floor (this) doesn't have any equivalent in (otherFloor) 
 				equivalent = false;
 				for(int m = 0; !equivalent && m < this.noU; m ++) {
 					equivalent = this.arrayOfUnits[i].equals(otherFloor.arrayOfUnits[m]);
+					reachedTheLastIndexThisNoU ++;
+					forAllIndexInOtherFloorHasntFoundSimilar = ((reachedTheLastIndexThisNoU == this.noU) && (equivalent == false));
 				}
 			}
 		}
-		else {
+		else { // If no floor is added, they are directly equivalent
 			equivalent = true;
 		}
 		
 		return (this.capacity == otherFloor.capacity) && equivalent;
 	}
 	
+	// Getters
+	public int getCapacity() {
+		return this.capacity;
+	}
+	
+	public int getNOU() {
+		return this.noU;
+	}
+	
+	public Unit[] getArrayOfUnit() {
+		return this.arrayOfUnits;
+	}
+	
+	public void setArrayOfUnits(Unit[] u) {
+		this.arrayOfUnits = u;
+	}
 	
 }
 
