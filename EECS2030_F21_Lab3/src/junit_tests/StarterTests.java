@@ -443,7 +443,7 @@ public class StarterTests {
 	}
 	
 	@Test 
-	public void test_floor_08() {
+	public void test_floor_08() { //
 		Floor f1 = new Floor(500);
 		Floor f2 = null;
 		assertNotEquals(f1, f2);
@@ -451,11 +451,38 @@ public class StarterTests {
 	}
 	
 	@Test 
-	public void test_floor_09() {
+	public void test_floor_09() { //
 		// Different Dynamic types should not be compared and hence must return false;
 		Floor f1 = new Floor(500);
 		Unit f2 = new Unit("a", 9, 23);
 		assertNotEquals(f1, f2);
+	}
+	
+	@Test 
+	public void test_floor_10() { //
+		/*
+		 * Case when all units in a floor is different.
+		 */
+		Floor f1 = new Floor(500);
+		Floor f2 = new Floor(500);
+		 
+		try { 
+			f1.addUnit("Master Bedroom", 14, 9);
+			f1.addUnit("Master Bedroom", 13, 9);
+			f1.addUnit("Office", 8, 12);
+			f1.addUnit("Kitchen", 9, 10);
+			assertEquals("Floor's utilized space is 429 sq ft (71 sq ft remaining): [Master Bedroom: 126 sq ft (14' by 9'), Master Bedroom: 117 sq ft (13' by 9'), Office: 96 sq ft (8' by 12'), Kitchen: 90 sq ft (9' by 10')]", f1.toString());
+			
+			f2.addUnit("Master Bedroom", 1, 18);
+			f2.addUnit("Office", 2, 6);
+			f2.addUnit("Master Bedroom", 3, 18);
+			f2.addUnit("Kitchen", 5, 10);
+
+			assertFalse(f1.equals(f2));
+		}
+		catch(InsufficientFloorSpaceException e) {
+			fail("Unexpected exception thrown");
+		}
 	}
 	
 //	

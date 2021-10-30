@@ -59,19 +59,24 @@ public class Floor {
 		Floor otherFloor =  (Floor) obj;
 		boolean equivalent = false;
 		boolean forAllIndexInOtherFloorHasntFoundSimilar = false;
-		if (this.noU != 0) {
-			for (int i = 0; !forAllIndexInOtherFloorHasntFoundSimilar && i < this.noU; i ++) {
-				int reachedTheLastIndexThisNoU = 0; // this being equal to this.noU && equivalent being false mean that one unit in floor (this) doesn't have any equivalent in (otherFloor) 
-				equivalent = false;
-				for(int m = 0; !equivalent && m < this.noU; m ++) {
-					equivalent = this.arrayOfUnits[i].equals(otherFloor.arrayOfUnits[m]);
-					reachedTheLastIndexThisNoU ++;
-					forAllIndexInOtherFloorHasntFoundSimilar = ((reachedTheLastIndexThisNoU == this.noU) && (equivalent == false));
+		if (this.noU == otherFloor.noU) { // If each floor has the same number of units -> check for equality
+			if (this.noU != 0) {
+				for (int i = 0; !forAllIndexInOtherFloorHasntFoundSimilar && i < this.noU; i ++) {
+					int reachedTheLastIndexThisNoU = 0; // this being equal to this.noU && equivalent being false after all iterations mean that one unit in floor (this) doesn't have any equivalent in (otherFloor) 
+					equivalent = false;
+					for(int m = 0; !equivalent && m < this.noU; m ++) {
+						equivalent = this.arrayOfUnits[i].equals(otherFloor.arrayOfUnits[m]);
+						reachedTheLastIndexThisNoU ++;
+						forAllIndexInOtherFloorHasntFoundSimilar = ((reachedTheLastIndexThisNoU == this.noU) && (equivalent == false));
+					}
 				}
 			}
+			else { // If no floor is added, they are directly equivalent
+				equivalent = true;
+			}
 		}
-		else { // If no floor is added, they are directly equivalent
-			equivalent = true;
+		else { // If each floor has the same number of units -> NO need to check -> false
+			equivalent = false;
 		}
 		
 		return (this.capacity == otherFloor.capacity) && equivalent;
@@ -90,7 +95,21 @@ public class Floor {
 		return this.arrayOfUnits;
 	}
 	
-	public void setArrayOfUnits(Unit[] u) {
-		this.arrayOfUnits = u;
+	// Setters for deep copy
+	public void setArrayOfUnits(Floor floor) {
+		/*
+		 * Makes a new unit object for each units in the array of units given as argument.
+		 */
+		for (int i = 0; i < floor.noU; i ++) {
+			arrayOfUnits[i] = new Unit(floor.getArrayOfUnit()[i].getFunction(), floor.getArrayOfUnit()[i].getWidth(), floor.getArrayOfUnit()[i].getLength());
+		}
+	}
+	
+	public void setCapacityUsedSorFar(Floor floor) {
+		this.capacityUsedSoFar = floor.capacityUsedSoFar;
+	}
+	
+	public void setNOU(Floor floor) {
+		this.noU = floor.noU;
 	}
 }
