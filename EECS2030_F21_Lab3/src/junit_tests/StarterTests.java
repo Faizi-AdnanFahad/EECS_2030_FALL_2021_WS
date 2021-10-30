@@ -1,9 +1,9 @@
 package junit_tests;
 
 import static org.junit.Assert.*;
-import model.*;
 
 import org.junit.Test;
+import model.*;
 
 /*
  * Requirement: Any classes you create must reside in the `model` package and be imported properly.
@@ -59,11 +59,6 @@ public class StarterTests {
 	/*
 	 * Tests related to the Unit class.
 	 */ 
-	
-	/*
-	 * 1. test_unit_03 -> Test all overridden equal mehtod's conditions.
-	 * 2. test_unit_04 -> Cover all cases for overridden equal method.
-	 * */
 	
 	@Test
 	public void test_unit_01() {
@@ -352,8 +347,7 @@ public class StarterTests {
 			 * 	+ f1 has two master bedrooms of different sizes
 			 * 	+ f2 has two master bedrooms of the same size 
 			 */
-			assertFalse(f1.equals(f2));
-//			assertNotEquals(f1, f2);
+			assertNotEquals(f1, f2);
 		}
 		catch(InsufficientFloorSpaceException e) {
 			fail("Unexpected exception thrown");
@@ -484,12 +478,12 @@ public class StarterTests {
 			fail("Unexpected exception thrown");
 		}
 	}
+
 	
-//	
-//	/*
-//	 * Tests related to the Blueprint class.
-//	 */
-//	
+	/*
+	 * Tests related to the Blueprint class.
+	 */
+	
 	@Test
 	public void test_blueprint_01() {
 		/*
