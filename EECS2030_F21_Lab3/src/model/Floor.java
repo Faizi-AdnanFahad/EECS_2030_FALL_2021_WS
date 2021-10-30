@@ -15,12 +15,13 @@ public class Floor {
 	}
 	
 	public void addUnit(String function, int width, int length) throws InsufficientFloorSpaceException{
-		if ((width * length) <= (this.capacity - this.capacityUsedSoFar)) {
-			if (this.noU < 20) {
-				capacityUsedSoFar += (width * length);
+		double remainingCapacity = this.capacity - this.capacityUsedSoFar;
+		double currentUnitsCapacity = width * length;
+		if (currentUnitsCapacity <= remainingCapacity) {
+			if (this.noU < 20) { // If there is space left in the array of units (Max allowed 20)
+				capacityUsedSoFar += currentUnitsCapacity;
 				this.arrayOfUnits[this.noU] = new Unit(function, width, length);
 				this.noU ++;
-			
 			}
 		}
 		else {
@@ -34,10 +35,10 @@ public class Floor {
 		for (int i = 0; i < this.noU; i ++) {
 			Unit unit = this.arrayOfUnits[i];
 			if (i == this.noU - 1) {
-				seq += unit.getFunction() + ": " + (unit.getLength() * unit.getWidth()) + " sq ft (" + unit.getWidth() + "' by " + unit.getLength() + "'" + ")";
+				seq += unit.getFunction() + ": " + (unit.getLength() * unit.getWidth()) + " sq ft (" + unit.getWidth() + "' by " + unit.getLength() + "')";
 			}
 			else {
-				seq += unit.getFunction() + ": " + (unit.getLength() * unit.getWidth()) + " sq ft (" + unit.getWidth() + "' by " + unit.getLength() + "'" + "), ";
+				seq += unit.getFunction() + ": " + (unit.getLength() * unit.getWidth()) + " sq ft (" + unit.getWidth() + "' by " + unit.getLength() + "'), ";
 			}
 		}
 		seq += "]";
@@ -92,21 +93,4 @@ public class Floor {
 	public void setArrayOfUnits(Unit[] u) {
 		this.arrayOfUnits = u;
 	}
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

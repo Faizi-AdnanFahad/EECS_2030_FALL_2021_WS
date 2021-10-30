@@ -133,6 +133,54 @@ public class StarterTests {
 		 */
 	}
 	
+	@Test
+	public void test_unit_04() { //
+		Unit unit1 = new Unit("Master Room", 14, 9);
+		assertEquals("A unit of 126 square feet (14' wide and 9' long) functioning as Master Room", unit1.toString());
+		
+		Unit unit2 = new Unit("Bedroom", 5, 5);
+		assertEquals("A unit of 25 square feet (5' wide and 5' long) functioning as Bedroom", unit2.toString());
+	}
+	
+	@Test
+	public void test_unit_05() { //
+		Unit unit = new Unit("Master Room", 10, 9);
+		
+		// Changing the units from feet to meters
+		unit.toogleMeasurement();
+		
+		assertEquals("A unit of 8.36 square meters (3.05 m wide and 2.74 m long) functioning as Master Room", unit.toString());
+		
+		// Changing back to feet from meters.
+		unit.toogleMeasurement();
+		assertEquals("A unit of 90 square feet (10' wide and 9' long) functioning as Master Room", unit.toString());
+	}
+	
+	@Test
+	public void test_unit_06() { //
+		Unit u1 = new Unit("Master Bedroom", 14, 9);
+		Unit u2 = new Unit("Master Bedroom", 18, 7);
+		Unit u3 = new Unit("Master Bedroom", 10, 8);
+		Unit u4 = new Unit("Office", 16, 5); 
+		Unit u6 = new Unit("Master Bedroom", 10, 8);
+
+		assertEquals("A unit of 126 square feet (14' wide and 9' long) functioning as Master Bedroom", u1.toString());
+		assertEquals("A unit of 126 square feet (18' wide and 7' long) functioning as Master Bedroom", u2.toString());
+		
+		/*
+		 * Two units are considered equal if their intended functions are the same (case-sensitive)
+		 * 	and the areas (in square feet) are the same (even if the dimensions may be different). 
+		 */
+		Unit u5 = null;
+		assertFalse(u1.equals(null));
+		assertFalse(u1.equals(u5));
+		
+		assertNotSame(u1, u5);
+		assertEquals(u1, u1);
+		assertNotEquals(u3, u4);
+		assertNotEquals(u1, u6);
+	}
+	
 	/*
 	 * Tests related to the Floor class.
 	 */ 
@@ -315,6 +363,101 @@ public class StarterTests {
 		 * Your implementation of the overridden equals method should cover them.    
 		 */
 	}
+	
+	@Test
+	public void test_floor_06() { //
+		Floor f = new Floor(500);
+		try { 
+			// Adding the full 20 units
+			for (int i = 0; i < 20; i ++) {
+				f.addUnit("Master Bedroom", 5, 5);
+			}
+			assertEquals("Floor's utilized space is 500 sq ft (0 sq ft remaining): "
+					+ "[Master Bedroom: 25 sq ft (5' by 5'),"
+					+ " Master Bedroom: 25 sq ft (5' by 5'),"
+					+ " Master Bedroom: 25 sq ft (5' by 5'),"
+					+ " Master Bedroom: 25 sq ft (5' by 5'),"
+					+ " Master Bedroom: 25 sq ft (5' by 5'),"
+					+ " Master Bedroom: 25 sq ft (5' by 5'),"
+					+ " Master Bedroom: 25 sq ft (5' by 5'),"
+					+ " Master Bedroom: 25 sq ft (5' by 5'),"
+					+ " Master Bedroom: 25 sq ft (5' by 5'),"
+					+ " Master Bedroom: 25 sq ft (5' by 5'),"
+					+ " Master Bedroom: 25 sq ft (5' by 5'),"
+					+ " Master Bedroom: 25 sq ft (5' by 5'),"
+					+ " Master Bedroom: 25 sq ft (5' by 5'),"
+					+ " Master Bedroom: 25 sq ft (5' by 5'),"
+					+ " Master Bedroom: 25 sq ft (5' by 5'),"
+					+ " Master Bedroom: 25 sq ft (5' by 5'),"
+					+ " Master Bedroom: 25 sq ft (5' by 5'),"
+					+ " Master Bedroom: 25 sq ft (5' by 5'),"
+					+ " Master Bedroom: 25 sq ft (5' by 5'),"
+					+ " Master Bedroom: 25 sq ft (5' by 5')]", f.toString());
+		}
+		catch(InsufficientFloorSpaceException e) {
+			fail("Unexpected exception thrown");
+		}
+	}
+	
+	@Test
+	public void test_floor_07() { //
+		Floor f = new Floor(500);
+		try { 
+			// Adding the full 20 units
+			for (int i = 0; i < 20; i ++) {
+				f.addUnit("Master Bedroom", 5, 5);
+			}
+			assertEquals("Floor's utilized space is 500 sq ft (0 sq ft remaining): "
+					+ "[Master Bedroom: 25 sq ft (5' by 5'),"
+					+ " Master Bedroom: 25 sq ft (5' by 5'),"
+					+ " Master Bedroom: 25 sq ft (5' by 5'),"
+					+ " Master Bedroom: 25 sq ft (5' by 5'),"
+					+ " Master Bedroom: 25 sq ft (5' by 5'),"
+					+ " Master Bedroom: 25 sq ft (5' by 5'),"
+					+ " Master Bedroom: 25 sq ft (5' by 5'),"
+					+ " Master Bedroom: 25 sq ft (5' by 5'),"
+					+ " Master Bedroom: 25 sq ft (5' by 5'),"
+					+ " Master Bedroom: 25 sq ft (5' by 5'),"
+					+ " Master Bedroom: 25 sq ft (5' by 5'),"
+					+ " Master Bedroom: 25 sq ft (5' by 5'),"
+					+ " Master Bedroom: 25 sq ft (5' by 5'),"
+					+ " Master Bedroom: 25 sq ft (5' by 5'),"
+					+ " Master Bedroom: 25 sq ft (5' by 5'),"
+					+ " Master Bedroom: 25 sq ft (5' by 5'),"
+					+ " Master Bedroom: 25 sq ft (5' by 5'),"
+					+ " Master Bedroom: 25 sq ft (5' by 5'),"
+					+ " Master Bedroom: 25 sq ft (5' by 5'),"
+					+ " Master Bedroom: 25 sq ft (5' by 5')]", f.toString());
+		}
+		catch(InsufficientFloorSpaceException e) {
+			fail("Unexpected exception thrown");
+		}
+		
+		try {
+			f.addUnit("Master Bedroom", 5, 5);
+			fail("Exception should have been throwned.");
+		}
+		catch (InsufficientFloorSpaceException e) {
+			/* Exception was thrown as expected*/
+		}
+	}
+	
+	@Test 
+	public void test_floor_08() {
+		Floor f1 = new Floor(500);
+		Floor f2 = null;
+		assertNotEquals(f1, f2);
+		assertEquals(f1, f1);
+	}
+	
+	@Test 
+	public void test_floor_09() {
+		// Different Dynamic types should not be compared and hence must return false;
+		Floor f1 = new Floor(500);
+		Unit f2 = new Unit("a", 9, 23);
+		assertNotEquals(f1, f2);
+	}
+	
 //	
 //	/*
 //	 * Tests related to the Blueprint class.

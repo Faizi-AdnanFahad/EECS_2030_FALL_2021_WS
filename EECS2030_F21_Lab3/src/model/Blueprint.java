@@ -41,17 +41,4 @@ public class Blueprint {
 		double percentage = (100.0 * this.noF) / this.numOfFloors; // Percentage of added floors so far compare to the total number of floors that could be possibly added.
 		return String.format("%.1f", percentage) + " percents of building blueprint completed (" + this.noF +  " out of " + this.numOfFloors + " floors)";
 	}
-	
-
-
 }
-
-
-
-
-
-
-
-
-
-

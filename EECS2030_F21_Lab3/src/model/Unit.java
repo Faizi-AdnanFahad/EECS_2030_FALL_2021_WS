@@ -2,7 +2,7 @@ package model;
 
 public class Unit {
 	
-	private String function;
+	private String function; // Name of the space utilized. 
 	
 	private int widthInFeet;
 	private int lengthInFeet;
@@ -10,7 +10,7 @@ public class Unit {
 	private double widthInMeter;
 	private double lengthInMeter;
 	
-	private int toogleCounter; // Counting the number of times the toogleMeasurement mutator is called for keeping note of whether to use feet or meter.
+	private int toogleCounter; // Helper Attribute // Counting the number of times the toogleMeasurement mutator is called. Specifically, for keeping note of whether to use feet or meter.
 	
 	public Unit(String function, int width, int length) { // Width and Length in feet
 		this.function = function;
@@ -18,7 +18,10 @@ public class Unit {
 		this.lengthInFeet = length;
 	}
 	
-	public void toogleMeasurement() { // mutator to convert from feet to meters
+	public void toogleMeasurement() { 
+		/*
+		 *  mutator to convert from feet to meters
+		 */
 		if (this.toogleCounter % 2 == 0) {
 			this.widthInMeter = this.widthInFeet * 0.3048;
 			this.lengthInMeter = this.lengthInFeet * 0.3048;
@@ -27,9 +30,7 @@ public class Unit {
 	}
 	
 	public String toString() {
-
 		String result = "";
-		
 		if ((this.toogleCounter + 1) % 2 == 1) {
 			result = "A unit of " 
 					+ (this.widthInFeet * this.lengthInFeet)
@@ -62,7 +63,7 @@ public class Unit {
 				&& ((this.lengthInFeet * this.widthInFeet) == (otherUnit.lengthInFeet * otherUnit.widthInFeet));
 	}
 	
-	// Addtional Getters
+	// Additional Getters
 	public String getFunction() {
 		return this.function;
 	}
@@ -74,32 +75,4 @@ public class Unit {
 	public int getLength() {
 		return this.lengthInFeet;
 	}
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
