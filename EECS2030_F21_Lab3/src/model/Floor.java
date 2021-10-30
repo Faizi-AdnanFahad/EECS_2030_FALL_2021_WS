@@ -57,7 +57,19 @@ public class Floor {
 		}
 		Floor otherFloor =  (Floor) obj;
 		boolean equivalent = false;
-		return (this.capacity == otherFloor.capacity);
+		if (this.noU != 0) {
+			for (int i = 0; i < this.noU; i ++) {
+				equivalent = false;
+				for(int m = 0; !equivalent && m < this.noU; m ++) {
+					equivalent = this.arrayOfUnits[i].equals(otherFloor.arrayOfUnits[m]);
+				}
+			}
+		}
+		else {
+			equivalent = true;
+		}
+		
+		return (this.capacity == otherFloor.capacity) && equivalent;
 	}
 	
 	
