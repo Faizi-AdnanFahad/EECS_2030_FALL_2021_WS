@@ -49,13 +49,10 @@ public class Unit {
 	
 	// Overridden Equals method from Object class
 	public boolean equals(Object obj) {
-		if (obj == null) {
-			return false;
-		}
-		else if (obj == this) {
+		if (obj == this) {
 			return true;
 		}
-		else if (this.getClass() != obj.getClass()) {
+		else if (obj == null || this.getClass() != obj.getClass()) {
 			return false;
 		}
 		Unit otherUnit = (Unit) obj;

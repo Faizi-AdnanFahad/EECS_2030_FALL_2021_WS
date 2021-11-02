@@ -18,6 +18,7 @@ public class Blueprint {
 		for (int i = 0; i < blueprint.noF; i ++ ) {
 			this.addFloorPlan(blueprint.arrayOfFloors[i]);
 		}
+		this.noF = blueprint.noF;
 	}
 	
 	public void addFloorPlan(Floor floor) {

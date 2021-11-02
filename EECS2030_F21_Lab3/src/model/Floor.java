@@ -19,7 +19,7 @@ public class Floor {
 		double currentUnitsCapacity = width * length;
 		if (currentUnitsCapacity <= remainingCapacity) {
 			if (this.noU < 20) { // If there is space left in the array of units (Max allowed 20)
-				capacityUsedSoFar += currentUnitsCapacity;
+				this.capacityUsedSoFar += currentUnitsCapacity;
 				this.arrayOfUnits[this.noU] = new Unit(function, width, length);
 				this.noU ++;
 			}

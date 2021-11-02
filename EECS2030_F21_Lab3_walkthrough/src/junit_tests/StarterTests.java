@@ -175,10 +175,10 @@ public class StarterTests {
 		assertNotEquals(u3, u4);
 		assertNotEquals(u1, u6);
 	}
-	
-	/*
-	 * Tests related to the Floor class.
-	 */ 
+//	
+//	/*
+//	 * Tests related to the Floor class.
+//	 */ 
 	
 	@Test
 	public void test_floor_01() {
@@ -479,12 +479,12 @@ public class StarterTests {
 			fail("Unexpected exception thrown");
 		}
 	}
-
-	
-	/*
-	 * Tests related to the Blueprint class.
-	 */
-	
+//
+//	
+//	/*
+//	 * Tests related to the Blueprint class.
+//	 */
+//	
 	@Test
 	public void test_blueprint_01() {
 		/*
@@ -534,7 +534,7 @@ public class StarterTests {
 		 * Retrieve the list of floor plans. 
 		 */
 		Floor[] fs = bp.getFloors();
-		assertEquals(2, fs.length);
+		assertEquals(2, fs.length);  
 		
 		/*
 		 * The accessor `getFloors` should preserve composition:
