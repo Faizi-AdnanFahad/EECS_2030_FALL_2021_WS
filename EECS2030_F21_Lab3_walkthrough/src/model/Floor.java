@@ -95,14 +95,3 @@ public class Floor {
 		return result;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
