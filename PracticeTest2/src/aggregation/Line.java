@@ -32,17 +32,4 @@ public class Line {
 		Line other = (Line) obj;
 		return this.p1.equals(other.p1) && this.p2.equals(other.p2);
 	}
-	
-	
-	
 }
-
-
-
-
-
-
-
-
-
-

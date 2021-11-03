@@ -12,7 +12,9 @@ public class LineCollector {
 	
 	public LineCollector(LineCollector lc) {
 		this();
-		this.arrayOfLines = lc.arrayOfLines;
+		for (int i = 0; i < lc.noL; i ++) {
+			this.arrayOfLines[i] = lc.arrayOfLines[i];
+		}
 		this.noL = lc.noL;
 	}
 	
@@ -44,24 +46,15 @@ public class LineCollector {
 		LineCollector other = (LineCollector) obj;
 		
 		boolean result = true;
-		for (int i = 0; result && i < other.noL; i ++) {
-			result = this.arrayOfLines[i].equals(other.arrayOfLines[i]);
+		if (this.noL == other.noL) {
+			for (int i = 0; result && i < other.noL; i ++) {
+				result = this.arrayOfLines[i].equals(other.arrayOfLines[i]);
+			}
 		}
+		else {
+			return false;
+		}
+		
 		return result;
 	}
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
