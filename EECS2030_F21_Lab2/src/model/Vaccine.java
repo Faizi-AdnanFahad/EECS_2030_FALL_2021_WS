@@ -13,9 +13,7 @@ public class Vaccine {
 		// Checking to see if the vaccine is amongst one of the approved ones in Canada.
 		this.recognizedVaccine = false;
 		for (int i = 0; !this.recognizedVaccine && i < this.RECOGNIZED_VACCINES.length; i ++) {
-			if (this.RECOGNIZED_VACCINES[i].equals(codeNameVaccine)) {
-				this.recognizedVaccine = true;
-			}
+			this.recognizedVaccine = this.RECOGNIZED_VACCINES[i].equals(codeNameVaccine);
 		}
 		// Initializing attributes
 		this.codeNameVaccine = codeNameVaccine;

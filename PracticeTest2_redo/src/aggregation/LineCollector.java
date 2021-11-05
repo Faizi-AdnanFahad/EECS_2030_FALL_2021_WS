@@ -1,8 +1,8 @@
-package composition;
+package aggregation;
 
 public class LineCollector {
 	
-	private Line[] arrayOfLines;
+	private Line[]	arrayOfLines;
 	private int noL;
 	
 	public LineCollector() {
@@ -24,14 +24,12 @@ public class LineCollector {
 		this.noL ++;
 	}
 	
-	public Line getLineAt(int index) {
-		Line l = this.arrayOfLines[index];
-		return l;
+	public Line[] getLines() {
+		return this.arrayOfLines;
 	}
 	
-	public Line[] getLines() {
-		Line[] tempLines = this.arrayOfLines;
-		return tempLines;
+	public Line getLineAt(int index) {
+		return this.arrayOfLines[index];
 	}
 	
 	public boolean equals(Object obj) {
@@ -42,16 +40,15 @@ public class LineCollector {
 			return false;
 		}
 		LineCollector other = (LineCollector) obj;
-		
-		boolean result = true;
 		if (this.noL == other.noL) {
-			for (int i = 0; result && i < other.noL; i ++) {
-				result = this.arrayOfLines[i].equals(other.arrayOfLines[i]);
+			boolean equal = true;
+			for (int i = 0; equal && i < this.noL; i ++) {
+				equal = this.arrayOfLines[i] == other.arrayOfLines[i];
 			}
+			return equal;
 		}
 		else {
 			return false;
 		}
-		return result;
-	}
+	} 
 }
