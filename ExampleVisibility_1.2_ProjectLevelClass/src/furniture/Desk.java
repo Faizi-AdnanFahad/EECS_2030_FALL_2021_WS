@@ -7,4 +7,5 @@ public class Desk {
 	 * There is no need to have an import statement:
 	 * import furniture.Chair
 	 */
+	Chair chair = new Chair(); // No need to import class chair
 }

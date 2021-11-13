@@ -9,7 +9,10 @@ import model.*;
 import org.junit.Test;
 
 public class Test_Easy_Problems {
-
+	
+	/*
+	 * Tests related to 'twoSum'
+	 */
 	@Test
 	public void test_twoSum_0() {
 	int[] input = {2,7,11,15};

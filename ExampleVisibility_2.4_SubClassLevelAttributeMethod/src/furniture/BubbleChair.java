@@ -1,6 +1,6 @@
 package furniture;
 
-public class BubbleChair extends Chair {
+public class BubbleChair extends Chair { // Treat it just like an extension of the Chair class.
 	void bubbleChairMethod() {
 		/* Within this method of a descendant class (and same resident package) 
 		 * as of 'i' and 'm' from class Chair,
