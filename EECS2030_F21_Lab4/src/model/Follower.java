@@ -16,4 +16,7 @@ public class Follower {
 	
 	public void addChannel(String channelName) {
 	}
+	
+	public void removeChannel(String channelName) {
+	}
 }

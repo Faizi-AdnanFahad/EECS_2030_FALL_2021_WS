@@ -234,44 +234,44 @@ public class StarterTests {
 		 *  2. You may test more cases of unfollowing a subscriber or monitor from a channel which it does not follow.
 		 */
 	}
-//	
-//	@Test
-//	public void test_channel_02a() { 
-//		Channel ch = new Channel("Cafe Music BGM", 50, 100);
-//		assertEquals("Cafe Music BGM released no videos and has no followers.", ch.toString());
-//		
-//		/* 
-//		 * You can assume that no duplicated video names will be released across all channels. 
-//		 * That is, names of videos released by all channels are unique.
-//		 * 
-//		 * Assume that channel videos, once released, will not be removed.
-//		 */
-//		ch.releaseANewVideo("Jazz Piano Radio");
-//		assertEquals("Cafe Music BGM released <Jazz Piano Radio> and has no followers.", ch.toString());
-//		
-//		ch.releaseANewVideo("Starbucks Music Playlist 2021");
-//		assertEquals("Cafe Music BGM released <Jazz Piano Radio, Starbucks Music Playlist 2021> and has no followers.", ch.toString());
-//		
-//		Follower f1 = new Subscriber("Alan", 20, 40);
-//		Follower f2 = new Monitor("Stat Sensor A", 60);
-//		
-//		/*
-//		 * Given that `f1` and `f2` only start following `ch` after it released the two videos,
-//		 * 	those two videos will not be recommended to `f1` and `f2`.
-//		 * 
-//		 * That is, a follower is only recommended videos that are released after they start following a channel.
-//		 */
-//		
-//		ch.follow(f1);
-//		assertEquals("Cafe Music BGM released <Jazz Piano Radio, Starbucks Music Playlist 2021> and is followed by [Subscriber Alan].", ch.toString());
-//		assertEquals("Subscriber Alan follows [Cafe Music BGM] and has no recommended videos.", f1.toString());
-//		assertEquals("Monitor Stat Sensor A follows no channels.", f2.toString());
-//		
-//		ch.follow(f2);
-//		assertEquals("Cafe Music BGM released <Jazz Piano Radio, Starbucks Music Playlist 2021> and is followed by [Subscriber Alan, Monitor Stat Sensor A].", ch.toString());
-//		assertEquals("Subscriber Alan follows [Cafe Music BGM] and has no recommended videos.", f1.toString());
-//		assertEquals("Monitor Stat Sensor A follows [Cafe Music BGM].", f2.toString());
-//	}
+	
+	@Test
+	public void test_channel_02a() { 
+		Channel ch = new Channel("Cafe Music BGM", 50, 100);
+		assertEquals("Cafe Music BGM released no videos and has no followers.", ch.toString());
+		
+		/* 
+		 * You can assume that no duplicated video names will be released across all channels. 
+		 * That is, names of videos released by all channels are unique.
+		 * 
+		 * Assume that channel videos, once released, will not be removed.
+		 */
+		ch.releaseANewVideo("Jazz Piano Radio");
+		assertEquals("Cafe Music BGM released <Jazz Piano Radio> and has no followers.", ch.toString());
+		
+		ch.releaseANewVideo("Starbucks Music Playlist 2021");
+		assertEquals("Cafe Music BGM released <Jazz Piano Radio, Starbucks Music Playlist 2021> and has no followers.", ch.toString());
+		
+		Follower f1 = new Subscriber("Alan", 20, 40);
+		Follower f2 = new Monitor("Stat Sensor A", 60);
+		
+		/*
+		 * Given that `f1` and `f2` only start following `ch` after it released the two videos,
+		 * 	those two videos will not be recommended to `f1` and `f2`.
+		 * 
+		 * That is, a follower is only recommended videos that are released after they start following a channel.
+		 */
+		
+		ch.follow(f1);
+		assertEquals("Cafe Music BGM released <Jazz Piano Radio, Starbucks Music Playlist 2021> and is followed by [Subscriber Alan].", ch.toString());
+		assertEquals("Subscriber Alan follows [Cafe Music BGM] and has no recommended videos.", f1.toString());
+		assertEquals("Monitor Stat Sensor A follows no channels.", f2.toString());
+		
+		ch.follow(f2);
+		assertEquals("Cafe Music BGM released <Jazz Piano Radio, Starbucks Music Playlist 2021> and is followed by [Subscriber Alan, Monitor Stat Sensor A].", ch.toString());
+		assertEquals("Subscriber Alan follows [Cafe Music BGM] and has no recommended videos.", f1.toString());
+		assertEquals("Monitor Stat Sensor A follows [Cafe Music BGM].", f2.toString());
+	}
 //	
 //	@Test
 //	public void test_channel_02b() { 

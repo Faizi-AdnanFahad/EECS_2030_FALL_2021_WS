@@ -17,6 +17,16 @@ public class Monitor extends Follower {
 		this.noC ++;
 	}
 	
+	public void removeChannel(String channelName) {
+		for (int i = 0; i < this.noC; i ++) {
+			if (this.arrayOfChannels[i].equals(channelName)) {
+				this.arrayOfChannels[i] = null;
+				this.arrayOfChannels[i] = this.arrayOfChannels[i + 1];
+				this.noC -= 1;
+			}
+		}
+	}
+	
 	@Override
 	public String toString() {
 		String result = "";
