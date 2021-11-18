@@ -19,4 +19,11 @@ public class Follower {
 	
 	public void removeChannel(String channelName) {
 	}
+	
+	public void recommendVideo(String videoName) {
+	}
+	
+	public void add(Channel c) {
+		
+	}
 }

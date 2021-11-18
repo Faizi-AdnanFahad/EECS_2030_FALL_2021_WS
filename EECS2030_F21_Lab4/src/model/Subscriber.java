@@ -5,16 +5,36 @@ public class Subscriber extends Follower {
 	protected String[] arrayOfChannels;
 	protected int noC;
 	
+	protected Channel[] a;
+	
+	protected String[] arrayOfVidRec;
+	protected int noR;
+	
 	public Subscriber(String name, int maxChannelToFollow, int maxRecVi) {
 		this.name = name;
 		this.arrayOfChannels = new String[maxChannelToFollow];
 		this.noC = 0;
+		this.arrayOfVidRec = new String[maxRecVi];
+		this.noR = 0;
+		
+		a = new Channel[40];
 	}
 	
 	@Override
 	public void addChannel(String channelName) {
 		this.arrayOfChannels[this.noC] = channelName;
 		this.noC ++;
+		
+	}
+	
+	public void add(Channel c) {
+		this.a[this.noC] = c;
+		this.noC ++;
+	}
+	
+	public void recommendVideo(String videoName) {
+		this.arrayOfVidRec[this.noR] = videoName;
+		this.noR ++;
 	}
 	
 	public void removeChannel(String channelName) {
@@ -27,6 +47,10 @@ public class Subscriber extends Follower {
 		}
 	}
 	
+	public void watch(String videoName, int timeInMin) {
+		
+	}
+	
 	@Override
 	public String toString() {
 		String result = "";
@@ -34,7 +58,7 @@ public class Subscriber extends Follower {
 			result = "Subscriber " 
 					+ this.name + " follows no channels and has no recommended videos.";
 		}
-		else {
+		else if (this.noR == 0 && this.noC != 0) {
 			String seqChannels = "[";
 			for (int i = 0; i < this.noC; i ++) {
 				seqChannels += this.arrayOfChannels[i];
@@ -47,6 +71,29 @@ public class Subscriber extends Follower {
 					+ this.name + " follows " 
 					+ seqChannels + " and has no recommended videos.";
 		}
+		else if (this.noC != 0 && this.noR != 0) {
+			String seqChannels = "[";
+			for (int i = 0; i < this.noC; i ++) {
+				seqChannels += this.arrayOfChannels[i];
+				if (i < this.noC - 1) {
+					seqChannels += ", ";
+				}
+			}
+			seqChannels += "]";
+			
+			String vidSeq = "<";
+			for (int i = 0; i < this.noR; i ++) {
+				vidSeq += this.arrayOfVidRec[i];
+				if (i < this.noR - 1) {
+					vidSeq += ", ";
+				}
+			}
+			vidSeq += ">";
+			result = "Subscriber " + this.name + " follows " 
+								   + seqChannels 
+								   + " and is recommended " 
+								   + vidSeq + ".";
+			}
 		return result;
 	}
 	

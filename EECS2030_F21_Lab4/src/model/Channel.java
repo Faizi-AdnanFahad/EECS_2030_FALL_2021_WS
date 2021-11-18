@@ -9,7 +9,7 @@ public class Channel {
 
 	private String[] arrayOfVideo;
 	private int noV;
-
+	
 
 	public Channel(String nameChannel, int maxFollower, int maxVid) {
 		this.nameChannel = nameChannel;
@@ -23,6 +23,12 @@ public class Channel {
 	public void releaseANewVideo(String videoName) {
 		this.arrayOfVideo[this.noV] = videoName;
 		this.noV ++;
+		
+		for (int i = 0; i < this.noF; i ++) {
+			if (this.arrayOfFollowers[i].getDT().equals("Subscriber")) {
+				this.arrayOfFollowers[i].recommendVideo(videoName);
+			}
+		}
 	}
 
 	public void follow(Follower f) {
@@ -30,7 +36,8 @@ public class Channel {
 		this.noF ++;
 
 		// Adding channels to the list of followers
-		f.addChannel(nameChannel);
+//		f.addChannel(nameChannel);
+		f.add(this);
 	}
 
 	public void unfollow(Follower f) {
@@ -51,91 +58,42 @@ public class Channel {
 			result = this.nameChannel + " released no videos and has no followers.";
 		}
 		else if (this.noV != 0 && this.noF == 0){
-			String vidSeq = "<";
-			for (int i = 0; i < this.noV; i ++) {
-				vidSeq += this.arrayOfVideo[i];
-				if (i < this.noV - 1) {
-					vidSeq += ", ";
-				}
-			}
-			vidSeq += ">";
 			result = this.nameChannel 
-					+ " released " + vidSeq 
+					+ " released " 
+					+ this.getSequenceVideoReleased() 
 					+ " and has no followers.";
 		}
 		else if (this.noF != 0 && this.noV == 0) {
-			String followerSeq = "[";
-			//			for (int i = 0; i < this.noF; i ++) {
-			//				if (this.arrayOfFollowers[i].getClass().getSimpleName().equals("Subscriber")) {
-			//					followerSeq += "Subscriber " + this.arrayOfFollowers[i].name;
-			//					if (i < this.noF - 1) {
-			//						followerSeq += ", ";
-			//					}
-			//				}
-			//				else if (this.arrayOfFollowers[i].getClass().getSimpleName().equals("Monitor")) {
-			//					followerSeq += "Monitor " + this.arrayOfFollowers[i].name;
-			//					if (i < this.noF - 1) {
-			//						followerSeq += ", ";
-			//					}
-			//				}
-			//			}
-
-			for (int i = 0; i < this.noF; i ++) {
-				if (this.arrayOfFollowers[i].getDT().equals("Subscriber")) {
-					followerSeq += "Subscriber " + this.arrayOfFollowers[i].name;
-					if (i < this.noF - 1) {
-						followerSeq += ", ";
-					}
-				}
-				else if (this.arrayOfFollowers[i].getDT().equals("Monitor")) {
-					followerSeq += "Monitor " + this.arrayOfFollowers[i].name;
-					if (i < this.noF - 1) {
-						followerSeq += ", ";
-					}
-				}
-			}
-			followerSeq += "]";
 			result = this.nameChannel + 
-					" released no videos and is followed by " + followerSeq + ".";
+					" released no videos and is followed by " 
+					+ this.getSequenceFollower() + ".";
 		}
-		else { // Both videos are released and followers are gained.
-			String vidSeq = "<";
-			for (int i = 0; i < this.noV; i ++) {
-				vidSeq += this.arrayOfVideo[i];
-				if (i < this.noV - 1) {
-					vidSeq += ", ";
-				}
-			}
-			vidSeq += ">";
-			
-			
-			String followerSeq = "[";
-			for (int i = 0; i < this.noF; i ++) {
-				if (this.arrayOfFollowers[i].getDT().equals("Subscriber")) {
-					followerSeq += "Subscriber " + this.arrayOfFollowers[i].name;
-					if (i < this.noF - 1) {
-						followerSeq += ", ";
-					}
-				}
-				else if (this.arrayOfFollowers[i].getDT().equals("Monitor")) {
-					followerSeq += "Monitor " + this.arrayOfFollowers[i].name;
-					if (i < this.noF - 1) {
-						followerSeq += ", ";
-					}
-				}
-			}
-			followerSeq += "]";
-			
-			result = this.nameChannel + 
-						" released " + vidSeq + " and is followed by " + followerSeq + ".";
-			
+		else { // Both videos are released and followers are gained.		
+			result = this.nameChannel 
+						+ " released " 
+						+ this.getSequenceVideoReleased() 
+						+ " and is followed by " 
+						+ this.getSequenceFollower() + ".";
 		}
 		return result;
 	}
 	
 	private String getSequenceFollower() {
-		String result = "";
 		String followerSeq = "[";
+		//			for (int i = 0; i < this.noF; i ++) {
+		//				if (this.arrayOfFollowers[i].getClass().getSimpleName().equals("Subscriber")) {
+		//					followerSeq += "Subscriber " + this.arrayOfFollowers[i].name;
+		//					if (i < this.noF - 1) {
+		//						followerSeq += ", ";
+		//					}
+		//				}
+		//				else if (this.arrayOfFollowers[i].getClass().getSimpleName().equals("Monitor")) {
+		//					followerSeq += "Monitor " + this.arrayOfFollowers[i].name;
+		//					if (i < this.noF - 1) {
+		//						followerSeq += ", ";
+		//					}
+		//				}
+		//			}
 		for (int i = 0; i < this.noF; i ++) {
 			if (this.arrayOfFollowers[i].getDT().equals("Subscriber")) {
 				followerSeq += "Subscriber " + this.arrayOfFollowers[i].name;
@@ -151,11 +109,10 @@ public class Channel {
 			}
 		}
 		followerSeq += "]";
-		return result;
+		return followerSeq;
 	}
 	
 	public String getSequenceVideoReleased() {
-		String result = "";
 		String vidSeq = "<";
 		for (int i = 0; i < this.noV; i ++) {
 			vidSeq += this.arrayOfVideo[i];
@@ -164,7 +121,7 @@ public class Channel {
 			}
 		}
 		vidSeq += ">";
-		return result;
+		return vidSeq;
 	}
 }
 
