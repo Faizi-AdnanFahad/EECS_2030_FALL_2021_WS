@@ -2,7 +2,8 @@ package model;
 
 public class Follower {
 	protected String name;
-
+	protected Channel cForMonitor;
+ 
 	public String toString() {
 		return null;
 	}

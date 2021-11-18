@@ -33,13 +33,26 @@ public class Monitor extends Follower {
 		if (this.noC == 0) {
 			result = "Monitor " + this.name + " follows no channels.";
 		}
-		else {
+		else { 
 			String seqChannels = "[";
 			for (int i = 0; i < this.noC; i ++) {
-				seqChannels += this.arrayOfChannels[i].getChannelName();
-				if (i < this.noC - 1) {
-					seqChannels += ", ";
+				if (this.arrayOfChannels[i].getMonitorData()[0] == 0) {
+					seqChannels += this.arrayOfChannels[i].getChannelName();
+					if (i < this.noC - 1) {
+						seqChannels += ", ";
+					}
 				}
+				else {
+					seqChannels += this.arrayOfChannels[i].getChannelName();
+					seqChannels += "{#views: " 
+							+ this.arrayOfChannels[i].getMonitorData()[0] 
+							+ ", max watch time: " + this.arrayOfChannels[i].getMonitorData()[1] 
+							+ ", avg watch time: " + String.format("%.2f", (double) this.arrayOfChannels[i].getMonitorData()[0]) + "}";
+					if (i < this.noC - 1) {
+						seqChannels += ", ";
+					}
+				}
+				
 			}
 			seqChannels += "]";
 			result = "Monitor " 

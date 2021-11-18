@@ -10,6 +10,8 @@ public class Channel {
 	private String[] arrayOfVideo;
 	private int noV;
 	
+	private int[] monitorData = {0, 0, 0};  /* {NumberOfViews, TotalWatchTime, AverageWatchTime} */
+	
 
 	public Channel(String nameChannel, int maxFollower, int maxVid) {
 		this.nameChannel = nameChannel;
@@ -124,6 +126,14 @@ public class Channel {
 	
 	public String getChannelName() {
 		return this.nameChannel;
+	}
+	
+	public String[] getArrayOfVidReleased() {
+		return this.arrayOfVideo;
+	}
+	
+	public int[] getMonitorData() {
+		return this.monitorData;
 	}
 }
 
