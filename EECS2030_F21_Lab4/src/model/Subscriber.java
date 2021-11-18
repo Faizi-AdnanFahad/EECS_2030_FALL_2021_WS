@@ -2,9 +2,6 @@ package model;
 
 public class Subscriber extends Follower {
 
-	protected Channel[] arrayOfChannels;
-	protected int noC;
-
 	protected String[] arrayOfVidRec;
 	protected int noR;
 	
@@ -40,22 +37,28 @@ public class Subscriber extends Follower {
 	public void watch(String videoName, int timeInMin) {
 		boolean found = false;
 		for (int i = 0; !found && i < this.noC; i ++) {
-//			Monitor monitorAccess = (Monitor) ((Follower) this);
-//			Channel[] arrayChannelInMonitor = monitorAccess.arrayOfChannels;
-//			for (int m = 0; !found && m < arrayChannelInMonitor[i].getArrayOfVidReleased().length; m ++) {
-//				if (arrayChannelInMonitor[i].getArrayOfVidReleased()[m].equals(videoName)) {
-//					arrayChannelInMonitor[i].getMonitorData()[0] ++; // View counter
-//					arrayChannelInMonitor[i].getMonitorData()[1] += timeInMin;
-//					if (arrayChannelInMonitor[i].getMonitorData()[0] != 0) {
-//						arrayChannelInMonitor[i].getMonitorData()[2] = arrayChannelInMonitor[i].getMonitorData()[1] / arrayChannelInMonitor[i].getMonitorData()[0];
-//					}
-//					found = true;
-//				}
-//			}
-			for (int m = 0; !found && m < this.arrayOfChannels[i].getArrayOfVidReleased().length; m ++) {
+			for (int m = 0; !found && m < this.arrayOfChannels[i].getNumberVid(); m ++) {
 				if (this.arrayOfChannels[i].getArrayOfVidReleased()[m].equals(videoName)) {
 					this.cForMonitor = this.arrayOfChannels[i];
 					found = true;
+				}
+			}
+		}
+		
+		for (int i = 0; i < this.cForMonitor.getNumberOfFollowers(); i ++) {
+			if (this.cForMonitor.getArrayOfFollower()[i].getDT().equals("Monitor")) {
+				for (int m = 0; m < this.cForMonitor.getArrayOfFollower()[i].getNOC(); m ++) {
+					if (this.cForMonitor.getArrayOfFollower()[i].getChannel()[m] == this.cForMonitor) {
+						this.cForMonitor.getArrayOfFollower()[i].getChannel()[m].TotalTimeWatched(timeInMin);
+						this.cForMonitor.getArrayOfFollower()[i].getChannel()[m].getMonitorData()[0] ++; // View counter
+						if (this.cForMonitor.getArrayOfFollower()[i].getChannel()[m].getMonitorData()[1] < timeInMin) {
+							this.cForMonitor.getArrayOfFollower()[i].getChannel()[m].getMonitorData()[1] = timeInMin;
+						}
+						if (this.cForMonitor.getArrayOfFollower()[i].getChannel()[m].getMonitorData()[0] != 0) {
+							this.cForMonitor.getArrayOfFollower()[i].getChannel()[m].getMonitorData()[2] = 
+												this.cForMonitor.getArrayOfFollower()[i].getChannel()[m].getTotalTimeWatched() / this.cForMonitor.getArrayOfFollower()[i].getChannel()[m].getMonitorData()[0];
+						}
+					}
 				}
 			}
 		}

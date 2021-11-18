@@ -1,8 +1,17 @@
 package model;
 
 public class Follower {
+	
 	protected String name;
+	
+	protected Channel[] arrayOfChannels;
+	protected int noC;
+	
 	protected Channel cForMonitor;
+		
+	public Follower() {
+		this.cForMonitor = null;
+	}
  
 	public String toString() {
 		return null;
@@ -22,6 +31,14 @@ public class Follower {
 	}
 	
 	public void recommendVideo(String videoName) {
+	}
+	
+	public Channel[] getChannel() {
+		return null;
+	}
+	
+	public int getNOC() {
+		return 0;
 	}
 	
 }
