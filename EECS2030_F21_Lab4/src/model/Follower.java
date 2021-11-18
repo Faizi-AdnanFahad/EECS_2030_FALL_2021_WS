@@ -14,16 +14,13 @@ public class Follower {
 		return null;
 	}
 	
-	public void addChannel(String channelName) {
+	public void addChannel(Channel c) {
 	}
 	
-	public void removeChannel(String channelName) {
+	public void removeChannel(Channel c) {
 	}
 	
 	public void recommendVideo(String videoName) {
 	}
 	
-	public void add(Channel c) {
-		
-	}
 }

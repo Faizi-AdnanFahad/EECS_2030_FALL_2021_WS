@@ -84,7 +84,7 @@ public class StarterTests {
 		ch.releaseANewVideo("Tuesday Jazz");
 		assertEquals("Cafe Music BGM released <Monday Jazz, Tuesday Jazz> and has no followers.", ch.toString());
 	}
-//	
+	
 //	/*
 //	 * Tests related to the Follower classes.
 //	 */ 
@@ -109,7 +109,7 @@ public class StarterTests {
 		Follower f = new Monitor("Stat Sensor A", 20);
 		assertEquals("Monitor Stat Sensor A follows no channels.", f.toString());
 	}
-//	
+	
 //	/*
 //	 * More tests related to the Channel class.
 //	 */ 

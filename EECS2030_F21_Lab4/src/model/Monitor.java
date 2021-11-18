@@ -2,24 +2,24 @@ package model;
 
 public class Monitor extends Follower {
 	
-	protected String[] arrayOfChannels;
+	protected Channel[] arrayOfChannels;
 	protected int noC;
 	
 	public Monitor(String name, int maxChannelFollow) {
 		this.name = name;
-		this.arrayOfChannels = new String[maxChannelFollow];
+		this.arrayOfChannels = new Channel[maxChannelFollow];
 		this.noC = 0;
 	}
 	
 	@Override
-	public void addChannel(String channelName) {
-		this.arrayOfChannels[this.noC] = channelName;
+	public void addChannel(Channel c) {
+		this.arrayOfChannels[this.noC] = c;
 		this.noC ++;
 	}
 	
-	public void removeChannel(String channelName) {
+	public void removeChannel(Channel c) {
 		for (int i = 0; i < this.noC; i ++) {
-			if (this.arrayOfChannels[i].equals(channelName)) {
+			if (this.arrayOfChannels[i].getChannelName().equals(c.getChannelName())) {
 				this.arrayOfChannels[i] = null;
 				this.arrayOfChannels[i] = this.arrayOfChannels[i + 1];
 				this.noC -= 1;
@@ -36,7 +36,7 @@ public class Monitor extends Follower {
 		else {
 			String seqChannels = "[";
 			for (int i = 0; i < this.noC; i ++) {
-				seqChannels += this.arrayOfChannels[i];
+				seqChannels += this.arrayOfChannels[i].getChannelName();
 				if (i < this.noC - 1) {
 					seqChannels += ", ";
 				}

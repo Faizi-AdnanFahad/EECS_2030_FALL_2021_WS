@@ -34,21 +34,19 @@ public class Channel {
 	public void follow(Follower f) {
 		this.arrayOfFollowers[this.noF] = f;
 		this.noF ++;
-
-		// Adding channels to the list of followers
-//		f.addChannel(nameChannel);
-		f.add(this);
+		f.addChannel(this);
 	}
 
 	public void unfollow(Follower f) {
 		for (int i = 0; i < this.noF; i ++) {
 			if (this.arrayOfFollowers[i].name.equals(f.name)) {
+				f.removeChannel(this);
 				this.arrayOfFollowers[i] = null;
 				this.arrayOfFollowers[i] = this.arrayOfFollowers[i + 1];
 				this.noF -= 1;
 			}
 		}
-		f.removeChannel(nameChannel);
+		
 	}
 
 	@Override
@@ -122,6 +120,10 @@ public class Channel {
 		}
 		vidSeq += ">";
 		return vidSeq;
+	}
+	
+	public String getChannelName() {
+		return this.nameChannel;
 	}
 }
 
