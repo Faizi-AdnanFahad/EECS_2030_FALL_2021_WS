@@ -1,7 +1,8 @@
 package model;
 
 public class Monitor extends Follower {
-
+	
+	
 	public Monitor(String name, int maxChannelFollow) {
 		this.name = name;
 		this.arrayOfChannels = new Channel[maxChannelFollow];

@@ -5,6 +5,8 @@ public class Subscriber extends Follower {
 	protected String[] arrayOfVidRec;
 	protected int noR;
 	
+	private double maxVideo;
+	
 	public Subscriber(String name, int maxChannelToFollow, int maxRecVi) {
 		this.name = name;
 		this.arrayOfChannels = new Channel[maxChannelToFollow];

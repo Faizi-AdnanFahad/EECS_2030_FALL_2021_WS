@@ -12,7 +12,7 @@ public class Channel {
 	private String[] arrayOfVideo;
 	private int noV;
 
-	private double[] monitorData = {0.0, 0.0, 0.0};  /* {NumberOfViews, TotalWatchTime, AverageWatchTime} */
+	private double[] monitorData;  /* {NumberOfViews, TotalWatchTime, AverageWatchTime} */
 	private int totalTimeWatched;
 
 	public Channel(String nameChannel, int maxFollower, int maxVid) {
@@ -25,6 +25,7 @@ public class Channel {
 
 		this.arrayOfFollowers = new Follower[maxFollower];
 		this.noF = 0;
+		this.monitorData = new double[3];
 	}
 	
 //	public Channel(Channel c) {
@@ -48,6 +49,7 @@ public class Channel {
 	public void follow(Follower f) {
 		this.arrayOfFollowers[this.noF] = f;
 		this.noF ++;
+		this.monitorData = new double[3];
 		f.addChannel(this);
 	}
 
@@ -168,7 +170,6 @@ public class Channel {
 		return this.totalTimeWatched;
 	}
 }
-
 
 
 
