@@ -2,19 +2,24 @@ package model;
 
 public class Monitor extends Follower {
 	
+	int numView = 0;
+	int maxViewSoFar;
+	double averageView;
+	int temp;
+	double totalSorFar;
 	
-	public Monitor(String name, int maxChannelFollow) {
+	boolean watched;
+	
+	public Monitor(String name, int maxChannel) {
 		this.name = name;
-		this.arrayOfChannels = new Channel[maxChannelFollow];
-		this.noC = 0;
+		this.arrayOfChannels = new Channel[maxChannel];
 	}
 
-	@Override
 	public void addChannel(Channel c) {
 		this.arrayOfChannels[this.noC] = c;
 		this.noC ++;
 	}
-
+	
 	public void removeChannel(Channel c) {
 		for (int i = 0; i < this.noC; i ++) {
 			if (this.arrayOfChannels[i].getChannelName().equals(c.getChannelName())) {
@@ -35,7 +40,7 @@ public class Monitor extends Follower {
 		else { 
 			String seqChannels = "[";
 			for (int i = 0; i < this.noC; i ++) {
-				if (this.arrayOfChannels[i].getMonitorData()[0] == 0) {
+				if (!this.watched) {
 					seqChannels += this.arrayOfChannels[i].getChannelName();
 					if (i < this.noC - 1) {
 						seqChannels += ", ";
@@ -44,13 +49,14 @@ public class Monitor extends Follower {
 				else {
 					seqChannels += this.arrayOfChannels[i].getChannelName();
 					seqChannels += " {#views: " 
-							+ (int) this.arrayOfChannels[i].getMonitorData()[0] 
-									+ ", max watch time: " + (int) this.arrayOfChannels[i].getMonitorData()[1] 
-											+ ", avg watch time: " + String.format("%.2f", this.arrayOfChannels[i].getMonitorData()[2]) + "}";
+							+ this.numView
+									+ ", max watch time: " + this.maxViewSoFar
+											+ ", avg watch time: " + String.format("%.2f", ((double) this.totalSorFar / this.numView)) + "}";
 					if (i < this.noC - 1) {
 						seqChannels += ", ";
 					}
 				}
+				this.watched = false;
 			}
 			seqChannels += "]";
 			result = "Monitor " 
@@ -58,20 +64,26 @@ public class Monitor extends Follower {
 		}
 		return result;
 	}
-
-	@Override
-	public String getDT() {
-		/*
-		 * Used for the method toString in Channel class.
-		 */
-		return "Monitor";
+	
+	// Setters
+	public void incrementView() {
+		this.numView ++;
 	}
-
-	public Channel[] getChannel() {
-		return this.arrayOfChannels;
+	
+	public void setMaxViewSoFar(int view) {
+		this.totalSorFar += view;
+		if (this.maxViewSoFar < view) {
+			this.maxViewSoFar = view;
+		}
 	}
-
-	public int getNOC() {
-		return this.noC;
+	
+	public void watched(boolean watched) {
+		this.watched = watched;
+	}
+	
+	public void reset() {
+		this.numView = 0;
+		this.totalSorFar = 0;
+		this.maxViewSoFar = 0;
 	}
 }

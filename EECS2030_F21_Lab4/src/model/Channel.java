@@ -2,89 +2,82 @@ package model;
 
 public class Channel {
 
-	private String nameChannel;
-	private int maxFollower;
-	private int maxVid;
+	private String channelName;
+
+	private String[] arrayOfReleasedVid;
+	private int noV;
 
 	private Follower[] arrayOfFollowers;
 	private int noF;
 
-	private String[] arrayOfVideo;
-	private int noV;
-
-	private double[] monitorData;  /* {NumberOfViews, TotalWatchTime, AverageWatchTime} */
-	private int totalTimeWatched;
-
-	public Channel(String nameChannel, int maxFollower, int maxVid) {
-		this.nameChannel = nameChannel;
-		this.maxFollower = maxFollower;
-		this.maxVid = maxVid;
-		
-		this.arrayOfVideo = new String[maxVid];
+	public Channel(String channelName, int maxFollower, int maxVid) {
+		this.channelName = channelName;
+		this.arrayOfReleasedVid = new String[maxVid];
 		this.noV = 0;
-
 		this.arrayOfFollowers = new Follower[maxFollower];
 		this.noF = 0;
-		this.monitorData = new double[3];
 	}
-	
-//	public Channel(Channel c) {
-//		this(c.nameChannel, c.maxFollower, c.maxVid);
-//		for (int i = 0; i < c.noF; i ++) {
-//			c.arrayOfFollowers[i] = this.arrayOfFollowers[i];
-//		}
-//	}
 
 	public void releaseANewVideo(String videoName) {
-		this.arrayOfVideo[this.noV] = videoName;
+		this.arrayOfReleasedVid[this.noV] = videoName;
 		this.noV ++;
 
 		for (int i = 0; i < this.noF; i ++) {
-			if (this.arrayOfFollowers[i].getDT().equals("Subscriber")) {
-				this.arrayOfFollowers[i].recommendVideo(videoName);
+			if (this.arrayOfFollowers[i] instanceof Subscriber) {
+				((Subscriber) this.arrayOfFollowers[i]).recommendVideo(videoName);
 			}
 		}
 	}
 
+
 	public void follow(Follower f) {
 		this.arrayOfFollowers[this.noF] = f;
 		this.noF ++;
-		f.addChannel(this);
-		this.monitorData[0] = 0;
 
+		if (f instanceof Subscriber) {
+			((Subscriber) f).addChannel(this);
+		}
+		else if (f instanceof Monitor) {
+			((Monitor) f).addChannel(this);
+		}
 	}
 
 	public void unfollow(Follower f) {
 		for (int i = 0; i < this.noF; i ++) {
 			if (this.arrayOfFollowers[i].name.equals(f.name)) {
-				f.removeChannel(this);
+				if (f instanceof Subscriber) {
+					((Subscriber) f).removeChannel(this);
+				}
+				else if (f instanceof Monitor) {
+					((Monitor) f).removeChannel(this);
+				}
 				this.arrayOfFollowers[i] = null;
 				this.arrayOfFollowers[i] = this.arrayOfFollowers[i + 1];
 				this.noF -= 1;
 			}
 		}
-
 	}
+
 
 	@Override
 	public String toString() {
 		String result = "";
 		if (this.noV == 0 && this.noF == 0) {
-			result = this.nameChannel + " released no videos and has no followers.";
+			result = this.channelName + " released no videos and has no followers.";
 		}
 		else if (this.noV != 0 && this.noF == 0){
-			result = this.nameChannel 
+			result = this.channelName 
 					+ " released " 
 					+ this.getSequenceVideoReleased() 
 					+ " and has no followers.";
 		}
 		else if (this.noF != 0 && this.noV == 0) {
-			result = this.nameChannel + 
+			result = this.channelName + 
 					" released no videos and is followed by " 
 					+ this.getSequenceFollower() + ".";
 		}
 		else { // Both videos are released and followers are gained.		
-			result = this.nameChannel 
+			result = this.channelName 
 					+ " released " 
 					+ this.getSequenceVideoReleased() 
 					+ " and is followed by " 
@@ -93,30 +86,30 @@ public class Channel {
 		return result;
 	}
 
+
+	// Helper Method
+	private String getSequenceVideoReleased() {
+		String vidSeq = "<";
+		for (int i = 0; i < this.noV; i ++) {
+			vidSeq += this.arrayOfReleasedVid[i];
+			if (i < this.noV - 1) {
+				vidSeq += ", ";
+			}
+		}
+		vidSeq += ">";
+		return vidSeq;
+	}
+
 	private String getSequenceFollower() {
 		String followerSeq = "[";
-		//			for (int i = 0; i < this.noF; i ++) { // instanceOf
-		//				if (this.arrayOfFollowers[i].getClass().getSimpleName().equals("Subscriber")) {
-		//					followerSeq += "Subscriber " + this.arrayOfFollowers[i].name;
-		//					if (i < this.noF - 1) {
-		//						followerSeq += ", ";
-		//					}
-		//				}
-		//				else if (this.arrayOfFollowers[i].getClass().getSimpleName().equals("Monitor")) {
-		//					followerSeq += "Monitor " + this.arrayOfFollowers[i].name;
-		//					if (i < this.noF - 1) {
-		//						followerSeq += ", ";
-		//					}
-		//				}
-		//			}
 		for (int i = 0; i < this.noF; i ++) {
-			if (this.arrayOfFollowers[i].getDT().equals("Subscriber")) {
+			if (this.arrayOfFollowers[i] instanceof Subscriber) {
 				followerSeq += "Subscriber " + this.arrayOfFollowers[i].name;
 				if (i < this.noF - 1) {
 					followerSeq += ", ";
 				}
 			}
-			else if (this.arrayOfFollowers[i].getDT().equals("Monitor")) {
+			else if (this.arrayOfFollowers[i] instanceof Monitor) {
 				followerSeq += "Monitor " + this.arrayOfFollowers[i].name;
 				if (i < this.noF - 1) {
 					followerSeq += ", ";
@@ -127,69 +120,44 @@ public class Channel {
 		return followerSeq;
 	}
 
-	public String getSequenceVideoReleased() {
-		String vidSeq = "<";
-		for (int i = 0; i < this.noV; i ++) {
-			vidSeq += this.arrayOfVideo[i];
-			if (i < this.noV - 1) {
-				vidSeq += ", ";
-			}
-		}
-		vidSeq += ">";
-		return vidSeq;
-	}
-
+	// Getters
 	public String getChannelName() {
-		return this.nameChannel;
+		return this.channelName;
 	}
 
-	public String[] getArrayOfVidReleased() {
-		return this.arrayOfVideo;
+	public String[] getArrayOfReleasedVid() {
+		return arrayOfReleasedVid;
 	}
 
-	public double[] getMonitorData() {
-		return this.monitorData;
+	public int getNoV() {
+		return noV;
 	}
 
-	public int getNumberOfFollowers() {
-		return this.noF;
-	}
-	
-	public int getNumberVid() {
-		return this.noV;
+	public Follower[] getArrayOfFollowers() {
+		return arrayOfFollowers;
 	}
 
-	public Follower[] getArrayOfFollower() {
-		return this.arrayOfFollowers;
+	public int getNoF() {
+		return noF;
 	}
 
-	public void TotalTimeWatched(int time) {
-		this.totalTimeWatched += time;
-	}
 
-	public int getTotalTimeWatched() {
-		return this.totalTimeWatched;
-	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
