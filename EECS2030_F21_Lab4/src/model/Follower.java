@@ -8,6 +8,8 @@ public class Follower {
 	protected int noC;
 	
 	protected Channel cForMonitor;
+	
+	protected String releasedVideo;
 		
 	public Follower() {
 		this.cForMonitor = null;

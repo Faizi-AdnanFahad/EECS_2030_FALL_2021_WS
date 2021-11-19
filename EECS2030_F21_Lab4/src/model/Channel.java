@@ -49,8 +49,9 @@ public class Channel {
 	public void follow(Follower f) {
 		this.arrayOfFollowers[this.noF] = f;
 		this.noF ++;
-		this.monitorData = new double[3];
 		f.addChannel(this);
+		this.monitorData[0] = 0;
+
 	}
 
 	public void unfollow(Follower f) {

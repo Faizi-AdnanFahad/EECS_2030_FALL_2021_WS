@@ -4,9 +4,8 @@ public class Subscriber extends Follower {
 
 	protected String[] arrayOfVidRec;
 	protected int noR;
-	
-	private double maxVideo;
-	
+
+
 	public Subscriber(String name, int maxChannelToFollow, int maxRecVi) {
 		this.name = name;
 		this.arrayOfChannels = new Channel[maxChannelToFollow];
@@ -35,7 +34,7 @@ public class Subscriber extends Follower {
 			}
 		}
 	}
-	
+
 	public void watch(String videoName, int timeInMin) {
 		boolean found = false;
 		for (int i = 0; !found && i < this.noC; i ++) {
@@ -46,7 +45,8 @@ public class Subscriber extends Follower {
 				}
 			}
 		}
-		
+		this.releasedVideo = videoName;
+
 		for (int i = 0; i < this.cForMonitor.getNumberOfFollowers(); i ++) {
 			if (this.cForMonitor.getArrayOfFollower()[i].getDT().equals("Monitor")) {
 				for (int m = 0; m < this.cForMonitor.getArrayOfFollower()[i].getNOC(); m ++) {
@@ -58,17 +58,17 @@ public class Subscriber extends Follower {
 						}
 						if (this.cForMonitor.getArrayOfFollower()[i].getChannel()[m].getMonitorData()[0] != 0) {
 							this.cForMonitor.getArrayOfFollower()[i].getChannel()[m].getMonitorData()[2] = 
-												this.cForMonitor.getArrayOfFollower()[i].getChannel()[m].getTotalTimeWatched() / this.cForMonitor.getArrayOfFollower()[i].getChannel()[m].getMonitorData()[0];
+									this.cForMonitor.getArrayOfFollower()[i].getChannel()[m].getTotalTimeWatched() / this.cForMonitor.getArrayOfFollower()[i].getChannel()[m].getMonitorData()[0];
 						}
 					}
 				}
 			}
 		}
-		
-		
+
+
 	}
-		
-	
+
+
 
 	@Override
 	public String toString() {
