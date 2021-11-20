@@ -20,8 +20,15 @@ public class Monitor extends Follower {
 	public void removeChannel(Channel c) {
 		for (int i = 0; i < this.noC; i ++) {
 			if (this.arrayOfChannels[i].getChannelName().equals(c.getChannelName())) {
-				this.arrayOfChannels[i] = null;
-				this.arrayOfChannels[i] = this.arrayOfChannels[i + 1];
+				
+				if (i == this.noC - 1) {
+					this.arrayOfChannels[i] = null;
+				}
+				else {
+					this.arrayOfChannels[i] = null;
+					this.arrayOfChannels[i] = this.arrayOfChannels[i + 1];
+				}
+				
 				this.noC -= 1;
 			}
 		}
@@ -61,16 +68,4 @@ public class Monitor extends Follower {
 		}
 		return result;
 	}
-	
-	// Setters
-	
-	
-	
-	
-//	public void reset() {
-//		this.numView = 0;
-//		this.totalSorFar = 0;
-//		this.maxViewSoFar = 0;
-//		this.resetCalled = true;
-//	}
 }

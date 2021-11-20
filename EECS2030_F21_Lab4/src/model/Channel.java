@@ -58,8 +58,15 @@ public class Channel {
 				else if (f instanceof Monitor) {
 					((Monitor) f).removeChannel(this);
 				}
-				this.arrayOfFollowers[i] = null;
-				this.arrayOfFollowers[i] = this.arrayOfFollowers[i + 1];
+				
+				if (i == this.noF - 1) {
+					this.arrayOfFollowers[i] = null;
+				}
+				else {
+					this.arrayOfFollowers[i] = null;
+					this.arrayOfFollowers[i] = this.arrayOfFollowers[i + 1];
+				}
+				
 				this.noF -= 1;
 			}
 		}

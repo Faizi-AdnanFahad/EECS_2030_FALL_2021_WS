@@ -1,6 +1,7 @@
 package junit_tests;
 
 import static org.junit.Assert.*;
+
 import model.*;
 
 import org.junit.Test;
@@ -164,6 +165,8 @@ public class StarterTests {
 		 */
 	}
 	
+	
+	
 	@Test
 	public void test_channel_01d() { 
 		Channel ch1 = new Channel("Cafe Music BGM", 50, 100);
@@ -235,6 +238,148 @@ public class StarterTests {
 		 */
 	}
 	
+	@Test
+	public void test_channel_01e() { //
+		Channel ch1 = new Channel("Cafe Music BGM", 3, 4);
+		
+		Follower f1 = new Subscriber("Alan", 20, 40);
+		Follower f2 = new Monitor("Stat Sensor A", 60); 
+		Follower f3 = new Monitor("Stat Sensor B", 60); 
+		Follower f4 = new Monitor("Stat Sensor C", 60); 
+
+		try {
+			ch1.follow(f1);
+			ch1.follow(f2);
+			ch1.follow(f3);
+		}
+		catch (ArrayIndexOutOfBoundsException a) {
+			fail();
+		}
+		
+		try {
+			ch1.follow(f4);
+			fail();
+		}
+		catch (ArrayIndexOutOfBoundsException a) {
+			// Expected
+		}
+	}
+	
+	@Test
+	public void test_channel_01g() { //
+		Channel ch1 = new Channel("Cafe Music BGM", 3, 4);
+		Channel ch2 = new Channel("Cafe Music BGM", 4, 4);
+		assertTrue(ch1.getArrayOfFollowers() != ch2.getArrayOfFollowers());
+	}
+	
+	@Test
+	public void test_channel_01f() { //
+		Channel ch1 = new Channel("Cafe Music1", 3, 4);
+		Channel ch2 = new Channel("Cafe Music2", 3, 4);
+		Channel ch3 = new Channel("Cafe Music3", 3, 4);
+
+		Follower f1 = new Subscriber("Alan", 2, 40);
+
+		try {
+			ch1.follow(f1);
+			ch2.follow(f1);
+		}
+		catch (ArrayIndexOutOfBoundsException a) {
+			fail();
+		}
+		
+		try {
+			ch3.follow(f1);
+			fail();
+		}
+		catch (ArrayIndexOutOfBoundsException a) {
+			// Expected
+		}
+	}
+	
+	@Test
+	public void test_channel_0h() { //
+		Channel ch1 = new Channel("Cafe Music1", 3, 4);
+
+		try {
+			ch1.releaseANewVideo("a");
+			ch1.releaseANewVideo("b");
+			ch1.releaseANewVideo("v");
+			ch1.releaseANewVideo("c");
+		}
+		catch (ArrayIndexOutOfBoundsException a) {
+			fail();
+		}
+		
+		try {
+			ch1.releaseANewVideo("asda");
+			fail();
+		}
+		catch (ArrayIndexOutOfBoundsException a) {
+			// Expected
+		}
+	}
+	
+	@Test
+	public void test_channel_unfollowing_01() { //
+		Channel ch1 = new Channel("Cafe Music1", 3, 4);
+		Follower f1 = new Subscriber("Alan", 5, 40);
+		Follower f2 = new Subscriber("Bob", 5, 40);
+		Follower f3 = new Subscriber("Mark", 5, 40);
+
+		ch1.follow(f1);
+		assertEquals("Cafe Music1 released no videos and is followed by [Subscriber Alan].", ch1.toString());
+		assertEquals("Subscriber Alan follows [Cafe Music1] and has no recommended videos.", f1.toString());
+
+		ch1.unfollow(f1);
+		assertEquals("Cafe Music1 released no videos and has no followers.", ch1.toString());
+		assertEquals("Subscriber Alan follows no channels and has no recommended videos.", f1.toString());
+
+		///////////////////////
+		
+		/* Testing the functionality of arrayOfFollowers in Class Channel*/
+		ch1.follow(f1);
+		ch1.follow(f2);
+		ch1.follow(f3);
+		assertEquals("Cafe Music1 released no videos and is followed by [Subscriber Alan, Subscriber Bob, Subscriber Mark].", ch1.toString());
+		
+		ch1.unfollow(f3);
+		assertEquals("Cafe Music1 released no videos and is followed by [Subscriber Alan, Subscriber Bob].", ch1.toString());
+
+		ch1.unfollow(f1);
+		assertEquals("Cafe Music1 released no videos and is followed by [Subscriber Bob].", ch1.toString());
+		
+		ch1.unfollow(f2);
+		assertEquals("Cafe Music1 released no videos and has no followers.", ch1.toString());
+	}
+
+	@Test
+	public void test_channel_unfollowing_02() { //
+		Channel ch1 = new Channel("Cafe Music1", 3, 4);
+		Channel ch2 = new Channel("Cafe Music2", 3, 4);
+		Channel ch3 = new Channel("Cafe Music3", 3, 4);
+
+		Follower f1 = new Subscriber("Alan", 3, 40);
+
+		ch1.follow(f1);
+		assertEquals("Subscriber Alan follows [Cafe Music1] and has no recommended videos.", f1.toString());
+
+		ch2.follow(f1);
+		assertEquals("Subscriber Alan follows [Cafe Music1, Cafe Music2] and has no recommended videos.", f1.toString());
+		
+		ch3.follow(f1);
+		assertEquals("Subscriber Alan follows [Cafe Music1, Cafe Music2, Cafe Music3] and has no recommended videos.", f1.toString());
+		
+		ch3.unfollow(f1);
+		assertEquals("Subscriber Alan follows [Cafe Music1, Cafe Music2] and has no recommended videos.", f1.toString());
+		
+		ch1.unfollow(f1);
+		assertEquals("Subscriber Alan follows [Cafe Music2] and has no recommended videos.", f1.toString());
+		
+		ch2.unfollow(f1);
+		assertEquals("Subscriber Alan follows no channels and has no recommended videos.", f1.toString());
+	}
+	/*************************************************************************/
 	@Test
 	public void test_channel_02a() { 
 		Channel ch = new Channel("Cafe Music BGM", 50, 100);
@@ -449,90 +594,90 @@ public class StarterTests {
 		assertEquals("Subscriber Mark follows [Cafe Music BGM, I Love You Venice] and is recommended <Jazz Piano Radio, Baroque Live Music 24/7>.", sub2.toString());
 	}
 	
-	@Test
-	public void test_channel_03b() { 
-		Channel ch1 = new Channel("Cafe Music BGM", 50, 100);
-		Channel ch2 = new Channel("I Love You Venice", 60, 135);
-		
-		Subscriber sub1 = new Subscriber("Alan", 20, 40); 
-		Subscriber sub2 = new Subscriber("Mark", 20, 40);
-		Monitor mon1 = new Monitor("Stat Sensor A", 30);
-		
-		ch1.follow(sub1); 
-		ch1.follow(mon1);
-		ch1.follow(sub2);
-		
-		ch2.follow(mon1);
-		ch2.follow(sub2);
-		ch2.follow(sub1);
-		
-		
-		ch1.releaseANewVideo("Jazz Piano Radio");
-		ch2.releaseANewVideo("Baroque Live Music 24/7");
-		
-		assertEquals("Cafe Music BGM released <Jazz Piano Radio> and is followed by [Subscriber Alan, Monitor Stat Sensor A, Subscriber Mark].", ch1.toString());
-		assertEquals("I Love You Venice released <Baroque Live Music 24/7> and is followed by [Monitor Stat Sensor A, Subscriber Mark, Subscriber Alan].", ch2.toString());
-		assertEquals("Subscriber Alan follows [Cafe Music BGM, I Love You Venice] and is recommended <Jazz Piano Radio, Baroque Live Music 24/7>.", sub1.toString());
-		assertEquals("Subscriber Mark follows [Cafe Music BGM, I Love You Venice] and is recommended <Jazz Piano Radio, Baroque Live Music 24/7>.", sub2.toString());
-		assertEquals("Monitor Stat Sensor A follows [Cafe Music BGM, I Love You Venice].", mon1.toString()); 
-		
-		/* 
-		 * Subscriber `sub1` watched Jazz Piano Radio for 40 minutes. 
-		 */
-		sub1.watch("Jazz Piano Radio", 40);
-		
-		/* 
-		 * Statistics for the watched video is updated for `mon1`.
-		 * For the average watch time, display with two digits after the decimal point. 
-		 */ 
-		assertEquals("Monitor Stat Sensor A follows [Cafe Music BGM {#views: 1, max watch time: 40, avg watch time: 40.00}, I Love You Venice].", mon1.toString());
-		/* All other channels and subscribers remain unchanged. */
-		assertEquals("Cafe Music BGM released <Jazz Piano Radio> and is followed by [Subscriber Alan, Monitor Stat Sensor A, Subscriber Mark].", ch1.toString());
-		assertEquals("I Love You Venice released <Baroque Live Music 24/7> and is followed by [Monitor Stat Sensor A, Subscriber Mark, Subscriber Alan].", ch2.toString());
-		assertEquals("Subscriber Alan follows [Cafe Music BGM, I Love You Venice] and is recommended <Jazz Piano Radio, Baroque Live Music 24/7>.", sub1.toString());
-		assertEquals("Subscriber Mark follows [Cafe Music BGM, I Love You Venice] and is recommended <Jazz Piano Radio, Baroque Live Music 24/7>.", sub2.toString());
-		
-		Monitor mon2 = new Monitor("Stat Sensor B", 30);
-		assertEquals("Monitor Stat Sensor B follows no channels.", mon2.toString());
-		
-		/*
-		 * Let `mon2` start following `ch1`, meaning that
-		 * 	its statistics only covers the watch times happening from now on.
-		 */
-		ch1.follow(mon2);
-		assertEquals("Monitor Stat Sensor B follows [Cafe Music BGM].", mon2.toString());
-		assertEquals("Cafe Music BGM released <Jazz Piano Radio> and is followed by [Subscriber Alan, Monitor Stat Sensor A, Subscriber Mark, Monitor Stat Sensor B].", ch1.toString());
-		
-		/*
-		 * Subscriber `sub2` watched Jazz Piano Radio for 30 minutes. 
-		 */
-		sub2.watch("Jazz Piano Radio", 30);
-
-		/* 
-		 * Statistics for the watched video is updated for `mon1` and `mon2`.
-		 */
-		assertEquals("Monitor Stat Sensor A follows [Cafe Music BGM {#views: 2, max watch time: 40, avg watch time: 35.00}, I Love You Venice].", mon1.toString());
-		assertEquals("Monitor Stat Sensor B follows [Cafe Music BGM {#views: 1, max watch time: 30, avg watch time: 30.00}].", mon2.toString());
-		/* All other channels and subscribers remain unchanged. */
-		assertEquals("Cafe Music BGM released <Jazz Piano Radio> and is followed by [Subscriber Alan, Monitor Stat Sensor A, Subscriber Mark, Monitor Stat Sensor B].", ch1.toString());
-		assertEquals("I Love You Venice released <Baroque Live Music 24/7> and is followed by [Monitor Stat Sensor A, Subscriber Mark, Subscriber Alan].", ch2.toString());
-		assertEquals("Subscriber Alan follows [Cafe Music BGM, I Love You Venice] and is recommended <Jazz Piano Radio, Baroque Live Music 24/7>.", sub1.toString());
-		assertEquals("Subscriber Mark follows [Cafe Music BGM, I Love You Venice] and is recommended <Jazz Piano Radio, Baroque Live Music 24/7>.", sub2.toString());
-		
-		/*
-		 * Subscriber `sub1` watched Jazz Piano Radio again for 15 minutes. 
-		 */
-		sub2.watch("Jazz Piano Radio", 15);
-		
-		/* 
-		 * Statistics for the watched video is updated for `mon1` and `mon2`.
-		 */
-		assertEquals("Monitor Stat Sensor A follows [Cafe Music BGM {#views: 3, max watch time: 40, avg watch time: 28.33}, I Love You Venice].", mon1.toString());
-		assertEquals("Monitor Stat Sensor B follows [Cafe Music BGM {#views: 2, max watch time: 30, avg watch time: 22.50}].", mon2.toString());
-		/* All other channels and subscribers remain unchanged. */
-		assertEquals("Cafe Music BGM released <Jazz Piano Radio> and is followed by [Subscriber Alan, Monitor Stat Sensor A, Subscriber Mark, Monitor Stat Sensor B].", ch1.toString());
-		assertEquals("I Love You Venice released <Baroque Live Music 24/7> and is followed by [Monitor Stat Sensor A, Subscriber Mark, Subscriber Alan].", ch2.toString());
-		assertEquals("Subscriber Alan follows [Cafe Music BGM, I Love You Venice] and is recommended <Jazz Piano Radio, Baroque Live Music 24/7>.", sub1.toString());
-		assertEquals("Subscriber Mark follows [Cafe Music BGM, I Love You Venice] and is recommended <Jazz Piano Radio, Baroque Live Music 24/7>.", sub2.toString());
-	}
+//	@Test
+//	public void test_channel_03b() { 
+//		Channel ch1 = new Channel("Cafe Music BGM", 50, 100);
+//		Channel ch2 = new Channel("I Love You Venice", 60, 135);
+//		
+//		Subscriber sub1 = new Subscriber("Alan", 20, 40); 
+//		Subscriber sub2 = new Subscriber("Mark", 20, 40);
+//		Monitor mon1 = new Monitor("Stat Sensor A", 30);
+//		
+//		ch1.follow(sub1); 
+//		ch1.follow(mon1);
+//		ch1.follow(sub2);
+//		
+//		ch2.follow(mon1);
+//		ch2.follow(sub2);
+//		ch2.follow(sub1);
+//		
+//		
+//		ch1.releaseANewVideo("Jazz Piano Radio");
+//		ch2.releaseANewVideo("Baroque Live Music 24/7");
+//		
+//		assertEquals("Cafe Music BGM released <Jazz Piano Radio> and is followed by [Subscriber Alan, Monitor Stat Sensor A, Subscriber Mark].", ch1.toString());
+//		assertEquals("I Love You Venice released <Baroque Live Music 24/7> and is followed by [Monitor Stat Sensor A, Subscriber Mark, Subscriber Alan].", ch2.toString());
+//		assertEquals("Subscriber Alan follows [Cafe Music BGM, I Love You Venice] and is recommended <Jazz Piano Radio, Baroque Live Music 24/7>.", sub1.toString());
+//		assertEquals("Subscriber Mark follows [Cafe Music BGM, I Love You Venice] and is recommended <Jazz Piano Radio, Baroque Live Music 24/7>.", sub2.toString());
+//		assertEquals("Monitor Stat Sensor A follows [Cafe Music BGM, I Love You Venice].", mon1.toString()); 
+//		
+//		/* 
+//		 * Subscriber `sub1` watched Jazz Piano Radio for 40 minutes. 
+//		 */
+//		sub1.watch("Jazz Piano Radio", 40);
+//		
+//		/* 
+//		 * Statistics for the watched video is updated for `mon1`.
+//		 * For the average watch time, display with two digits after the decimal point. 
+//		 */ 
+//		assertEquals("Monitor Stat Sensor A follows [Cafe Music BGM {#views: 1, max watch time: 40, avg watch time: 40.00}, I Love You Venice].", mon1.toString());
+//		/* All other channels and subscribers remain unchanged. */
+//		assertEquals("Cafe Music BGM released <Jazz Piano Radio> and is followed by [Subscriber Alan, Monitor Stat Sensor A, Subscriber Mark].", ch1.toString());
+//		assertEquals("I Love You Venice released <Baroque Live Music 24/7> and is followed by [Monitor Stat Sensor A, Subscriber Mark, Subscriber Alan].", ch2.toString());
+//		assertEquals("Subscriber Alan follows [Cafe Music BGM, I Love You Venice] and is recommended <Jazz Piano Radio, Baroque Live Music 24/7>.", sub1.toString());
+//		assertEquals("Subscriber Mark follows [Cafe Music BGM, I Love You Venice] and is recommended <Jazz Piano Radio, Baroque Live Music 24/7>.", sub2.toString());
+//		
+//		Monitor mon2 = new Monitor("Stat Sensor B", 30);
+//		assertEquals("Monitor Stat Sensor B follows no channels.", mon2.toString());
+//		
+//		/*
+//		 * Let `mon2` start following `ch1`, meaning that
+//		 * 	its statistics only covers the watch times happening from now on.
+//		 */
+//		ch1.follow(mon2);
+//		assertEquals("Monitor Stat Sensor B follows [Cafe Music BGM].", mon2.toString());
+//		assertEquals("Cafe Music BGM released <Jazz Piano Radio> and is followed by [Subscriber Alan, Monitor Stat Sensor A, Subscriber Mark, Monitor Stat Sensor B].", ch1.toString());
+//		
+//		/*
+//		 * Subscriber `sub2` watched Jazz Piano Radio for 30 minutes. 
+//		 */
+//		sub2.watch("Jazz Piano Radio", 30);
+//
+//		/* 
+//		 * Statistics for the watched video is updated for `mon1` and `mon2`.
+//		 */
+//		assertEquals("Monitor Stat Sensor A follows [Cafe Music BGM {#views: 2, max watch time: 40, avg watch time: 35.00}, I Love You Venice].", mon1.toString());
+//		assertEquals("Monitor Stat Sensor B follows [Cafe Music BGM {#views: 1, max watch time: 30, avg watch time: 30.00}].", mon2.toString());
+//		/* All other channels and subscribers remain unchanged. */
+//		assertEquals("Cafe Music BGM released <Jazz Piano Radio> and is followed by [Subscriber Alan, Monitor Stat Sensor A, Subscriber Mark, Monitor Stat Sensor B].", ch1.toString());
+//		assertEquals("I Love You Venice released <Baroque Live Music 24/7> and is followed by [Monitor Stat Sensor A, Subscriber Mark, Subscriber Alan].", ch2.toString());
+//		assertEquals("Subscriber Alan follows [Cafe Music BGM, I Love You Venice] and is recommended <Jazz Piano Radio, Baroque Live Music 24/7>.", sub1.toString());
+//		assertEquals("Subscriber Mark follows [Cafe Music BGM, I Love You Venice] and is recommended <Jazz Piano Radio, Baroque Live Music 24/7>.", sub2.toString());
+//		
+//		/*
+//		 * Subscriber `sub1` watched Jazz Piano Radio again for 15 minutes. 
+//		 */
+//		sub2.watch("Jazz Piano Radio", 15);
+//		
+//		/* 
+//		 * Statistics for the watched video is updated for `mon1` and `mon2`.
+//		 */
+//		assertEquals("Monitor Stat Sensor A follows [Cafe Music BGM {#views: 3, max watch time: 40, avg watch time: 28.33}, I Love You Venice].", mon1.toString());
+//		assertEquals("Monitor Stat Sensor B follows [Cafe Music BGM {#views: 2, max watch time: 30, avg watch time: 22.50}].", mon2.toString());
+//		/* All other channels and subscribers remain unchanged. */
+//		assertEquals("Cafe Music BGM released <Jazz Piano Radio> and is followed by [Subscriber Alan, Monitor Stat Sensor A, Subscriber Mark, Monitor Stat Sensor B].", ch1.toString());
+//		assertEquals("I Love You Venice released <Baroque Live Music 24/7> and is followed by [Monitor Stat Sensor A, Subscriber Mark, Subscriber Alan].", ch2.toString());
+//		assertEquals("Subscriber Alan follows [Cafe Music BGM, I Love You Venice] and is recommended <Jazz Piano Radio, Baroque Live Music 24/7>.", sub1.toString());
+//		assertEquals("Subscriber Mark follows [Cafe Music BGM, I Love You Venice] and is recommended <Jazz Piano Radio, Baroque Live Music 24/7>.", sub2.toString());
+//	}
 }

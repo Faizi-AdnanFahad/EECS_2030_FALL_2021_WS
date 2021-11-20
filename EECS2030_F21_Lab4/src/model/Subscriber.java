@@ -4,15 +4,11 @@ public class Subscriber extends Follower {
 	
 	private String[] arrayOfVideo;
 	private int noV;
-	private static Channel tempChannel;
-	
-	private boolean reset;
 	
 	public Subscriber(String name, int maxChannel, int maxVid) {
 		this.name = name;
 		this.arrayOfChannels = new Channel[maxChannel];
 		this.arrayOfVideo = new String[maxVid];
-		this.reset = false;
 	}
 	
 	public void recommendVideo(String videoName) {
@@ -28,8 +24,15 @@ public class Subscriber extends Follower {
 	public void removeChannel(Channel c) {
 		for (int i = 0; i < this.noC; i ++) {
 			if (this.arrayOfChannels[i].getChannelName().equals(c.getChannelName())) {
-				this.arrayOfChannels[i] = null;
-				this.arrayOfChannels[i] = this.arrayOfChannels[i + 1];
+				
+				if (i == this.noC - 1) {
+					this.arrayOfChannels[i] = null;
+				}
+				else {
+					this.arrayOfChannels[i] = null;
+					this.arrayOfChannels[i] = this.arrayOfChannels[i + 1];
+				}
+				
 				this.noC -= 1;
 			}
 		}
@@ -51,30 +54,6 @@ public class Subscriber extends Follower {
 		channelClass.incrementView();
 		channelClass.setMaxViewSoFar(minutes);
 		channelClass.watched(true);
-		
-//		if (found) {
-//			channelClass.setWatched(true);
-//		}
-//		else {
-//			channelClass.setWatched(false);
-//		}
-//		if (Subscriber.tempChannel != null && Subscriber.tempChannel != channelClass) {
-//			this.reset = true;
-//		}
-//		else {
-//			Subscriber.tempChannel = channelClass;
-//		}
-//		
-//		for (int i = 0; i < channelClass.getNoF(); i ++) {
-//			if (channelClass.getArrayOfFollowers()[i] instanceof Monitor) {
-//				
-//				
-//				
-//				if (this.reset) {
-//					((Monitor) channelClass.getArrayOfFollowers()[i]).reset();
-//				}
-//			}
-//		}
 	}
 	
 	public String toString() {
