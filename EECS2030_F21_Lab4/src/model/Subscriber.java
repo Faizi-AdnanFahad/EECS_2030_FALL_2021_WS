@@ -48,6 +48,12 @@ public class Subscriber extends Follower {
 			}
 		}
 		
+		if (found) {
+			channelClass.setWatched(true);
+		}
+		else {
+			channelClass.setWatched(false);
+		}
 		if (Subscriber.tempChannel != null && Subscriber.tempChannel != channelClass) {
 			this.reset = true;
 		}
@@ -60,7 +66,8 @@ public class Subscriber extends Follower {
 				
 				((Monitor) channelClass.getArrayOfFollowers()[i]).incrementView();
 				((Monitor) channelClass.getArrayOfFollowers()[i]).setMaxViewSoFar(minutes);
-				((Monitor) channelClass.getArrayOfFollowers()[i]).watched(found);
+				((Monitor) channelClass.getArrayOfFollowers()[i]).watched(channelClass.getWatched());
+				
 				if (this.reset) {
 					((Monitor) channelClass.getArrayOfFollowers()[i]).reset();
 				}

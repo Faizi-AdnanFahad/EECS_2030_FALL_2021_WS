@@ -9,6 +9,8 @@ public class Channel {
 
 	private Follower[] arrayOfFollowers;
 	private int noF;
+	
+	private boolean watched;
 
 	public Channel(String channelName, int maxFollower, int maxVid) {
 		this.channelName = channelName;
@@ -140,8 +142,14 @@ public class Channel {
 	public int getNoF() {
 		return noF;
 	}
+	
+	public void setWatched(boolean watched) {
+		this.watched = watched;
+	}
 
-
+	public boolean getWatched() {
+		return this.watched;
+	}
 
 
 

@@ -9,6 +9,7 @@ public class Monitor extends Follower {
 	double totalSorFar;
 	
 	boolean watched;
+	boolean resetCalled;
 	
 	public Monitor(String name, int maxChannel) {
 		this.name = name;
@@ -40,7 +41,7 @@ public class Monitor extends Follower {
 		else { 
 			String seqChannels = "[";
 			for (int i = 0; i < this.noC; i ++) {
-				if (!this.watched) {
+				if (!this.arrayOfChannels[i].getWatched()) {
 					seqChannels += this.arrayOfChannels[i].getChannelName();
 					if (i < this.noC - 1) {
 						seqChannels += ", ";
@@ -56,7 +57,6 @@ public class Monitor extends Follower {
 						seqChannels += ", ";
 					}
 				}
-				this.watched = false;
 			}
 			seqChannels += "]";
 			result = "Monitor " 
@@ -85,5 +85,6 @@ public class Monitor extends Follower {
 		this.numView = 0;
 		this.totalSorFar = 0;
 		this.maxViewSoFar = 0;
+		this.resetCalled = true;
 	}
 }
