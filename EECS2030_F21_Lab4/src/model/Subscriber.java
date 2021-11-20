@@ -48,31 +48,33 @@ public class Subscriber extends Follower {
 			}
 		}
 		
-		if (found) {
-			channelClass.setWatched(true);
-		}
-		else {
-			channelClass.setWatched(false);
-		}
-		if (Subscriber.tempChannel != null && Subscriber.tempChannel != channelClass) {
-			this.reset = true;
-		}
-		else {
-			Subscriber.tempChannel = channelClass;
-		}
+		channelClass.incrementView();
+		channelClass.setMaxViewSoFar(minutes);
+		channelClass.watched(true);
 		
-		for (int i = 0; i < channelClass.getNoF(); i ++) {
-			if (channelClass.getArrayOfFollowers()[i] instanceof Monitor) {
-				
-				((Monitor) channelClass.getArrayOfFollowers()[i]).incrementView();
-				((Monitor) channelClass.getArrayOfFollowers()[i]).setMaxViewSoFar(minutes);
-				((Monitor) channelClass.getArrayOfFollowers()[i]).watched(channelClass.getWatched());
-				
-				if (this.reset) {
-					((Monitor) channelClass.getArrayOfFollowers()[i]).reset();
-				}
-			}
-		}
+//		if (found) {
+//			channelClass.setWatched(true);
+//		}
+//		else {
+//			channelClass.setWatched(false);
+//		}
+//		if (Subscriber.tempChannel != null && Subscriber.tempChannel != channelClass) {
+//			this.reset = true;
+//		}
+//		else {
+//			Subscriber.tempChannel = channelClass;
+//		}
+//		
+//		for (int i = 0; i < channelClass.getNoF(); i ++) {
+//			if (channelClass.getArrayOfFollowers()[i] instanceof Monitor) {
+//				
+//				
+//				
+//				if (this.reset) {
+//					((Monitor) channelClass.getArrayOfFollowers()[i]).reset();
+//				}
+//			}
+//		}
 	}
 	
 	public String toString() {

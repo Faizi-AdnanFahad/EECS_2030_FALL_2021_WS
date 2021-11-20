@@ -2,11 +2,7 @@ package model;
 
 public class Monitor extends Follower {
 	
-	int numView = 0;
-	int maxViewSoFar;
-	double averageView;
-	int temp;
-	double totalSorFar;
+	
 	
 	boolean watched;
 	boolean resetCalled;
@@ -41,18 +37,19 @@ public class Monitor extends Follower {
 		else { 
 			String seqChannels = "[";
 			for (int i = 0; i < this.noC; i ++) {
-				if (!this.arrayOfChannels[i].getWatched()) {
-					seqChannels += this.arrayOfChannels[i].getChannelName();
+				Channel currentChannel = this.arrayOfChannels[i];
+				if (!currentChannel.watched) {
+					seqChannels += currentChannel.getChannelName();
 					if (i < this.noC - 1) {
 						seqChannels += ", ";
 					}
 				}
 				else {
-					seqChannels += this.arrayOfChannels[i].getChannelName();
+					seqChannels += currentChannel.getChannelName();
 					seqChannels += " {#views: " 
-							+ this.numView
-									+ ", max watch time: " + this.maxViewSoFar
-											+ ", avg watch time: " + String.format("%.2f", ((double) this.totalSorFar / this.numView)) + "}";
+							+ currentChannel.getNumView()
+									+ ", max watch time: " + (int) currentChannel.getMaxView()
+											+ ", avg watch time: " + String.format("%.2f", ((double) currentChannel.getMaxViewSoFar() / currentChannel.getNumView())) + "}";
 					if (i < this.noC - 1) {
 						seqChannels += ", ";
 					}
@@ -66,25 +63,14 @@ public class Monitor extends Follower {
 	}
 	
 	// Setters
-	public void incrementView() {
-		this.numView ++;
-	}
 	
-	public void setMaxViewSoFar(int view) {
-		this.totalSorFar += view;
-		if (this.maxViewSoFar < view) {
-			this.maxViewSoFar = view;
-		}
-	}
 	
-	public void watched(boolean watched) {
-		this.watched = watched;
-	}
 	
-	public void reset() {
-		this.numView = 0;
-		this.totalSorFar = 0;
-		this.maxViewSoFar = 0;
-		this.resetCalled = true;
-	}
+	
+//	public void reset() {
+//		this.numView = 0;
+//		this.totalSorFar = 0;
+//		this.maxViewSoFar = 0;
+//		this.resetCalled = true;
+//	}
 }

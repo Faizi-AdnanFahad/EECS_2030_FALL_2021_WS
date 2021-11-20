@@ -10,7 +10,12 @@ public class Channel {
 	private Follower[] arrayOfFollowers;
 	private int noF;
 	
-	private boolean watched;
+	
+	int numView = 0;
+	int maxViewSoFar;
+	double averageView;
+	double totalSorFar;
+	boolean watched;
 
 	public Channel(String channelName, int maxFollower, int maxVid) {
 		this.channelName = channelName;
@@ -143,18 +148,34 @@ public class Channel {
 		return noF;
 	}
 	
-	public void setWatched(boolean watched) {
+	
+	
+	public void incrementView() {
+		this.numView ++;
+	}
+	
+	public void setMaxViewSoFar(int view) {
+		this.totalSorFar += view;
+		if (this.maxViewSoFar < view) {
+			this.maxViewSoFar = view;
+		}
+	}
+	
+	public int getNumView() {
+		return this.numView;
+	}
+	
+	public double getMaxViewSoFar() {
+		return this.totalSorFar;
+	}
+
+	public int getMaxView() {
+		return this.maxViewSoFar;
+	}
+	
+	public void watched(boolean watched) {
 		this.watched = watched;
 	}
-
-	public boolean getWatched() {
-		return this.watched;
-	}
-
-
-
-
-
 
 
 
