@@ -2,11 +2,6 @@ package model;
 
 public class Monitor extends Follower {
 	
-	
-	
-	boolean watched;
-	boolean resetCalled;
-	
 	public Monitor(String name, int maxChannel) {
 		this.name = name;
 		this.arrayOfChannels = new Channel[maxChannel];
