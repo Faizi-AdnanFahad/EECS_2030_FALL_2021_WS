@@ -5,24 +5,25 @@ public class Channel {
 	private String channelName;
 
 	private String[] arrayOfReleasedVid;
-	private int noV;
+	private int noV; // Number of Videos released
 
 	private Follower[] arrayOfFollowers;
-	private int noF;
+	private int noF; // Number of Followers
 	
+	private boolean watched;
 	
-	int numView = 0;
-	int maxViewSoFar;
-	double averageView;
-	double totalSorFar;
-	boolean watched;
+	private Follower[][] arrayOfLinkedMonitors; // To store all the context objects (Monitor) -> 2d array is used where the first array would be the context object and the second array would be the newly created monitor. Crusial for Monitor class.
+	private int noMR; // Number of Monitors ROWS
 
+	
 	public Channel(String channelName, int maxFollower, int maxVid) {
 		this.channelName = channelName;
 		this.arrayOfReleasedVid = new String[maxVid];
 		this.noV = 0;
 		this.arrayOfFollowers = new Follower[maxFollower];
 		this.noF = 0;
+		
+		this.arrayOfLinkedMonitors = new Follower[500][2];
 	}
 
 	public void releaseANewVideo(String videoName) {
@@ -36,15 +37,20 @@ public class Channel {
 		}
 	}
 
-
 	public void follow(Follower f) {
-		this.arrayOfFollowers[this.noF] = f;
-		this.noF ++;
-
 		if (f instanceof Subscriber) {
+			this.arrayOfFollowers[this.noF] = f;
+			this.noF ++;
 			((Subscriber) f).addChannel(this);
 		}
 		else if (f instanceof Monitor) {
+			this.arrayOfFollowers[this.noF] = new Monitor((Monitor) f);
+			/***************/
+			this.arrayOfLinkedMonitors[this.noMR][0] = f;
+			this.arrayOfLinkedMonitors[this.noMR][1] = this.arrayOfFollowers[this.noF];  
+			this.noMR ++;
+			/***************/
+			this.noF ++;
 			((Monitor) f).addChannel(this);
 		}
 	}
@@ -66,7 +72,6 @@ public class Channel {
 					this.arrayOfFollowers[i] = null;
 					this.arrayOfFollowers[i] = this.arrayOfFollowers[i + 1];
 				}
-				
 				this.noF -= 1;
 			}
 		}
@@ -76,16 +81,16 @@ public class Channel {
 	@Override
 	public String toString() {
 		String result = "";
-		if (this.noV == 0 && this.noF == 0) {
+		if (this.noV == 0 && this.noF == 0) { // No video and no Followers
 			result = this.channelName + " released no videos and has no followers.";
 		}
-		else if (this.noV != 0 && this.noF == 0){
+		else if (this.noV != 0 && this.noF == 0){ // No followers and videos released
 			result = this.channelName 
 					+ " released " 
 					+ this.getSequenceVideoReleased() 
 					+ " and has no followers.";
 		}
-		else if (this.noF != 0 && this.noV == 0) {
+		else if (this.noF != 0 && this.noV == 0) { // No videos released and not followers
 			result = this.channelName + 
 					" released no videos and is followed by " 
 					+ this.getSequenceFollower() + ".";
@@ -99,7 +104,6 @@ public class Channel {
 		}
 		return result;
 	}
-
 
 	// Helper Method
 	private String getSequenceVideoReleased() {
@@ -115,6 +119,9 @@ public class Channel {
 	}
 
 	private String getSequenceFollower() {
+		/*
+		 * Helper method that generates the sequence of followers based on the array of followers.
+		 */
 		String followerSeq = "[";
 		for (int i = 0; i < this.noF; i ++) {
 			if (this.arrayOfFollowers[i] instanceof Subscriber) {
@@ -140,60 +147,34 @@ public class Channel {
 	}
 
 	public String[] getArrayOfReleasedVid() {
-		return arrayOfReleasedVid;
+		return this.arrayOfReleasedVid;
 	}
 
 	public int getNoV() {
-		return noV;
+		return this.noV;
 	}
 
 	public Follower[] getArrayOfFollowers() {
-		return arrayOfFollowers;
+		return this.arrayOfFollowers;
 	}
 
 	public int getNoF() {
-		return noF;
-	}
-	
-	
-	
-	public void incrementView() {
-		this.numView ++;
-	}
-	
-	public void setMaxViewSoFar(int view) {
-		this.totalSorFar += view;
-		if (this.maxViewSoFar < view) {
-			this.maxViewSoFar = view;
-		}
-	}
-	
-	public int getNumView() {
-		return this.numView;
-	}
-	
-	public double getMaxViewSoFar() {
-		return this.totalSorFar;
-	}
-
-	public int getMaxView() {
-		return this.maxViewSoFar;
+		return this.noF;
 	}
 	
 	public void watched(boolean watched) {
 		this.watched = watched;
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
+	
+	public boolean watched() {
+		return this.watched;
+	}
+	
+	public Follower[][] getArrayOfLinkedMonitors() {
+		return this.arrayOfLinkedMonitors;
+	}
+	
+	public int getNOMR() {
+		return this.noMR;
+	}
 }
