@@ -8,7 +8,7 @@ public abstract class Polygon {
 	protected double[] sides;
 	
 	// We do not need to have a constructor for Polygon
-	// because we simply don't know how to initialzie 
+	// because we simply don't know how to initialize 
 	// the sides array.
 	public Polygon() {
 		
@@ -45,11 +45,3 @@ public abstract class Polygon {
 	// we do not need to supply its implementation {...}.
 	public abstract double getArea();
 }
-
-
-
-
-
-
-
-

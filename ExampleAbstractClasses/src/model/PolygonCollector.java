@@ -19,7 +19,7 @@ public class PolygonCollector {
 
 	public PolygonCollector() {
 		polygons = new Polygon[10];
-	} 
+	}
 
 	// ST of parameter p is Polygon
 	// This means any object whose ST is a descendant class
