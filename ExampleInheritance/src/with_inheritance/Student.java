@@ -9,6 +9,7 @@ public class Student {
 	String name;
 	Course[] registeredCourses;
 	int noc; /* number of courses */
+	private int test;
 	
 	/* premimumRate or discountRate does not belong
 	 * to this class. */

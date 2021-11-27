@@ -33,6 +33,7 @@ public class ResidentStudent extends Student {
 		double base = super.getTuition();
 		return base * premiumRate;
 	}
+	
 }
 
 
