@@ -12,7 +12,7 @@ public class Channel {
 	
 	private boolean watched;
 	
-	private Follower[][] arrayOfLinkedMonitors; // To store all the context objects (Monitor) -> 2d array is used where the first array would be the context object and the second array would be the newly created monitor. Crusial for Monitor class.
+	private Follower[][] arrayOfLinkedMonitors; // To store all the context objects (Monitor) -> 2d array is used where the first array would be the context object and the second array would be the newly created monitor. Crucial for Monitor class.
 	private int noMR; // Number of Monitors ROWS
 
 	
