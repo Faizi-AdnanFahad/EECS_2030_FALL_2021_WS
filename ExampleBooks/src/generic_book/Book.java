@@ -7,17 +7,33 @@ package generic_book;
  * e.g., Book<Date>
  */
 public class Book<E> {
+	
 	private String[] names;
-	private E[] records; 
+	private int noN;
+	
+	private E[] records;
+	private int noR;
+	
+	public Book() {
+		this.names = new String[100];
+	}
 
 	/* add a name-record pair to the book */
 	public void add (String name, E record) {
 		/* Your Exercise */
+		this.names[this.noN] = name;
+		this.records[this.noR] = record;
 	}
 
 	/* return the record associated with a given name */
-	public E get (String name) { 
+	public E get (String name) {
 		/* Your Exercise */
-		return null;
+		E result = null;
+		for (int i = 0; i < this.noN; i ++) {
+			if (this.names[i].equals(name)) {
+				result = this.records[i];
+			}
+		}
+		return result;
 	}
 }

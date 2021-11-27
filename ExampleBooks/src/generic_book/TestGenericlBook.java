@@ -16,8 +16,14 @@ public class TestGenericlBook {
 		/*
 		 * Alternatively,
 		 * b = new Book<>();
+		 * without stating the type of Date again
 		 */
 		b = new Book<Date>(); 
+		/*
+		 * Also,
+		 * Book<Date> b = new Book();   ---> WORKS TOO
+		 */
+
 		phoneNumber = "416-67-1010";
 		/*
 		 * The following line does not compile
