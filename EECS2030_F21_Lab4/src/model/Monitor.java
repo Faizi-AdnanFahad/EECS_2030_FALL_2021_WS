@@ -54,7 +54,7 @@ public class Monitor extends Follower {
 				
 				/*
 				 * Finding the (Follower) Monitor object that matches 
-				 * with the context object; once found, 
+				 * with the context object; once found,
 				 * using the second index of the found array, 
 				 * change the values of attributes based on the 1st index.
 				 */
@@ -68,7 +68,7 @@ public class Monitor extends Follower {
 								this.totalSorFar = ((Monitor) currentChannel.getArrayOfLinkedMonitors()[l][1]).getTotalSoFar();
 							}
 						}
-					}				
+					}			
 				}
 
 				if (this.numView == 0 || !currentChannel.watched()) {
