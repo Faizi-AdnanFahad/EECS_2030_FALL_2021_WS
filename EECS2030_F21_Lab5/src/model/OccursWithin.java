@@ -9,6 +9,22 @@ public class OccursWithin extends BinarySeqOperation {
 	
 	public String toString() {
 		String result = "";
+		
+		boolean matched = OccursWithin.doesOccur(seq1, seq2);
+		
+		if (matched) {
+			result = super.arrayObjectToString(seq1) + 
+					" occurs within " + super.arrayObjectToString(seq2);
+		}
+		else {
+			result = super.arrayObjectToString(seq1) + 
+					" does not occur within " + super.arrayObjectToString(seq2);
+		}
+		
+		return result;
+	}
+	
+	public static boolean doesOccur(int[] seq1, int[] seq2) {
 		boolean matched = false;
 
 		int counter = 0;
@@ -29,16 +45,6 @@ public class OccursWithin extends BinarySeqOperation {
 			}
 			matched = counter == seq1.length;
 		}
-		
-		if (matched) {
-			result = super.arrayObjectToString(seq1) + 
-					" occurs within " + super.arrayObjectToString(seq2);
-		}
-		else {
-			result = super.arrayObjectToString(seq1) + 
-					" does not occur within " + super.arrayObjectToString(seq2);
-		}
-		
-		return result;
+		return matched;
 	}
 }

@@ -10,24 +10,25 @@ public class SumsOfPrefixes extends SeqOperation {
 	
 	public String toString() {		
 		
-		int[] result = new int[this.sequence.length + 1];
+		int[] sumPrefix = SumsOfPrefixes.calculateSumPrefix(this.sequence);
 		
-		for (int i = 0; i < this.sequence.length + 1; i ++) {
-			result[i] = this.summation(i);
-		}
-		
+		String sumPrefixInString = super.arrayObjectToString(sumPrefix);
 		return "Sums of prefixes of " 
 			+ super.arrayObjectToString(this.sequence) + " is: " 
-			+ super.arrayObjectToString(result);
+			+ sumPrefixInString;
 	}
 	
-	// Helper method
-	public int summation(int index) {
-		int sum = 0;
+	public static int[] calculateSumPrefix(int[] seq) {
+		int[] result = new int[seq.length + 1];
 		
-		for (int i = 0; i < index; i ++) {
-			sum += this.sequence[i];
+		for (int i = 0; i < result.length; i ++) {
+			int sum = 0;
+			for (int m = 0; m < i; m ++) {
+				sum += seq[m];
+			}
+			result[i] = sum;
 		}
-		return sum;
+		return result;
 	}
+	
 }

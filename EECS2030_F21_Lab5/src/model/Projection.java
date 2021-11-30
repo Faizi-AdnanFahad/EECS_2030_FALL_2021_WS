@@ -7,9 +7,16 @@ public class Projection extends BinarySeqOperation {
 		this.seq2 = seq2;
 	}
 
+
 	public String toString() {
 		String results = "";
-		
+		results = "Projecting " + super.arrayObjectToString(seq1) 
+		+ " to " + super.arrayObjectToString(seq2) + " results in: " 
+		+ super.arrayObjectToString(Projection.calculateProjection(seq1, seq2));
+		return results;
+	}
+
+	public static int[] calculateProjection(int[] seq1, int[] seq2) {
 		int[] tempProjectingArray = new int[seq2.length]; // the general number storer for the case where all numbers are included in the first array. 
 		int counter = 0;
 		for (int i = 0; i < seq2.length; i ++) {
@@ -28,11 +35,7 @@ public class Projection extends BinarySeqOperation {
 			projectingArray[i] = tempProjectingArray[i];
 		}
 
-		results = "Projecting " + super.arrayObjectToString(seq1) 
-		+ " to " + super.arrayObjectToString(seq2) + " results in: " 
-		+ super.arrayObjectToString(projectingArray);
-		
-		return results;
+		return projectingArray;
 	}
 
 
@@ -46,5 +49,4 @@ public class Projection extends BinarySeqOperation {
 
 
 
-
-	}
+}
