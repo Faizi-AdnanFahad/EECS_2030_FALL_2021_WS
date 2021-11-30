@@ -107,125 +107,125 @@ public class StarterTests {
 	 * Tests related to the OccursWithin class.
 	 */
 	
-//	@Test
-//	public void test_occurs_within_01() {
-//		int[] seq1a = {1, 6, 1};
-//		int[] seq2 = {2, 1, 6, 3, 1, 4, 5, 3};
-//		
-//		/*
-//		 * Does the 1st sequence appear as part of the 2nd sequence? 
-//		 */
-//		BinarySeqOperation binOp = new OccursWithin(seq1a, seq2);
-//		SeqOperation op = binOp;
-//		assertEquals("[1, 6, 1] does not occur within [2, 1, 6, 3, 1, 4, 5, 3]", op.toString());
-//		
-//		int[] seq1b = {3, 1, 4, 5}; 
-//		op = new OccursWithin(seq1b, seq2);
-//		assertEquals("[3, 1, 4, 5] occurs within [2, 1, 6, 3, 1, 4, 5, 3]", op.toString());
-//		
-//		/*
-//		 * You may want to also test:
-//		 * 	1) An empty seq1 [] occurs within any seq2 (either empty or non-empty).
-//		 * 	2) A non-empty seq1 does not occur within an empty seq2 []. 
-//		 * 	3) A sequence does not occur within another shorter sequence.  
-//		 */
-//	}
+	@Test
+	public void test_occurs_within_01() {
+		int[] seq1a = {1, 6, 1};
+		int[] seq2 = {2, 1, 6, 3, 1, 4, 5, 3};
+		
+		/*
+		 * Does the 1st sequence appear as part of the 2nd sequence? 
+		 */
+		BinarySeqOperation binOp = new OccursWithin(seq1a, seq2);
+		SeqOperation op = binOp;
+		assertEquals("[1, 6, 1] does not occur within [2, 1, 6, 3, 1, 4, 5, 3]", op.toString());
+		
+		int[] seq1b = {3, 1, 4, 5}; 
+		op = new OccursWithin(seq1b, seq2);
+		assertEquals("[3, 1, 4, 5] occurs within [2, 1, 6, 3, 1, 4, 5, 3]", op.toString());
+		
+		/*
+		 * You may want to also test:
+		 * 	1) An empty seq1 [] occurs within any seq2 (either empty or non-empty).
+		 * 	2) A non-empty seq1 does not occur within an empty seq2 []. 
+		 * 	3) A sequence does not occur within another shorter sequence.  
+		 */
+	}
 //	
 //	/*
 //	 * Tests related to the SumsOfPrefixes class.
 //	 */
-//	
-//	@Test
-//	public void test_sums_of_prefixes_01() {
-//		int[] seq1 = {1};
-//		/*
-//		 * `seq1` has prefixes: [], [1]
-//		 * Produce another sequence where each element is the sum of each prefix. 
-//		 */
-//		SeqOperation op = new SumsOfPrefixes(seq1);
-//		assertEquals("Sums of prefixes of [1] is: [0, 1]", op.toString());
-//		
-//		int[] seq2 = {1, 6};
-//		/*
-//		 * `seq2` has prefixes: [], [1], [1, 6]
-//		 * Produce another sequence where each element is the sum of each prefix. 
-//		 */
-//		op = new SumsOfPrefixes(seq2);
-//		assertEquals("Sums of prefixes of [1, 6] is: [0, 1, 7]", op.toString());
-//		
-//		int[] seq3 = {1, 6, 1};
-//		/*
-//		 * `seq3` has prefixes: [], [1], [1, 6], [1, 6, 1]
-//		 * Produce another sequence where each element is the sum of each prefix. 
-//		 */
-//		op = new SumsOfPrefixes(seq3);
-//		assertEquals("Sums of prefixes of [1, 6, 1] is: [0, 1, 7, 8]", op.toString());
-//		
-//		/*
-//		 * You may want to also test the case where an empty sequence has only one prefix: []  
-//		 */
-//	}
-//	
+	
+	@Test
+	public void test_sums_of_prefixes_01() {
+		int[] seq1 = {1};
+		/*
+		 * `seq1` has prefixes: [], [1]
+		 * Produce another sequence where each element is the sum of each prefix. 
+		 */
+		SeqOperation op = new SumsOfPrefixes(seq1);
+		assertEquals("Sums of prefixes of [1] is: [0, 1]", op.toString());
+		
+		int[] seq2 = {1, 6};
+		/*
+		 * `seq2` has prefixes: [], [1], [1, 6]
+		 * Produce another sequence where each element is the sum of each prefix. 
+		 */
+		op = new SumsOfPrefixes(seq2);
+		assertEquals("Sums of prefixes of [1, 6] is: [0, 1, 7]", op.toString());
+		
+		int[] seq3 = {1, 6, 1};
+		/*
+		 * `seq3` has prefixes: [], [1], [1, 6], [1, 6, 1]
+		 * Produce another sequence where each element is the sum of each prefix. 
+		 */
+		op = new SumsOfPrefixes(seq3);
+		assertEquals("Sums of prefixes of [1, 6, 1] is: [0, 1, 7, 8]", op.toString());
+		
+		/*
+		 * You may want to also test the case where an empty sequence has only one prefix: []  
+		 */
+	}
+	
 //	/*
 //	 * Tests related to the ConcatAll class.
 //	 */
 //	
-//	@Test
-//	public void test_contact_all_01() {
-//		/*
-//		 * Create a ConcatAll evaluator which can hold
-//		 * 	no more than 10 sequence operations.
-//		 */
-//		SeqEvaluator evaluator = new ConcatAll(10);
-//		
-//		int[] seq1 = {1, 3, 5};
-//		int[] seq2 = {2, 1, 6, 3, 1, 4, 5, 3};
-//		int[] seq3 = {7, 8};
-//		try {
-//			/* 
-//			 * Add the 1st operation as a projection, which  
-//			 * 	takes `seq1` and `seq2` as inputs and results in another sequence.
-//			 * 
-//			 * Assume that when "op:projection" is specified, 
-//			 * 	both the second and third arguments are always non-null.
-//			 */
-//			evaluator.addOperation("op:projection", seq1, seq2);
-//			
-//			/* 
-//			 * Add the 2nd operation as a sum of prefixes, which  
-//			 * 	takes `seq1` as input and results in another sequence.
-//			 * 
-//			 * Assume that when "op:sumsOfPrefixes" is specified, 
-//			 * 	the third argument is always null.
-//			 */
-//			evaluator.addOperation("op:sumsOfPrefixes", seq1, null);
-//			
-//			/*
-//			 * Add the 3rd operation.
-//			 */
-//			evaluator.addOperation("op:projection", seq3, seq2);
-//			
-//			/*
-//			 * The result of ConcatAll is the concatenation of the resulting sequences from the added operations.
-//			 * For example: 
-//			 * 	- 1st added operation (projection) results in [1, 3, 1, 5, 3].
-//			 * 	- 2nd added operation (sum of prefixes) results in [0, 1, 4, 9].
-//			 * 	- 3rd added operation (projection) results in [].
-//			 * 	- The concatenation of these three resulting sequences is as shown in the expected string below. 
-//			 */
-//			assertEquals("Concat([1, 3, 1, 5, 3], [0, 1, 4, 9], []) = [1, 3, 1, 5, 3, 0, 1, 4, 9]", evaluator.toString());
-//			
-//			/*
-//			 * You may also want to test cases where:
-//			 * 	- The concatenation involves more added operations.
-//			 * 	- Some added operations at the beginning or in the middle of the list may result in empty sequences.  
-//			 */
-//		}
-//		catch(IllegalOperationException e) {
-//			fail();
-//		}
-//	}
-//	
+	@Test
+	public void test_contact_all_01() {
+		/*
+		 * Create a ConcatAll evaluator which can hold
+		 * 	no more than 10 sequence operations.
+		 */
+		SeqEvaluator evaluator = new ConcatAll(10);
+		
+		int[] seq1 = {1, 3, 5};
+		int[] seq2 = {2, 1, 6, 3, 1, 4, 5, 3};
+		int[] seq3 = {7, 8};
+		try {
+			/* 
+			 * Add the 1st operation as a projection, which  
+			 * 	takes `seq1` and `seq2` as inputs and results in another sequence.
+			 * 
+			 * Assume that when "op:projection" is specified, 
+			 * 	both the second and third arguments are always non-null.
+			 */
+			evaluator.addOperation("op:projection", seq1, seq2);
+			
+			/* 
+			 * Add the 2nd operation as a sum of prefixes, which  
+			 * 	takes `seq1` as input and results in another sequence.
+			 * 
+			 * Assume that when "op:sumsOfPrefixes" is specified, 
+			 * 	the third argument is always null.
+			 */
+			evaluator.addOperation("op:sumsOfPrefixes", seq1, null);
+			
+			/*
+			 * Add the 3rd operation.
+			 */
+			evaluator.addOperation("op:projection", seq3, seq2);
+			
+			/*
+			 * The result of ConcatAll is the concatenation of the resulting sequences from the added operations.
+			 * For example: 
+			 * 	- 1st added operation (projection) results in [1, 3, 1, 5, 3].
+			 * 	- 2nd added operation (sum of prefixes) results in [0, 1, 4, 9].
+			 * 	- 3rd added operation (projection) results in [].
+			 * 	- The concatenation of these three resulting sequences is as shown in the expected string below. 
+			 */
+			assertEquals("Concat([1, 3, 1, 5, 3], [0, 1, 4, 9], []) = [1, 3, 1, 5, 3, 0, 1, 4, 9]", evaluator.toString());
+			
+			/*
+			 * You may also want to test cases where:
+			 * 	- The concatenation involves more added operations.
+			 * 	- Some added operations at the beginning or in the middle of the list may result in empty sequences.  
+			 */
+		}
+		catch(IllegalOperationException e) {
+			fail();
+		}
+	}
+	
 //	@Test
 //	public void test_contact_all_02() {
 //		/*

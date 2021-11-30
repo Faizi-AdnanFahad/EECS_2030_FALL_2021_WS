@@ -2,12 +2,6 @@ package model;
 
 public class SeqOperation {
 	
-	protected String toString;
-	
-	public String toString() {
-		return this.toString;
-	}
-	
 	// Helper Method
 	public String arrayObjectToString(int[] array) {
 		String seq1String = "[";
