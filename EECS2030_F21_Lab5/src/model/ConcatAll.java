@@ -36,11 +36,11 @@ public class ConcatAll extends SeqEvaluator {
 		for (int i = 0; i < this.noO; i ++) {
 			for (int m = 0; m < this.arrayOfOperation[i].length; m ++) {
 				seq += this.arrayOfOperation[i][m];
-				if (m < this.arrayOfOperation[i].length - 1) {
+				if (this.noO != 1 && m < this.arrayOfOperation[i].length - 1) {
 					seq += ", ";
 				}
 			}
-			if (i < this.noO - 2) {
+			if ((this.arrayOfOperation[i].length != 0 && this.arrayOfOperation[i].length != 1) && i < this.noO - 2) {
 				seq += ", "; 
 			}
 		}

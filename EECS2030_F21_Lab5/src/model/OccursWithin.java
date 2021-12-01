@@ -29,21 +29,27 @@ public class OccursWithin extends BinarySeqOperation {
 
 		int counter = 0;
 		int m = 0;
-		for (int i = 0; i < seq1.length; i ++) {
-			for (; m < seq2.length; m ++) {
-				if (seq1[i] == seq2[m]) {
-					counter ++;
-					break;
-				}
-			}
-			if (counter > 0) {
-				if ((i != seq1.length - 1) && (m != seq2.length - 1)) {
-					if (seq1[i + 1] != seq2[m + 1]) {
+		
+		if (seq1.length < seq2.length) {
+			for (int i = 0; i < seq1.length; i ++) {
+				for (; m < seq2.length; m ++) {
+					if (seq1[i] == seq2[m]) {
+						counter ++;
 						break;
 					}
 				}
+				if (counter > 0) {
+					if ((i != seq1.length - 1) && (m != seq2.length - 1)) {
+						if (seq1[i + 1] != seq2[m + 1]) {
+							break;
+						}
+					}
+				}
+				matched = counter == seq1.length;
 			}
-			matched = counter == seq1.length;
+			if (seq1.length == 0 && seq2.length != 0) {
+				matched = true;
+			}
 		}
 		return matched;
 	}

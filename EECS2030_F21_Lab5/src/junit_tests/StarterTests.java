@@ -103,6 +103,78 @@ public class StarterTests {
 		 */
 	}
 	
+	@Test
+	public void test_projection_02() { //
+		int[] seq1a = {1, 3, 5};
+		int[] seq2 = {};
+		
+		BinarySeqOperation binOp = new Projection(seq1a, seq2);
+		assertEquals("Projecting [1, 3, 5] to [] results in: []", binOp.toString());
+	}
+	
+	@Test
+	public void test_projection_03() { //
+		int[] seq1a = {};
+		int[] seq2 = {1, 2, 3};
+		
+		BinarySeqOperation binOp = new Projection(seq1a, seq2);
+		assertEquals("Projecting [] to [1, 2, 3] results in: []", binOp.toString());
+	}
+	
+	@Test
+	public void test_projection_04() { //
+		int[] seq1a = {};
+		int[] seq2 = {};
+		
+		BinarySeqOperation binOp = new Projection(seq1a, seq2);
+		assertEquals("Projecting [] to [] results in: []", binOp.toString());
+	}
+	
+	@Test
+	public void test_projection_05() { //
+		int[] seq1a = {1};
+		int[] seq2 = {1};
+		
+		BinarySeqOperation binOp = new Projection(seq1a, seq2);
+		assertEquals("Projecting [1] to [1] results in: [1]", binOp.toString());
+	}
+	
+	@Test
+	public void test_projection_06() { //
+		int[] seq1a = {1, 0, 4, 6};
+		int[] seq2 = {1, 0, 4, 6};
+		
+		BinarySeqOperation binOp = new Projection(seq1a, seq2);
+		assertEquals("Projecting [1, 0, 4, 6] to [1, 0, 4, 6] results in: [1, 0, 4, 6]", binOp.toString());
+	}
+	
+	@Test
+	public void test_projection_07() { //
+		int[] seq1a = {1, 6, 4, 6};
+		int[] seq2 = {1, 0, 4, 6};
+		
+		BinarySeqOperation binOp = new Projection(seq1a, seq2);
+		assertEquals("Projecting [1, 6, 4, 6] to [1, 0, 4, 6] results in: [1, 4, 6]", binOp.toString());
+	}
+	
+	@Test
+	public void test_projection_08() { //
+		int[] seq1a = {3, 2, 1, 0};
+		int[] seq2 = {4, 5, 6, 7};
+		
+		BinarySeqOperation binOp = new Projection(seq1a, seq2);
+		assertEquals("Projecting [3, 2, 1, 0] to [4, 5, 6, 7] results in: []", binOp.toString());
+	}
+	
+	@Test
+	public void test_projection_09() { //
+		int[] seq1a = {1, 1, 1};
+		int[] seq2 = {1, 1, 1};
+		
+		BinarySeqOperation binOp = new Projection(seq1a, seq2);
+		assertEquals("Projecting [1, 1, 1] to [1, 1, 1] results in: [1, 1, 1]", binOp.toString());
+	}
+	
 	/*
 	 * Tests related to the OccursWithin class.
 	 */
@@ -130,6 +202,76 @@ public class StarterTests {
 		 * 	3) A sequence does not occur within another shorter sequence.  
 		 */
 	}
+	
+	@Test
+	public void test_occurs_within_02() { //
+		int[] seq1a = {};
+		int[] seq2 = {2, 1};
+		
+		/*
+		 * Does the 1st sequence appear as part of the 2nd sequence? 
+		 */
+		BinarySeqOperation binOp = new OccursWithin(seq1a, seq2);
+		assertEquals("[] occurs within [2, 1]", binOp.toString());
+	}
+	
+	@Test
+	public void test_occurs_within_03() { //
+		int[] seq1a = {1, 2, 3};
+		int[] seq2 = {};
+		
+		/*
+		 * Does the 1st sequence appear as part of the 2nd sequence? 
+		 */
+		BinarySeqOperation binOp = new OccursWithin(seq1a, seq2);
+		assertEquals("[1, 2, 3] does not occur within []", binOp.toString());
+	}
+	
+	@Test
+	public void test_occurs_within_04() { //
+		int[] seq1a = {1, 2, 3};
+		int[] seq2 = {2};
+		
+		BinarySeqOperation binOp = new OccursWithin(seq1a, seq2);
+		assertEquals("[1, 2, 3] does not occur within [2]", binOp.toString());
+	}
+	
+	@Test
+	public void test_occurs_within_05() { //
+		int[] seq1a = {1, 1};
+		int[] seq2 = {2, 1, 1, 1, 2};
+		
+		BinarySeqOperation binOp = new OccursWithin(seq1a, seq2);
+		assertEquals("[1, 1] occurs within [2, 1, 1, 1, 2]", binOp.toString());
+	}
+	
+	@Test
+	public void test_occurs_within_06() { //
+		int[] seq1a = {1, 1};
+		int[] seq2 = {2, 1, 1, 2};
+		
+		BinarySeqOperation binOp = new OccursWithin(seq1a, seq2);
+		assertEquals("[1, 1] occurs within [2, 1, 1, 2]", binOp.toString());
+	}
+	
+	@Test
+	public void test_occurs_within_07() { //
+		int[] seq1a = {1};
+		int[] seq2 = {1, 2};
+		
+		BinarySeqOperation binOp = new OccursWithin(seq1a, seq2);
+		assertEquals("[1] occurs within [1, 2]", binOp.toString());
+	}
+	
+	@Test
+	public void test_occurs_within_08() { //
+		int[] seq1a = {4};
+		int[] seq2 = {1, 2, 4};
+		
+		BinarySeqOperation binOp = new OccursWithin(seq1a, seq2);
+		assertEquals("[4] occurs within [1, 2, 4]", binOp.toString());
+	}
+	
 //	
 //	/*
 //	 * Tests related to the SumsOfPrefixes class.
@@ -164,6 +306,23 @@ public class StarterTests {
 		/*
 		 * You may want to also test the case where an empty sequence has only one prefix: []  
 		 */
+	}
+	
+	@Test
+	public void test_sums_of_prefixes_02() {
+		int[] seq1 = {};
+		
+		SeqOperation op = new SumsOfPrefixes(seq1);
+		assertEquals("Sums of prefixes of [] is: [0]", op.toString());
+		
+	}
+	
+	@Test
+	public void test_sums_of_prefixes_03() {
+		int[] seq1 = {2, 0};
+		
+		SeqOperation op = new SumsOfPrefixes(seq1);
+		assertEquals("Sums of prefixes of [2, 0] is: [0, 2, 2]", op.toString());
 	}
 	
 //	/*
@@ -227,6 +386,78 @@ public class StarterTests {
 	}
 	
 	@Test
+	public void test_contact_all_05() { //
+		/*
+		 * Create a ConcatAll evaluator which can hold
+		 * 	no more than 10 sequence operations.
+		 */
+		SeqEvaluator evaluator = new ConcatAll(10);
+		
+		int[] seq1 = {};
+		int[] seq2 = {2, 1, 6, 3, 1, 4, 5, 3};
+		int[] seq3 = {7, 8};
+		try {
+			evaluator.addOperation("op:projection", seq1, seq2);
+			evaluator.addOperation("op:sumsOfPrefixes", seq1, null);
+			evaluator.addOperation("op:projection", seq3, seq2);
+			
+			assertEquals("Concat([], [0], []) = [0]", evaluator.toString());
+	
+		}
+		catch(IllegalOperationException e) {
+			fail();
+		}
+	}
+	
+	@Test
+	public void test_contact_all_06() { //
+		/*
+		 * Create a ConcatAll evaluator which can hold
+		 * 	no more than 10 sequence operations.
+		 */
+		SeqEvaluator evaluator = new ConcatAll(10);
+		
+		int[] seq1 = {};
+		int[] seq2 = {};
+		int[] seq3 = {};
+		try {
+			evaluator.addOperation("op:projection", seq1, seq2);
+			evaluator.addOperation("op:sumsOfPrefixes", seq1, null);
+			evaluator.addOperation("op:projection", seq3, seq2);
+			
+			assertEquals("Concat([], [0], []) = [0]", evaluator.toString());
+	
+		}
+		catch(IllegalOperationException e) {
+			fail();
+		}
+	}
+	
+	@Test
+	public void test_contact_all_07() { //
+		/*
+		 * Create a ConcatAll evaluator which can hold
+		 * 	no more than 10 sequence operations.
+		 */
+		SeqEvaluator evaluator = new ConcatAll(10);
+		
+		int[] seq1 = {1, 2};
+		int[] seq2 = {};
+		int[] seq3 = {3, 4};
+		try {
+			evaluator.addOperation("op:projection", seq1, seq3);
+			evaluator.addOperation("op:sumsOfPrefixes", seq1, null);
+			evaluator.addOperation("op:projection", seq3, seq2);
+			
+			assertEquals("Concat([], [0, 1, 3], []) = [0, 1, 3]", evaluator.toString());
+	
+		}
+		catch(IllegalOperationException e) {
+			fail();
+		}
+	}
+	
+	@Test
 	public void test_contact_all_02() {
 		/*
 		 * Create a ConcatAll evaluator which can hold
@@ -270,6 +501,65 @@ public class StarterTests {
 			 * You may also want to test cases where:
 			 * 	- The concatenation involves more added operations that are incompatible.  
 			 */
+		}
+		catch(IllegalOperationException e) {
+			fail();
+		}
+	}
+	
+	@Test
+	public void test_contact_all_08() { //
+		/*
+		 * Create a ConcatAll evaluator which can hold
+		 * 	no more than 10 sequence operations.
+		 */
+		SeqEvaluator evaluator = new ConcatAll(10);
+		
+		int[] seq1 = {1, 3, 5};
+		int[] seq2 = {2, 1, 6, 3, 1, 4, 5, 3};
+		int[] seq3 = {7, 8};
+		try {
+			/* 
+			 * Add the 1st operation which results in another sequence.
+			 */
+			evaluator.addOperation("op:projection", seq1, seq2);
+			evaluator.addOperation("op:occursWithin", seq1, seq3);
+			evaluator.addOperation("op:sumsOfPrefixes", seq1, null);
+			evaluator.addOperation("op:occursWithin", seq3, seq2);
+			evaluator.addOperation("op:occursWithin", seq3, seq2);
+			evaluator.addOperation("op:occursWithin", seq3, seq2);
+			evaluator.addOperation("op:occursWithin", seq3, seq2);
+			evaluator.addOperation("op:occursWithin", seq3, seq2);
+			evaluator.addOperation("op:occursWithin", seq3, seq2);
+			evaluator.addOperation("op:occursWithin", seq3, seq2);
+
+			assertEquals("Concat cannot be evaluated due to 8 incompatile operations.", evaluator.toString());
+		}
+		catch(IllegalOperationException e) {
+			fail();
+		}
+	}
+	
+	@Test
+	public void test_contact_all_09() { //
+		/*
+		 * Create a ConcatAll evaluator which can hold
+		 * 	no more than 10 sequence operations.
+		 */
+		SeqEvaluator evaluator = new ConcatAll(10);
+		
+		int[] seq1 = {1, 3, 5};
+		int[] seq2 = {2, 1, 6, 3, 1, 4, 5, 3};
+		int[] seq3 = {7, 8};
+		try {
+			/* 
+			 * Add the 1st operation which results in another sequence.
+			 */
+			evaluator.addOperation("op:projection", seq1, seq2);
+			evaluator.addOperation("op:occursWithin", seq1, seq3);
+			evaluator.addOperation("op:sumsOfPrefixes", seq1, null);
+
+			assertEquals("Concat cannot be evaluated due to 1 incompatile operations.", evaluator.toString());
 		}
 		catch(IllegalOperationException e) {
 			fail();
@@ -326,6 +616,101 @@ public class StarterTests {
 			 * 	- The filter evaluator stores more added operations.
 			 * 	- Some added operations at the beginning or end of the list may result in false (which will be filtered out).  
 			 */
+		}
+		catch(IllegalOperationException e) {
+			fail();
+		}
+	}
+	
+	@Test
+	public void test_filter_all_04() { //
+		SeqEvaluator evaluator = new FilterAll(10);
+		
+		int[] seq1 = {1, 6, 3, 1};
+		int[] seq2 = {7, 8};
+		int[] seq3 = {4, 5, 3};
+		int[] seq4 = {2, 1, 6, 3, 1, 4, 5, 3};
+		try {
+			evaluator.addOperation("op:occursWithin", seq1, seq2);
+			evaluator.addOperation("op:occursWithin", seq2, seq4);
+			evaluator.addOperation("op:occursWithin", seq3, seq4);
+			assertEquals("Filter result is: _, _, true", evaluator.toString());
+			
+			/*
+			 * You may also want to test cases where:
+			 * 	- The filter evaluator stores more added operations.
+			 * 	- Some added operations at the beginning or end of the list may result in false (which will be filtered out).  
+			 */
+		}
+		catch(IllegalOperationException e) {
+			fail();
+		}
+	}
+	
+	@Test
+	public void test_filter_all_05() { //
+		SeqEvaluator evaluator = new FilterAll(10);
+		
+		int[] seq1 = {1, 6, 3, 1};
+		int[] seq2 = {7, 8};
+		int[] seq3 = {4, 5, 3};
+		int[] seq4 = {2, 1, 6, 3, 1, 4, 5, 3};
+		try {
+			evaluator.addOperation("op:occursWithin", seq1, seq4);
+			evaluator.addOperation("op:occursWithin", seq2, seq4);
+			evaluator.addOperation("op:occursWithin", seq4, seq1);
+			assertEquals("Filter result is: true, _, _", evaluator.toString());
+			
+			/*
+			 * You may also want to test cases where:
+			 * 	- The filter evaluator stores more added operations.
+			 * 	- Some added operations at the beginning or end of the list may result in false (which will be filtered out).  
+			 */
+		}
+		catch(IllegalOperationException e) {
+			fail();
+		}
+	}
+	
+	@Test
+	public void test_filter_all_06() { //
+		SeqEvaluator evaluator = new FilterAll(10);
+		
+		int[] seq1 = {1, 6, 3, 1};
+		int[] seq2 = {7, 8};
+		int[] seq3 = {4, 5, 3};
+		int[] seq4 = {2, 1};
+		try {
+			evaluator.addOperation("op:occursWithin", seq1, seq4);
+			evaluator.addOperation("op:occursWithin", seq2, seq4);
+			evaluator.addOperation("op:occursWithin", seq4, seq1);
+			assertEquals("Filter result is: _, _, _", evaluator.toString());
+			
+			/*
+			 * You may also want to test cases where:
+			 * 	- The filter evaluator stores more added operations.
+			 * 	- Some added operations at the beginning or end of the list may result in false (which will be filtered out).  
+			 */
+		}
+		catch(IllegalOperationException e) {
+			fail();
+		}
+	}
+	
+	@Test
+	public void test_filter_all_07() { //
+		SeqEvaluator evaluator = new FilterAll(10);
+		
+		int[] seq1 = {1};
+		int[] seq2 = {1, 8};
+		int[] seq3 = {4, 1, 8};
+		int[] seq4 = {2, 1, 4, 1, 8, 4};
+		try {
+			evaluator.addOperation("op:occursWithin", seq1, seq2);
+			evaluator.addOperation("op:occursWithin", seq2, seq3);
+			evaluator.addOperation("op:occursWithin", seq3, seq4);
+			assertEquals("Filter result is: true, true, true", evaluator.toString());
+
 		}
 		catch(IllegalOperationException e) {
 			fail();
