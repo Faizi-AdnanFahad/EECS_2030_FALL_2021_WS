@@ -9,7 +9,6 @@ public class SumsOfPrefixes extends SeqOperation {
 	}
 	
 	public String toString() {		
-		
 		int[] sumPrefix = SumsOfPrefixes.calculateSumPrefix(this.sequence);
 		
 		String sumPrefixInString = super.arrayObjectToString(sumPrefix);

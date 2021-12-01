@@ -16,21 +16,3 @@ public class SeqOperation {
 		return seq1String;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

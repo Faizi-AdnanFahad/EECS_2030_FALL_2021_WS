@@ -37,16 +37,4 @@ public class Projection extends BinarySeqOperation {
 
 		return projectingArray;
 	}
-
-
-
-
-
-
-
-
-
-
-
-
 }
