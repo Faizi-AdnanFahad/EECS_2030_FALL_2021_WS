@@ -44,6 +44,4 @@ public class SensorApp extends WeatherApp {
 
 		return result;
 	}
-
-
 }

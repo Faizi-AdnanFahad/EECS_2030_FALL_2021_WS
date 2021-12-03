@@ -22,25 +22,26 @@ public class ForecastApp extends WeatherApp {
 	public String toString() {
 		String result = "";
 
-
 		String listOfWorkStation = "<";
 		for (int i = 0; i < this.noW; i ++) {
-			if (this.arrayOfRainTracker[i] && this.arrayOfAirPressure[i] != 0) {
-				listOfWorkStation += this.arrayOfWeatherStation[i].getWorkStationName() + 
-						" {max temperature: " + this.arrayMaxOfTemp[i] 
-								+ ", avg temperature: " 
-								+ String.format("%.1f", (double) this.arrayOfTotalTemp[i]/this.tempCounter[i]) + ", likely to rain}";
+			if (this.tempCounter[i] > 0) {
+				if (this.arrayOfRainTracker[i]) {
+					listOfWorkStation += this.arrayOfWeatherStation[i].getWorkStationName() + 
+							" {max temperature: " + this.arrayMaxOfTemp[i] 
+									+ ", avg temperature: " 
+									+ String.format("%.1f", (double) this.arrayOfTotalTemp[i]/this.tempCounter[i]) + ", likely to rain}";
+				}
+				else {
+					listOfWorkStation += this.arrayOfWeatherStation[i].getWorkStationName() + 
+							" {max temperature: " + this.arrayMaxOfTemp[i] 
+									+ ", avg temperature: " 
+									+ String.format("%.1f", (double) this.arrayOfTotalTemp[i]/this.tempCounter[i]) + ", unlikely to rain}";
+				}
 			}
-			else if (!this.arrayOfRainTracker[i] && this.arrayOfAirPressure[i] != 0){
-				listOfWorkStation += this.arrayOfWeatherStation[i].getWorkStationName() + 
-						" {max temperature: " + this.arrayMaxOfTemp[i] 
-								+ ", avg temperature: " 
-								+ String.format("%.1f", (double) this.arrayOfTotalTemp[i]/this.tempCounter[i]) + ", unlikely to rain}";
-			}
-			else if (this.arrayOfAirPressure[i] == 0) {
+			else {
 				listOfWorkStation += this.arrayOfWeatherStation[i].getWorkStationName();
 			}
-			
+
 			if (i < this.noW - 1) {
 				listOfWorkStation += ", ";
 			}
@@ -63,43 +64,22 @@ public class ForecastApp extends WeatherApp {
 			if (this.arrayOfWeatherStation[i].getWorkStationName().equals(stationName)) {
 				index = i;
 			}
-		} 
+		}
 
-		this.arrayOfTotalTemp[index] += temprature;
-		
-		if (this.arrayOfAirPressure[index] > airPressure && this.tempCounter[index] != 0) {
+		if (this.arrayMaxOfTemp[index] < temprature) {
+			this.arrayMaxOfTemp[index] = temprature;
+		}
+
+		if (airPressure < this.arrayOfAirPressure[index]) {
 			this.arrayOfRainTracker[index] = true;
 		}
 		else {
 			this.arrayOfRainTracker[index] = false;
 		}
 		
-		this.tempCounter[index] ++;
-
+		this.arrayOfTotalTemp[index] += temprature;
+		this.tempCounter[index] ++; // For calculating the average
 		this.arrayOfAirPressure[index] = airPressure;
 
-		if (this.arrayMaxOfTemp[index] < temprature) {
-			this.arrayMaxOfTemp[index] = temprature;
-		}
 	}
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
