@@ -272,10 +272,10 @@ public class StarterTests {
 		assertEquals("[4] occurs within [1, 2, 4]", binOp.toString());
 	}
 	
-//	
-//	/*
-//	 * Tests related to the SumsOfPrefixes class.
-//	 */
+	
+	/*
+	 * Tests related to the SumsOfPrefixes class.
+	 */
 	
 	@Test
 	public void test_sums_of_prefixes_01() {
@@ -325,10 +325,10 @@ public class StarterTests {
 		assertEquals("Sums of prefixes of [2, 0] is: [0, 2, 2]", op.toString());
 	}
 	
-//	/*
-//	 * Tests related to the ConcatAll class.
-//	 */
-//	
+	/*
+	 * Tests related to the ConcatAll class.
+	 */
+	
 	@Test
 	public void test_contact_all_01() {
 		/*
@@ -566,9 +566,9 @@ public class StarterTests {
 		}
 	}
 	
-//	/*
-//	 * Tests related to the FilterAll class.
-//	 */
+	/*
+	 * Tests related to the FilterAll class.
+	 */
 	
 	@Test
 	public void test_filter_all_01() {
@@ -768,9 +768,9 @@ public class StarterTests {
 		}
 	}
 	
-//	/*
-//	 * More tests related to the ContactAll and FilterAll classes.
-//	 */
+	/*
+	 * More tests related to the ContactAll and FilterAll classes.
+	 */
 	
 	@Test
 	public void test_contact_all_03() {
