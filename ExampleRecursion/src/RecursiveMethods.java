@@ -88,7 +88,7 @@ public class RecursiveMethods {
 			return true;
 		} 
 		else if(from == to) { /* base case 2: range of one element */
-			return true;
+			return a[from] > 0;
 		}
 		else { /* recursive case */
 			return a[from] > 0 && allPositiveHelper(a, from + 1, to);
@@ -153,8 +153,43 @@ public class RecursiveMethods {
 		}
 	}
 	
+	/*
+	 * Solving the problem is there at least one positive number in an array?
+	 */
 	
+	public static boolean somePositive(int[] array) {
+		return somePositiveHelper(array, 0, array.length - 1);
+	}
 	
+	public static boolean somePositiveHelper(int[] array, int firstIndex, int lastIndex) {
+		if (firstIndex > lastIndex) { // When array is empty
+			return false;
+		}
+		else if (firstIndex == lastIndex) {
+			return array[firstIndex] >= 0;
+		}
+		else {
+			return array[firstIndex] >= 0 || somePositiveHelper(array, firstIndex + 1, lastIndex);
+		}
+	}
+	
+	/*
+	 * non-descending order
+	 */
+	
+	public static boolean nonDescending(int[] array) {
+		return nonDescendingHelper(array, 0, array.length - 1);
+	}
+	
+	public static boolean nonDescendingHelper(int[] array, int firstIndex, int lastIndex) {
+		if (firstIndex >= lastIndex) {
+			return true;
+		}
+		else {
+			return (array[firstIndex] <= array[firstIndex + 1]) 
+					&& nonDescendingHelper(array, firstIndex + 1, lastIndex);
+ 		}
+	}
 	
 	
 	

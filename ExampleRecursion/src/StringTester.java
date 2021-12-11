@@ -45,6 +45,14 @@ public class StringTester {
 		
 		System.out.println("Occurance: ");
 		System.out.println(RecursiveMethods.occurance("kasjdfl;kaj", 'a'));
+			
+		System.out.println("somePositive: ");
+		int[] a = {-4, -1, -3, -2, -9};
+		System.out.println(RecursiveMethods.somePositive(a));
+		
+		System.out.println("nonDescending: ");
+		int[] b = {1, 2};
+		System.out.println(RecursiveMethods.nonDescending(b));
 		
 	}
 
