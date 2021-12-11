@@ -34,12 +34,22 @@ public class StringTester {
 		System.out.println("Substring equal to tail of s2: " + s2.substring(1, s2.length()));
 		
 		System.out.println("Concatenation: " + s2.substring(0, 2) + s2.substring(2, s2.length()));
+		
+		
+		System.out.println("--------------------");
+		System.out.println("Palindrom:");
+		System.out.println(RecursiveMethods.palindrom("racaacar1"));
+		
+		System.out.println("Reverse:");
+		System.out.println(RecursiveMethods.reverse("abcd"));
+		
+		System.out.println("Occurance: ");
+		System.out.println(RecursiveMethods.occurance("kasjdfl;kaj", 'a'));
+		
 	}
 
 }
-
-
-
+	
 
 
 

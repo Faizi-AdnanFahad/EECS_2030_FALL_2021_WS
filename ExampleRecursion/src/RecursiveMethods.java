@@ -1,6 +1,7 @@
 
 public class RecursiveMethods {
-
+	
+	
 	int factorial(int i) {
 		//				 Base case: 
 		//				 Problem that is small enough to solve right away.
@@ -28,7 +29,7 @@ public class RecursiveMethods {
 		return result; 
 	}
 
-	boolean isPalindrome(String word) { 
+	static boolean isPalindrome(String word) { 
 		if(word.length() == 0 || word.length() == 1) { 
 			/* base case */
 			return true;
@@ -110,4 +111,67 @@ public class RecursiveMethods {
 					&& isSortedHelper(a, from + 1, to);
 		}
 	}
+	
+	
+	/*
+	 * Adnan's implementations 
+	 */
+	public static boolean palindrom(String s) {		
+		if (s.length() <= 1) {
+			return true;
+		}
+		else {
+			return s.charAt(0) == s.charAt(s.length() - 1) &&
+			palindrom(s.substring(1, s.length() - 1));
+		}
+	}
+	
+	public static String reverse(String word) {
+		if (word.length() <= 1) {
+			return word;
+		}
+		else {
+			return word.charAt(word.length() - 1) + reverse(word.substring(1, word.length() - 1)) + word.charAt(0);
+		}
+	}
+	
+	public static int occurance(String word, char c) {
+		if (word.isEmpty()) {
+			return 0;
+		}
+		else if (word.length() == 1) {
+			if (word.charAt(0) == c) {
+				return 1;
+			}
+			else {
+				return 0;
+			}
+		}
+		else {
+			return occurance(String.valueOf(word.charAt(0)), c) 
+					+ occurance(word.substring(1, word.length()), c);
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
