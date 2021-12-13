@@ -16,7 +16,7 @@ public class Circle {
 	//              we declare that it might happen that
 	//              an InvalidRadius Exception is thrown.
 	//              This option means we do not handle this
-	//              error, and propogates to the caller.
+	//              error, and propagates to the caller.
 	void setRadius(double r) throws InvalidRadiusException {
 		if(r < 0) {
 			// We throw an exception object back to the caller,

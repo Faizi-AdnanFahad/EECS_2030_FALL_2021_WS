@@ -22,8 +22,7 @@ public class BankApplication {
 		// when 'a' is a valid amount to withdraw.
 		// That is, when a > acc1.balance or a < 0,
 		// these two lines should be skipped.
-		System.out.print("After withdrawing $" + a + ", the new balance is: ");
-		System.out.println(acc1.balance);
+		System.out.print("After withdrawing $" + a + ", the new balance is: " + acc1.balance);
 		
 		input.close();
 	}

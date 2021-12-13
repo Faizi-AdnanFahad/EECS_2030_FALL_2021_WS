@@ -32,6 +32,7 @@ public class StudentTester {
 		/* register all students (i.e., jim and jeremy)
 		 * to RC. */
 		sms.registerAll(rc);
+		
 	}
 
 }
