@@ -100,7 +100,6 @@ public class Product {
 	public void setOriginalPrice(double originalPrice) {
 		this.originalPrice = originalPrice;
 	}
-
 	
 	public void setDiscountValue(double discountValue) {
 		this.discountValue = discountValue;

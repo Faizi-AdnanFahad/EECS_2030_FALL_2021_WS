@@ -112,10 +112,12 @@ public class RecursiveMethods {
 		}
 	}
 	
+	/*******************************************************************************************************************************************************/
 	
 	/*
 	 * Adnan's implementations 
 	 */
+	
 	public static boolean palindrom(String s) {		
 		if (s.length() <= 1) {
 			return true;
@@ -189,24 +191,5 @@ public class RecursiveMethods {
 			return (array[firstIndex] <= array[firstIndex + 1]) 
 					&& nonDescendingHelper(array, firstIndex + 1, lastIndex);
  		}
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	}	
 }

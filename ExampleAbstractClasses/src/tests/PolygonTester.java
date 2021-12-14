@@ -6,7 +6,7 @@ import model.Triangle;
 public class PolygonTester {
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
-		// declare a variable p of static type Polygon
+//		 declare a variable p of static type Polygon
 		Polygon p;
 		
 		// Polygon is an abstract class, meaning that
@@ -55,6 +55,7 @@ public class PolygonTester {
 		// the version of getArea() defined in Triangle is called.
 		// Dynamic Binding!
 		System.out.println("Area of p: " + p.getArea());
+		
 	}
 }
 

@@ -22,5 +22,4 @@ public class PolarPoint implements Point {
 	public String toString() {
 		return "r = " + r + ", " + "theta = " + theta;
 	}
-
 }

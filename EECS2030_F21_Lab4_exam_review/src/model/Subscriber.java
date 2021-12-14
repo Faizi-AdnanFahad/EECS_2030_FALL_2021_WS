@@ -60,20 +60,7 @@ public class Subscriber extends Follower {
 			result = "Subscriber " + this.name
 					+ " follows " + this.getChannelArray() + " and is recommended " + seq  + ".";
 		}
-		
-		
+			
 		return result;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-

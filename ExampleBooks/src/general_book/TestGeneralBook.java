@@ -11,8 +11,10 @@ public class TestGeneralBook {
 	@SuppressWarnings("deprecation")
 	@Test
 	public void test() {
-		Date birthday; String phoneNumber;
-		Book b; boolean isWednesday;
+		Date birthday; 
+		String phoneNumber;
+		Book b; 
+		boolean isWednesday;
 		b = new Book();
 		phoneNumber = "416-67-1010";
 		b.add ("Suyeon", phoneNumber);
