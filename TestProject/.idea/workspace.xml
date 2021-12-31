@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="22416cdc-d921-4b18-b426-1f5b51893700" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+    <list default="true" id="22744b5d-399b-4012-8f20-e95eff285f91" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../EECS2030_F21_Lab3/test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../EECS2030_F19_Lab5/bin/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EECS2030_F21_Lab3/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../EECS2030_F21_Lab3/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../EECS2030_F21_Lab3_walkthrough/bin/model/ab.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../EECS2030_F21_Lab3_walkthrough/src/model/ab.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../EECS2030_F21_Lab4/bin/.gitignore" beforeDir="false" />
@@ -38,7 +39,7 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
-  <component name="ProjectId" id="20h5qzHVtXUXaOrLZYT33Gb34iM" />
+  <component name="ProjectId" id="22kUkCirWCuaz756sk5alK50Y8m" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -47,41 +48,70 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="project.structure.last.edited" value="SDKs" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../2020/Fall 2020 Courses/EECS1015/Labs/lab1.py" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager">
-    <configuration name="StarterTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="EECS2030_F21_Lab3" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="junit_tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="junit_tests" />
-      <option name="MAIN_CLASS_NAME" value="junit_tests.StarterTests" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+  <component name="RunManager" selected="Python.lab1">
+    <configuration name="lab1" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="TestProject" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../../../../2020/Fall 2020 Courses/EECS1015/Labs" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../../../../2020/Fall 2020 Courses/EECS1015/Labs/lab1.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="TestProject" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.StarterTests" />
+        <item itemvalue="Python.lab1" />
+        <item itemvalue="Python.test" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="22416cdc-d921-4b18-b426-1f5b51893700" name="Changes" comment="" />
-      <created>1636484190712</created>
+      <changelist id="22744b5d-399b-4012-8f20-e95eff285f91" name="Changes" comment="" />
+      <created>1640381222460</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1636484190712</updated>
+      <updated>1640381222460</updated>
     </task>
     <servers />
   </component>
