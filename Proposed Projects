@@ -1,0 +1,68 @@
+1. The budgeting App
+
+2. The Bug Tracker
+  - Issue Module (Can be closed/opened)
+    - new issues introduced
+    - report of the issue
+    - sents notificationn to the IT team.
+  - Solution Module (progess so far)
+    - assigned to different engineers
+    - report of the solution.
+    - sents notificationn to the the user. (issue gets closed)
+  - A communication system between the IT team and the person with a ticket for an issue
+  - A data set of all bugs with solutions for future similar issues.
+  - *** Inspired by: https://www.openproject.org/collaboration-software-features/bug-tracking-software/***
+  additional features:
+    - login/logout feature
+    - exporing the report as a PDF file ...
+    .
+    .
+    .
+    
+   USE THIS TO TRACK THE PROGGRESS OF UR WORK SO FAR.
+
+2. Build an Intermittent Fasting App
+  Features: 
+    1. A timer that informs users how long their fasting period has lasted. 
+    2. The ability to set/edit fast start and end time
+    3. The ability to set fast reminder alarms
+    4. Track the following stats: completed fasts, 7 day fast average, longest fast, longest streak, current streak
+    5. Tracking graph to show: fast goal, reached goal, didn’t reach goal
+    6. Ability to select a fast: circadian rhythm, 16:8, 18:6, 20:4, 36 hour fast
+          
+3. Hotel booking or Flight Booking ... (e.g., booking.com)
+  Features:
+    1. Login/Logout features for both users and admins if possible. (CAN BE DONE USING alt_zero)
+    2. Different options with many features to choose from: Hotel, Flights, car rentals, touristic packages ... 
+    3. Registering new clients (new hotesl, new partnerships ...)
+    4. Possibiltiy of showing Ads
+    5. A private and specific page (wishlist page) for users to add a customized wishlist trip.
+    2. Having many filters to find the best optiosn based ont he user needs.
+    4. Suggestion packages.
+    6. Differnet Facilites (adding facilites, removing facilites). 
+    7. Calendar, map, Pictures...
+    8. Each city for a touristic destination could have information about differnet restaurants, stores, transportation hubs, entertainment venues ... in that city.
+      it could be also filterized for specific group of people like Students, people with a disability, ...
+    
+4. Creating an Online/mobile Banking app (Addition of more features to the previous App built in 1022)
+
+5. Intermittent Fasting App
+  Features:
+  1. A timer that informs users how long their fasting period has lasted
+  2. The ability to set/edit fast start and end time
+  3. The ability to set fast reminder alarms
+  4. Track the following stats: completed fasts, 7 day fast average, longest fast, longest streak, current streak
+  5. Tracking graph to show: fast goal, reached goal, didn’t reach goal
+  6. Ability to select a fast: circadian rhythm, 16:8, 18:6, 20:4, 36 hour fast
+  
+6. Food Ordering System
+  Similar features as the previous ones.
+
+7. Online quiz / survey management system
+
+8. Healthcare management system 
+  Doctor’s module (records, appointments schedule, reports and other data.)
+  Patient’s module (choose a doctor, book an appointment and view his/her medical record.)
+  More modules and features could be added.
+   
+  
