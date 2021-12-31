@@ -146,6 +146,30 @@ public class Test_Easy_Problems {
 	}
 	
 	
+	/*
+	 * Tests related to 'longestCommonPrefix'
+	 */
+	@Test
+	public void longestCommonPrefix_1() {
+	String[] input = {"flower","flow","flight"};
+	String calculation = Solutions.longestCommonPrefix(input);
+	assertEquals("fl", calculation);
+	}
+	
+	@Test
+	public void longestCommonPrefix_2() {
+	String[] input = {"dog","racecar","car"};
+	String calculation = Solutions.longestCommonPrefix(input);
+	assertEquals("", calculation);
+	}
+	
+	@Test
+	public void longestCommonPrefix_3() {
+	String[] input = {"reflower","flow","flight"};
+	String calculation = Solutions.longestCommonPrefix(input);
+	assertEquals("", calculation);
+	}
+	
 	
 
 }

@@ -173,6 +173,33 @@ public class Solutions {
 		return partSum;
 	}
 
+	public static String longestCommonPrefix(String[] strs) {
+		int shortestStirng = strs[0].length();
+		int indexOfShotestChar = 0;
+		for (int i = 1; i < strs.length; i ++) {
+			if (strs[i].length() < shortestStirng) {
+				shortestStirng = strs[i].length();
+				indexOfShotestChar = i;
+			}
+		}
+
+		String longestPrefixSorFar = "";
+		boolean sameSofar = true;
+		char charAtRow = 0;
+		for (int charInString = 0; charInString < shortestStirng; charInString ++) {
+			charAtRow = strs[indexOfShotestChar].charAt(charInString);
+			for (int wordInArray = 0; sameSofar && wordInArray < strs.length; wordInArray ++) {
+				sameSofar = strs[wordInArray].charAt(charInString) == charAtRow;
+			}
+			if (sameSofar) {
+				longestPrefixSorFar += charAtRow;
+			}
+			else if (!sameSofar && charInString == 0) {
+				break;
+			}
+		}
+		return longestPrefixSorFar;
+	}
 }
 
 
