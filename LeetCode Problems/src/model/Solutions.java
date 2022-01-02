@@ -173,6 +173,11 @@ public class Solutions {
 		return partSum;
 	}
 
+	/*
+	 * Write a function to find the longest common prefix string 
+	 * amongst an array of strings.
+	 * If there is no common prefix, return an empty string "".
+	 */
 	public static String longestCommonPrefix(String[] strs) {
 		int shortestStirng = strs[0].length();
 		int indexOfShotestChar = 0;
@@ -200,6 +205,94 @@ public class Solutions {
 		}
 		return longestPrefixSorFar;
 	}
+
+	public static String longestCommonPrefix_2(String[] strs) {
+		if (strs.length == 0) return "";
+		String prefix = strs[0];
+		for (int i = 1; i < strs.length; i++) {
+			while (strs[i].indexOf(prefix) != 0) {
+				prefix = prefix.substring(0, prefix.length() - 1);
+				if (prefix.isEmpty()) {
+					return "";
+				}
+			}
+		}	    
+		return prefix;
+	}
+
+	/*
+	 * Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+	 * An input string is valid if:
+	 * 	1. Open brackets must be closed by the same type of brackets.
+	 * 	2. Open brackets must be closed in the correct order.
+	 */
+	public static boolean isValid(String s) {
+		//		boolean matched = false;
+		//		
+		//		for (int i = 0; i < s.length() - 1; i ++) {
+		//			if (s.charAt(i) == '(') {
+		//				matched = s.charAt(i + 1) == ')';
+		//			}
+		//			else if (s.charAt(i) == '[') {
+		//				matched = s.charAt(i + 1) == ']';
+		//			}
+		//			else if (s.charAt(i) == '{') {
+		//				matched = s.charAt(i + 1) == '}';
+		//			}
+		//			if (!matched) {
+		//				break;
+		//			}
+		//		}
+		//		return matched;
+
+//		String seq = s;
+//
+//		while (!seq.isEmpty()) {
+//			if (seq.length() == 2) {
+//				if (seq.charAt(0) == '(' && seq.charAt(1) == ')') {
+//					return true;
+//				}
+//				else if (seq.charAt(0) == '[' && seq.charAt(1) == ']') {
+//					return true;
+//				}
+//				else if (seq.charAt(0) == '{' && seq.charAt(1) == '}') {
+//					return true;
+//				}
+//				else {
+//					return false;
+//				}
+//			}
+//			else {
+//				int startingIndex = (seq.length() / 2) - 1;
+//				if (seq.charAt(startingIndex) == '(' && seq.charAt(startingIndex + 1) == ')'){
+//					seq = seq.substring(0, startingIndex) + seq.substring(startingIndex + 2, s.length());
+//				}
+//				else if (seq.charAt(startingIndex) == '[' && seq.charAt(startingIndex + 1) == ']'){
+//					seq = seq.substring(0, startingIndex) + seq.substring(startingIndex + 2, s.length());
+//				}
+//				else if (seq.charAt(startingIndex) == '{' && seq.charAt(startingIndex + 1) == '}'){
+//					seq = seq.substring(0, startingIndex) + seq.substring(startingIndex + 2, s.length());
+//				}
+//				else {
+//					return false;
+//				}
+//			}
+//			
+//		}
+//		return true;
+		
+		String seq = s;
+		while (!seq.isEmpty()) {
+			char firstChar = seq.charAt(0);
+			for (int i = 1; i < seq.length(); i ++) {
+				if (firstChar == '(' && seq.charAt(i) == ')') {
+					seq = seq.substring(1, i - 1) + seq.substring(i + 1)
+				}
+			}
+		}
+		
+	}
+
 }
 
 

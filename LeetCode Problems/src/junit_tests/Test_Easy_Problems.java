@@ -152,7 +152,7 @@ public class Test_Easy_Problems {
 	@Test
 	public void longestCommonPrefix_1() {
 	String[] input = {"flower","flow","flight"};
-	String calculation = Solutions.longestCommonPrefix(input);
+	String calculation = Solutions.longestCommonPrefix_2(input);
 	assertEquals("fl", calculation);
 	}
 	
@@ -170,6 +170,50 @@ public class Test_Easy_Problems {
 	assertEquals("", calculation);
 	}
 	
+	/*
+	 * Tests related to 'isValid - paranthesis'
+	 */
+	@Test
+	public void isValid_1() {
+	String input = "()";
+	boolean calculation = Solutions.isValid(input);
+	assertEquals(true, calculation);
+	}
+	
+	@Test
+	public void isValid_2() {
+	String input = "(]";
+	boolean calculation = Solutions.isValid(input);
+	assertEquals(false, calculation);
+	}
+	
+	@Test
+	public void isValid_3() {
+	String input = "()[]{}";
+	boolean calculation = Solutions.isValid(input);
+	assertEquals(true, calculation);
+	}
+	
+	@Test
+	public void isValid_4() {
+	String input = "(](]{}";
+	boolean calculation = Solutions.isValid(input);
+	assertEquals(false, calculation);
+	}
+	
+	@Test
+	public void isValid_5() {
+	String input = "(](]{}";
+	boolean calculation = Solutions.isValid(input);
+	assertEquals(false, calculation);
+	}
+	
+	@Test
+	public void isValid_6() {
+	String input = "{[]}";
+	boolean calculation = Solutions.isValid(input);
+	assertEquals(true, calculation);
+	}
 	
 
 }
