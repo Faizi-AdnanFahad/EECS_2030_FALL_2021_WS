@@ -173,50 +173,125 @@ public class Test_Easy_Problems {
 	/*
 	 * Tests related to 'isValid - paranthesis'
 	 */
+//	@Test
+//	public void isValid_1() {
+//	String input = "()";
+//	boolean calculation = Solutions.isValid(input);
+//	assertEquals(true, calculation);
+//	}
+//	
+//	@Test
+//	public void isValid_2() {
+//	String input = "(]";
+//	boolean calculation = Solutions.isValid(input);
+//	assertEquals(false, calculation);
+//	}
+//	
+//	@Test
+//	public void isValid_3() {
+//	String input = "()[]{}";
+//	boolean calculation = Solutions.isValid(input);
+//	assertEquals(true, calculation);
+//	}
+//	
+//	@Test
+//	public void isValid_4() {
+//	String input = "(](]{}";
+//	boolean calculation = Solutions.isValid(input);
+//	assertEquals(false, calculation);
+//	}
+//	
+//	@Test
+//	public void isValid_5() {
+//	String input = "(](]{}";
+//	boolean calculation = Solutions.isValid(input);
+//	assertEquals(false, calculation);
+//	}
+//	
+//	@Test
+//	public void isValid_6() {
+//	String input = "{[]}";
+//	boolean calculation = Solutions.isValid(input);
+//	assertEquals(true, calculation);
+//	}
+//	
+//	@Test
+//	public void isValid_7() {
+//	String input = "([)]";
+//	boolean calculation = Solutions.isValid(input);
+//	assertEquals(false, calculation);
+//	}
+	
+	
+	/*
+	 * Test related to 'removeDuplicates'
+	 */
 	@Test
-	public void isValid_1() {
-	String input = "()";
-	boolean calculation = Solutions.isValid(input);
-	assertEquals(true, calculation);
+	public void removeDuplicates_1() {
+	int[] input = {1, 1, 2};
+	int calculation = Solutions.removeDuplicates(input);
+	assertEquals(2, calculation);
 	}
 	
 	@Test
-	public void isValid_2() {
-	String input = "(]";
-	boolean calculation = Solutions.isValid(input);
-	assertEquals(false, calculation);
+	public void removeDuplicates_2() {
+	int[] input = {0,0,1,1,1,2,2,3,3,4};
+	int calculation = Solutions.removeDuplicates(input);
+	assertEquals(5, calculation);
 	}
 	
 	@Test
-	public void isValid_3() {
-	String input = "()[]{}";
-	boolean calculation = Solutions.isValid(input);
-	assertEquals(true, calculation);
+	public void removeDuplicates_3() {
+	int[] input = {0, 1, 2, 2, 3, 4};
+	int calculation = Solutions.removeDuplicates(input);
+	assertEquals(5, calculation);
+	}
+	
+	
+	/*
+	 * Test related to 'removeElement'
+	 */
+	
+	@Test
+	public void removeElement_1() {
+	int[] input = {3,2,2,3};
+	int calculation = Solutions.removeElement(input, 3);
+	assertEquals(2, calculation);
 	}
 	
 	@Test
-	public void isValid_4() {
-	String input = "(](]{}";
-	boolean calculation = Solutions.isValid(input);
-	assertEquals(false, calculation);
+	public void removeElement_2() {
+	int[] input = {0,1,2,2,3,0,4,2};
+	int calculation = Solutions.removeElement(input, 2);
+	assertEquals(5, calculation);
 	}
 	
 	@Test
-	public void isValid_5() {
-	String input = "(](]{}";
-	boolean calculation = Solutions.isValid(input);
-	assertEquals(false, calculation);
+	public void removeElement_3() {
+	int[] input = {4, 5};
+	int calculation = Solutions.removeElement(input, 4);
+	assertEquals(1, calculation);
 	}
-	
-	@Test
-	public void isValid_6() {
-	String input = "{[]}";
-	boolean calculation = Solutions.isValid(input);
-	assertEquals(true, calculation);
-	}
-	
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

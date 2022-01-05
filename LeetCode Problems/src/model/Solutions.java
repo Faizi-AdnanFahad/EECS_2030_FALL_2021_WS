@@ -227,71 +227,126 @@ public class Solutions {
 	 * 	2. Open brackets must be closed in the correct order.
 	 */
 	public static boolean isValid(String s) {
-		//		boolean matched = false;
-		//		
-		//		for (int i = 0; i < s.length() - 1; i ++) {
-		//			if (s.charAt(i) == '(') {
-		//				matched = s.charAt(i + 1) == ')';
-		//			}
-		//			else if (s.charAt(i) == '[') {
-		//				matched = s.charAt(i + 1) == ']';
-		//			}
-		//			else if (s.charAt(i) == '{') {
-		//				matched = s.charAt(i + 1) == '}';
-		//			}
-		//			if (!matched) {
-		//				break;
-		//			}
-		//		}
-		//		return matched;
+		boolean valid = false;		
+		int counter = 0;
 
-//		String seq = s;
-//
-//		while (!seq.isEmpty()) {
-//			if (seq.length() == 2) {
-//				if (seq.charAt(0) == '(' && seq.charAt(1) == ')') {
-//					return true;
-//				}
-//				else if (seq.charAt(0) == '[' && seq.charAt(1) == ']') {
-//					return true;
-//				}
-//				else if (seq.charAt(0) == '{' && seq.charAt(1) == '}') {
-//					return true;
-//				}
-//				else {
-//					return false;
-//				}
-//			}
-//			else {
-//				int startingIndex = (seq.length() / 2) - 1;
-//				if (seq.charAt(startingIndex) == '(' && seq.charAt(startingIndex + 1) == ')'){
-//					seq = seq.substring(0, startingIndex) + seq.substring(startingIndex + 2, s.length());
-//				}
-//				else if (seq.charAt(startingIndex) == '[' && seq.charAt(startingIndex + 1) == ']'){
-//					seq = seq.substring(0, startingIndex) + seq.substring(startingIndex + 2, s.length());
-//				}
-//				else if (seq.charAt(startingIndex) == '{' && seq.charAt(startingIndex + 1) == '}'){
-//					seq = seq.substring(0, startingIndex) + seq.substring(startingIndex + 2, s.length());
-//				}
-//				else {
-//					return false;
-//				}
-//			}
-//			
-//		}
-//		return true;
-		
-		String seq = s;
-		while (!seq.isEmpty()) {
-			char firstChar = seq.charAt(0);
-			for (int i = 1; i < seq.length(); i ++) {
-				if (firstChar == '(' && seq.charAt(i) == ')') {
-					seq = seq.substring(1, i - 1) + seq.substring(i + 1)
+		for (int i = 0; i < s.length() - 1; i ++) {
+			char chartAtHand = s.charAt(i);
+			for (int m = 1; !valid && m < s.length(); m ++) {
+				if (chartAtHand == '(') {
+					valid = s.charAt(m) == ')';
+					if (valid) {
+						counter ++;
+					}
 				}
+				else if (chartAtHand == '[') {
+					valid = s.charAt(m) == ']';
+					if (valid) {
+						counter ++;
+					}				}
+				else if (chartAtHand == '{') {
+					valid = s.charAt(m) == '}';
+					if (valid) {
+						counter ++;
+					}				}
+			}
+
+			if (i < s.length() - 1 && valid == true) {
+				valid = false;
+			}
+		}
+
+		if (counter == s.length() / 2) { // Checks to see if all brackets have a pair which at maximum should be half of the total string 's' passed
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
+
+	/*
+	 * Given an integer array nums sorted in non-decreasing order, remove the duplicates in-place such that each unique element appears only once. The relative order of the elements should be kept the same.
+	 * Since it is impossible to change the length of the array in some languages, you must instead have the result be placed in the first part of the array nums. More formally, if there are k elements after removing the duplicates, then the first k elements of nums should hold the final result. It does not matter what you leave beyond the first k elements.
+	 * Return k after placing the final result in the first k slots of nums.
+	 * Do not allocate extra space for another array. You must do this by modifying the input array in-place with O(1) extra memory.
+	 * 
+	 * Custom Judge:
+	 * The judge will test your solution with the following code:
+	 * int[] nums = [...]; // Input array
+	 * int[] expectedNums = [...]; // The expected answer with correct length
+	 * int k = removeDuplicates(nums); // Calls your implementation
+	 * assert k == expectedNums.length;
+		for (int i = 0; i < k; i++) {
+		    assert nums[i] == expectedNums[i];
+		}
+		If all assertions pass, then your solution will be accepted.
+	 */
+	public static int removeDuplicates(int[] nums) {
+
+		for (int i = 0; i < nums.length - 1; i ++) {
+			int currentNum = nums[i];
+			for (int m = i + 1; m < nums.length && nums[m] != 1000000;) {
+				if (nums[m] == currentNum) {
+					nums[m] = -1000000;
+				}
+				m ++;
+			}
+		}
+
+		int counter = 0;
+		for (int i = 0; i < nums.length; i ++) {
+			if (nums[i] != -1000000) {
+				nums[counter] = nums[i];
+				counter ++;
+			}
+		}
+		return counter;
+	}
+
+	/*
+	 * Given an integer array nums and an integer val, remove all occurrences of val in nums in-place. The relative order of the elements may be changed.
+	Since it is impossible to change the length of the array in some languages, you must instead have the result be placed in the first part of the array nums. More formally, if there are k elements after removing the duplicates, then the first k elements of nums should hold the final result. It does not matter what you leave beyond the first k elements.
+	Return k after placing the final result in the first k slots of nums.
+	Do not allocate extra space for another array. You must do this by modifying the input array in-place with O(1) extra memory.
+	
+	Custom Judge:
+	The judge will test your solution with the following code:
+	int[] nums = [...]; // Input array
+	int val = ...; // Value to remove
+	int[] expectedNums = [...]; // The expected answer with correct length.
+	                            // It is sorted with no values equaling val.
+	int k = removeElement(nums, val); // Calls your implementation
+	assert k == expectedNums.length;
+	sort(nums, 0, k); // Sort the first k elements of nums
+	for (int i = 0; i < actualLength; i++) {
+	    assert nums[i] == expectedNums[i];
+	}
+	If all assertions pass, then your solution will be accepted.
+	 */
+	public static int removeElement(int[] nums, int val) {		
+		int counter = 0;
+
+		if (nums.length != 0 && nums[nums.length - 1] == val) {
+			nums[nums.length - 1] = -100000;
+			counter ++;
+		}
+		
+
+		for (int i = 0; i < nums.length; i ++) {
+			if (nums[i] == val) {
+				counter ++;
+				for (int m = i; m < nums.length - 1; m ++) {
+					nums[m] = nums[m + 1];
+				}
+				i --;
 			}
 		}
 		
+		return nums.length - counter;
 	}
+
+
 
 }
 
