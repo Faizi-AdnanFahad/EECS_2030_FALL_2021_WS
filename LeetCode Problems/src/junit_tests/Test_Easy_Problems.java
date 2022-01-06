@@ -251,7 +251,6 @@ public class Test_Easy_Problems {
 	/*
 	 * Test related to 'removeElement'
 	 */
-	
 	@Test
 	public void removeElement_1() {
 	int[] input = {3,2,2,3};
@@ -272,6 +271,131 @@ public class Test_Easy_Problems {
 	int calculation = Solutions.removeElement(input, 4);
 	assertEquals(1, calculation);
 	}
+	
+	
+	/*
+	 * Test related to 'strStr'
+	 */
+	@Test
+	public void strStr_1() {
+	String needle = "";
+	String haystack = "";
+	int calculation = Solutions.strStr(haystack, needle);
+	assertEquals(0, calculation);
+	}
+	
+	@Test
+	public void strStr_2() {
+	String needle = "ll";
+	String haystack = "hello";
+	int calculation = Solutions.strStr(haystack, needle);
+	assertEquals(2, calculation);
+	}
+	
+	@Test
+	public void strStr_3() {
+	String needle = "bba";
+	String haystack = "aaaaaaaaa";
+	int calculation = Solutions.strStr(haystack, needle);
+	assertEquals(-1, calculation);
+	}
+	
+	@Test
+	public void strStr_4() {
+	String needle = "";
+	String haystack = "aaaaaaaaa";
+	int calculation = Solutions.strStr(haystack, needle);
+	assertEquals(0, calculation);
+	}
+	
+	@Test
+	public void strStr_5() {
+	String needle = "asdf";
+	String haystack = "";
+	int calculation = Solutions.strStr(haystack, needle);
+	assertEquals(-1, calculation);
+	}
+	
+	@Test
+	public void strStr_6() {
+	String needle = "asdf";
+	String haystack = "asdfwer";
+	int calculation = Solutions.strStr(haystack, needle);
+	assertEquals(0, calculation);
+	}
+	
+	@Test
+	public void strStr_7() {
+	String needle = "f";
+	String haystack = "asdfwf";
+	int calculation = Solutions.strStr(haystack, needle);
+	assertEquals(3, calculation);
+	}
+	
+	@Test
+	public void strStr_8() {
+	String needle = "wf";
+	String haystack = "asdfwf";
+	int calculation = Solutions.strStr(haystack, needle);
+	assertEquals(4, calculation);
+	}
+	
+	@Test
+	public void strStr_9() {
+	String needle = "issip";
+	String haystack = "mississippi";
+	int calculation = Solutions.strStr(haystack, needle);
+	assertEquals(4, calculation);
+	}
+
+	
+	
+	/*
+	 * Test related to 'maxSubArray'
+	 */
+//	@Test
+//	public void maxSubArray_1() {
+//	int[] input = {-2,1,-3,4,-1,2,1,-5,4};
+//	int calculation = Solutions.maxSubArray(input);
+//	assertEquals(6, calculation);
+//	}
+//	
+//	@Test
+//	public void maxSubArray_2() {
+//	int[] input = {1};
+//	int calculation = Solutions.maxSubArray(input);
+//	assertEquals(1, calculation);
+//	}
+//	
+//	@Test
+//	public void maxSubArray_3() {
+//	int[] input = {5,4,-1,7,8};
+//	int calculation = Solutions.maxSubArray(input);
+//	assertEquals(23, calculation);
+//	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 

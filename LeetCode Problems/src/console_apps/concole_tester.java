@@ -3,15 +3,20 @@ package console_apps;
 public class concole_tester {
 
 	public static void main(String[] args) {
-		String[] strs = {"flower","1", "flow","flight", "flb"};
-		int shortestStirng = strs[0].length();
-		for (int i = 1; i < strs.length; i ++) {
-			if (strs[i].length() < shortestStirng) {
-				shortestStirng = strs[i].length();
+
+		int[] a = {1, 2, 3, 4};
+
+		int max = a[0];
+		
+		for (int i = 0; i < a.length; i ++) {
+			for (int m = 0; m < i + 1; m ++) {
+				System.out.println("(" + i + ", " + m + ")");
 			}
+			System.out.println("-----------------");
 		}
-		System.out.println(shortestStirng);
+
+
 	}
-	
+
 
 }

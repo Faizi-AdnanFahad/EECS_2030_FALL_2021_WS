@@ -284,6 +284,24 @@ public class Solutions {
 	 */
 	public static int removeDuplicates(int[] nums) {
 
+		//		for (int i = 0; i < nums.length - 1; i ++) {
+		//			int currentNum = nums[i];
+		//			for (int m = i + 1; m < nums.length && nums[m] != 1000000;) {
+		//				if (nums[m] == currentNum) {
+		//					nums[m] = -1000000;
+		//				}
+		//				m ++;
+		//			}
+		//		}
+		//
+		//		int counter = 0;
+		//		for (int i = 0; i < nums.length; i ++) {
+		//			if (nums[i] != -1000000) {
+		//				nums[counter] = nums[i];
+		//				counter ++;
+		//			}
+		//		}
+
 		for (int i = 0; i < nums.length - 1; i ++) {
 			int currentNum = nums[i];
 			for (int m = i + 1; m < nums.length && nums[m] != 1000000;) {
@@ -309,7 +327,7 @@ public class Solutions {
 	Since it is impossible to change the length of the array in some languages, you must instead have the result be placed in the first part of the array nums. More formally, if there are k elements after removing the duplicates, then the first k elements of nums should hold the final result. It does not matter what you leave beyond the first k elements.
 	Return k after placing the final result in the first k slots of nums.
 	Do not allocate extra space for another array. You must do this by modifying the input array in-place with O(1) extra memory.
-	
+
 	Custom Judge:
 	The judge will test your solution with the following code:
 	int[] nums = [...]; // Input array
@@ -331,7 +349,7 @@ public class Solutions {
 			nums[nums.length - 1] = -100000;
 			counter ++;
 		}
-		
+
 
 		for (int i = 0; i < nums.length; i ++) {
 			if (nums[i] == val) {
@@ -342,13 +360,54 @@ public class Solutions {
 				i --;
 			}
 		}
-		
+
 		return nums.length - counter;
 	}
 
 
+	/*
+	 * mplement strStr().
+	Return the index of the first occurrence of needle in haystack, 
+	or -1 if needle is not part of haystack.
 
+	Clarification:
+	What should we return when needle is an empty string? This is a great question to ask during an interview.
+	For the purpose of this problem, we will return 0 when needle is an empty string. 
+	This is consistent to C's strstr() and Java's indexOf().
+	 */
+
+	public static int strStr(String haystack, String needle) {
+		int index = -1;
+
+		if (needle.isEmpty()) {
+			index = 0;
+		}
+		else {
+			for (int i = 0; i < haystack.length() - (needle.length() - 1); i ++) {
+				String currentSubstring = haystack.substring(i, i + needle.length());
+				if (currentSubstring.equals(needle)) {
+					index = i;
+					break;
+				}
+			}
+		}
+		return index;
+	}
+
+
+	/*
+	 * Given an integer array nums, find the contiguous subarray 
+	 * (containing at least one number) which has the largest sum and 
+	 * return its sum.
+	 * A subarray is a contiguous part of an array.
+	 */
+
+//	public static int maxSubArray(int[] nums) {
+//
+//	}
 }
+
+
 
 
 
