@@ -373,21 +373,95 @@ public class Test_Easy_Problems {
 //	int calculation = Solutions.maxSubArray(input);
 //	assertEquals(23, calculation);
 //	}
+	
+//	@Test
+//	public void maxSubArray_4() {
+//	int[] input = {6, -1, 3, 2};
+//	int calculation = Solutions.maxSubArray(input);
+//	assertEquals(10, calculation);
+//	}
 
+	
+	/*
+	 * Test related to 'lengthOfLastWord'
+	 */
+	@Test
+	public void lengthOfLastWord_1() {
+	String input = "Hello World";
+	int calculation = Solutions.lengthOfLastWord(input);
+	assertEquals(5, calculation);
+	}
+	
+	@Test
+	public void lengthOfLastWord_2() {
+	String input = "   fly me   to   the moon  ";
+	int calculation = Solutions.lengthOfLastWord(input);
+	assertEquals(4, calculation);
+	}
 
+	@Test
+	public void lengthOfLastWord_3() {
+	String input = 	"luffy is still joyboy";
+	int calculation = Solutions.lengthOfLastWord(input);
+	assertEquals(6, calculation);
+	}
+	
+	@Test
+	public void lengthOfLastWord_4() {
+	String input = 	"";
+	int calculation = Solutions.lengthOfLastWord(input);
+	assertEquals(0, calculation);
+	}
+	
+	@Test
+	public void lengthOfLastWord_5() {
+	String input = 	" ";
+	int calculation = Solutions.lengthOfLastWord(input);
+	assertEquals(0, calculation);
+	}
 
+	@Test
+	public void lengthOfLastWord_6() {
+	String input = 	"m";
+	int calculation = Solutions.lengthOfLastWord(input);
+	assertEquals(1, calculation);
+	}
 
+	
+	/*
+	 * Test related to 'plusOne'
+	 */
+	@Test
+	public void plusOne_1() {
+	int[] input = {1, 2, 3};
+	int[] calculation = Solutions.plusOne(input);
+	int[] output = {1, 2, 4};
+	Assert.assertArrayEquals(output, calculation);
+	}
 
+	@Test
+	public void plusOne_2() {
+	int[] input = {1, 2, 3};
+	int[] calculation = Solutions.plusOne(input);
+	int[] output = {1, 2, 4};
+	Assert.assertArrayEquals(output, calculation);
+	}
 
+	@Test
+	public void plusOne_3() {
+	int[] input = {4,3,2,1};
+	int[] calculation = Solutions.plusOne(input);
+	int[] output = {4,3,2,2};
+	Assert.assertArrayEquals(output, calculation);
+	}
 
-
-
-
-
-
-
-
-
+	@Test
+	public void plusOne_4() {
+	int[] input = {9};
+	int[] calculation = Solutions.plusOne(input);
+	int[] output = {1, 0};
+	Assert.assertArrayEquals(output, calculation);
+	}
 
 
 

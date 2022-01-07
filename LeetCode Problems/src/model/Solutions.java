@@ -402,9 +402,129 @@ public class Solutions {
 	 * A subarray is a contiguous part of an array.
 	 */
 
-//	public static int maxSubArray(int[] nums) {
-//
-//	}
+	//	public static int maxSubArray(int[] nums) {
+	//		
+	//		int total = 0;
+	//		
+	//		int startingIndex = 0;
+	//		int finalIndex = nums.length; // 4
+	//
+	//		int max = nums[0];
+	//		
+	//		for (int i = 0; i < nums.length; i ++) {
+	//			for (; startingIndex < finalIndex; startingIndex ++) {
+	//				total += nums[startingIndex];
+	//			}
+	//			if (total > max) {
+	//				max = total;
+	//			}
+	//			
+	//			if (startingIndex == finalIndex) {
+	//				finalIndex --;
+	//				startingIndex = i;
+	//				total = 0;
+	//			}
+	//			
+	//			if (finalIndex == 0) {
+	//				finalIndex = nums.length;
+	//			}
+	//			
+	//		}
+	//		return max;
+	//	}
+
+	/*
+	 * Given a string s consisting of some words separated by some number of spaces, 
+	 * return the length of the last word in the string.
+	 * A word is a maximal substring consisting of non-space characters only.
+	 */
+	public static int lengthOfLastWord(String s) {
+		int result = -1;
+		String trimedS = s.trim();
+
+
+		for (int i = 0; i < trimedS.length(); i ++) {
+			int indexBackWard = trimedS.length() - i - 1;
+			if (trimedS.charAt(indexBackWard) == ' ') {
+				result = trimedS.length() - (indexBackWard + 1);
+				break;
+			}
+		}
+
+		if (result == -1) {
+			result = trimedS.length();
+		}
+		return result;
+	}
+
+	
+	/*
+	 * You are given a large integer represented as an integer array digits, 
+	 * where each digits[i] is the ith digit of the integer. 
+	 * The digits are ordered from most significant to least significant 
+	 * in left-to-right order. The large integer does not contain any leading 0's.
+	 * Increment the large integer by one and return the resulting array of digits.
+	 */
+	public static int[] plusOne(int[] digits) {
+		
+		String max2digit = String.valueOf(digits[digits.length - 1] + 1);
+		if (digits[digits.length - 1] < 9) {
+			digits[digits.length - 1] += 1;
+			return digits;
+		}
+		else {
+			int[] result = new int[digits.length + 1];
+			int counter = 0;
+			for (int i = 0; i < result.length; i ++) {
+				if (i < digits.length) {
+					result[i] = digits[i];
+				}
+				else {
+					result[i] = Character.getNumericValue(max2digit.charAt(counter));
+					counter ++;
+				}
+			}
+			return result;
+		}
+		
+		
+		
+		
+//		int max = digits[0];
+//		int indexMax = -1;
+//		
+//		ArrayList<Integer> arrayPlusOne = new ArrayList<>();
+//		for (int i = 0; i < digits.length; i ++) {
+//			if (digits[i] > max) {
+//				max = digits[i];
+//				indexMax = i;	
+//			}
+//		}
+//		
+//		String max2digit = "";
+//		int[] result = new int[digits.length + max2digit.length()];
+//		if (indexMax != -1) {
+//			if (max < 9) {
+//				digits[indexMax] += 1;
+//				return digits;
+//			}
+//			else {
+//				max2digit = String.valueOf(max + 1);
+//			}
+//			
+//			
+//			for (int i = 0; i < indexMax; i ++) {
+//				result[i] = digits[i];
+//			}
+//			
+//			for (int i = indexMax; i < digits.length; i ++) {
+//				result[i] = digits[i];
+//			}
+//		}
+//		return result;
+	}
+
+
 }
 
 
