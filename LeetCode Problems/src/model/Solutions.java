@@ -457,7 +457,7 @@ public class Solutions {
 		return result;
 	}
 
-	
+
 	/*
 	 * You are given a large integer represented as an integer array digits, 
 	 * where each digits[i] is the ith digit of the integer. 
@@ -466,62 +466,63 @@ public class Solutions {
 	 * Increment the large integer by one and return the resulting array of digits.
 	 */
 	public static int[] plusOne(int[] digits) {
-		
-		String max2digit = String.valueOf(digits[digits.length - 1] + 1);
-		if (digits[digits.length - 1] < 9) {
-			digits[digits.length - 1] += 1;
+
+		int lastIndex = digits.length - 1;
+
+		boolean allDigits9 = true;
+
+		for (int i = 0; allDigits9 && i < digits.length; i ++) {
+			allDigits9 = allDigits9 && digits[i] == 9;
+		}
+
+		if (digits[lastIndex] != 9) {
+			digits[lastIndex] ++;
 			return digits;
 		}
 		else {
-			int[] result = new int[digits.length + 1];
-			int counter = 0;
-			for (int i = 0; i < result.length; i ++) {
-				if (i < digits.length) {
-					result[i] = digits[i];
+			if (!allDigits9) {
+				for (int i = 0; i < digits.length; i ++) {
+					if (digits[lastIndex - i] == 9) {
+						digits[lastIndex - i] = 0;
+					}
+					else {
+						digits[lastIndex - i] ++;
+						break;
+					}
 				}
-				else {
-					result[i] = Character.getNumericValue(max2digit.charAt(counter));
-					counter ++;
-				}
+				return digits;
 			}
-			return result;
+			else {
+				int[] result = new int[digits.length + 1];
+				result[0] = 1;
+				for (int i = 1; i < result.length; i++) {
+					result[i] = 0;
+				}
+				return result;
+			}	
 		}
 		
-		
-		
-		
-//		int max = digits[0];
-//		int indexMax = -1;
-//		
-//		ArrayList<Integer> arrayPlusOne = new ArrayList<>();
-//		for (int i = 0; i < digits.length; i ++) {
-//			if (digits[i] > max) {
-//				max = digits[i];
-//				indexMax = i;	
-//			}
-//		}
-//		
-//		String max2digit = "";
-//		int[] result = new int[digits.length + max2digit.length()];
-//		if (indexMax != -1) {
-//			if (max < 9) {
-//				digits[indexMax] += 1;
-//				return digits;
-//			}
-//			else {
-//				max2digit = String.valueOf(max + 1);
-//			}
-//			
-//			
-//			for (int i = 0; i < indexMax; i ++) {
-//				result[i] = digits[i];
-//			}
-//			
-//			for (int i = indexMax; i < digits.length; i ++) {
-//				result[i] = digits[i];
-//			}
-//		}
-//		return result;
+		/*
+		 * Solution #2
+		 */
+		//		String digitsInString = "";
+		//		
+		//		for (int i = 0; i < digits.length; i ++) {
+		//			digitsInString += digits[i];
+		//		}
+		//		
+		//		long digitsInInteger = Long.valueOf(digitsInString);
+		//		digitsInInteger ++;
+		//		
+		//		String digitsInString2 = String.valueOf(digitsInInteger);
+		//		
+		//		int[] result = new int[digitsInString2.length()];
+		//		for (int i = 0; i < digitsInString2.length(); i ++) {
+		//			result[i] = Character.getNumericValue(digitsInString2.charAt(i));
+		//		}
+		//		
+		//		
+		//		return result;
 	}
 
 

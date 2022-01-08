@@ -462,10 +462,38 @@ public class Test_Easy_Problems {
 	int[] output = {1, 0};
 	Assert.assertArrayEquals(output, calculation);
 	}
-
-
-
-
+	
+	@Test
+	public void plusOne_6() {
+	int[] input = {1, 2, 0, 5, 6, 8, 1, 3, 5, 6};
+	int[] calculation = Solutions.plusOne(input);
+	int[] output = {1, 2, 0, 5, 6, 8, 1, 3, 5, 7};
+	Assert.assertArrayEquals(output, calculation);
+	}
+	
+	@Test
+	public void plusOne_5() {
+	int[] input = {9,8,7,6,5,4,3,2,1,0};
+	int[] calculation = Solutions.plusOne(input);
+	int[] output = {9,8,7,6,5,4,3,2,1,1};
+	Assert.assertArrayEquals(output, calculation);
+	}
+	
+	@Test
+	public void plusOne_7() {
+	int[] input = {9, 9, 9, 9, 9};
+	int[] calculation = Solutions.plusOne(input);
+	int[] output = {1, 0, 0, 0, 0, 0};
+	Assert.assertArrayEquals(output, calculation);
+	}
+	
+	@Test
+	public void plusOne_8() {
+	int[] input = {9, 8, 9};
+	int[] calculation = Solutions.plusOne(input);
+	int[] output = {9, 9, 0};
+	Assert.assertArrayEquals(output, calculation);
+	}
 
 
 
