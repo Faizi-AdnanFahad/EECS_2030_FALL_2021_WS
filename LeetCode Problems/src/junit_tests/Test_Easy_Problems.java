@@ -495,7 +495,73 @@ public class Test_Easy_Problems {
 	Assert.assertArrayEquals(output, calculation);
 	}
 
-
+	
+	/*
+	 * Test related to 'addBinary'
+	 */
+	@Test
+	public void addBinary_1() {
+	String a = "11";
+	String b = "1";
+	String calculation = Solutions.addBinary(a, b);
+	assertEquals("100", calculation);
+	}
+	
+	@Test
+	public void addBinary_2() {
+	String a = "1010";
+	String b = "1011";
+	String calculation = Solutions.addBinary(a, b);
+	assertEquals("10101", calculation);
+	}
+	
+	@Test
+	public void addBinary_3() {
+	String a = "11";
+	String b = "00";
+	String calculation = Solutions.addBinary(a, b);
+	assertEquals("11", calculation);
+	}
+	
+	@Test
+	public void addBinary_4() {
+	String a = "11";
+	String b = "01";
+	String calculation = Solutions.addBinary(a, b);
+	assertEquals("100", calculation);
+	}
+	
+	@Test
+	public void addBinary_5() {
+	String a = "1111";
+	String b = "0101";
+	String calculation = Solutions.addBinary(a, b);
+	assertEquals("10100", calculation);
+	}
+	
+	@Test
+	public void addBinary_6() {
+	String a = "1111";
+	String b = "1";
+	String calculation = Solutions.addBinary(a, b);
+	assertEquals("10000", calculation);
+	}
+	
+	@Test
+	public void addBinary_7() {
+	String a = "01";
+	String b = "1111";
+	String calculation = Solutions.addBinary(a, b);
+	assertEquals("10000", calculation);
+	}
+	
+	@Test
+	public void addBinary_8() {
+	String a = "100110";
+	String b = "110101";
+	String calculation = Solutions.addBinary(a, b);
+	assertEquals("1011011", calculation);
+	}
 
 
 }

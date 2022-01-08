@@ -501,7 +501,7 @@ public class Solutions {
 				return result;
 			}	
 		}
-		
+
 		/*
 		 * Solution #2
 		 */
@@ -523,6 +523,80 @@ public class Solutions {
 		//		
 		//		
 		//		return result;
+	}
+
+
+	/*
+	 * Given two binary strings a and b, return their sum as a binary string.
+	 */
+	public static String addBinary(String a, String b) {
+
+		String reversedOutput = "";
+
+		if (a.length() > b.length()) {
+			String newB = "";
+			int extra0toAdd = a.length() - b.length();
+			for (int i = 0; i < extra0toAdd; i ++) {
+				newB += "0";
+			}
+			newB += b;
+			b = newB;
+		}
+		else if (b.length() > a.length()) {
+			String newA = "";
+			int extra0toAdd = b.length() - a.length();
+			for (int i = 0; i < extra0toAdd; i ++) {
+				newA += "0";
+			}
+			newA += a;
+			a = newA;
+		}
+
+
+		String addToNext = "";
+
+		for (int i = 0; i < a.length(); i ++) {
+			if (addToNext.isEmpty()) {
+				if ((a.charAt(a.length() - i - 1) == '1' && b.charAt(b.length() - i - 1) == '0')
+						||  (b.charAt(a.length() - i - 1) == '1' && a.charAt(b.length() - i - 1) == '0')){
+					reversedOutput += "1";
+				}
+				else if ((a.charAt(a.length() - i - 1) == '0' && b.charAt(b.length() - i - 1) == '0')
+						||  (b.charAt(a.length() - i - 1) == '0' && a.charAt(b.length() - i - 1) == '0')){
+					reversedOutput += "0";
+				}
+				else { // "1" + "1" = "10"
+					reversedOutput += "0";
+					addToNext = "1";
+				}
+			}
+			else {
+				addToNext = "";
+				if ((a.charAt(a.length() - i - 1) == '0' && b.charAt(b.length() - i - 1) == '0')
+						||  (b.charAt(a.length() - i - 1) == '0' && a.charAt(b.length() - i - 1) == '0')){
+					reversedOutput += "1";
+				}
+				else if ((a.charAt(a.length() - i - 1) == '1' && b.charAt(b.length() - i - 1) == '0')
+						||  (b.charAt(a.length() - i - 1) == '1' && a.charAt(b.length() - i - 1) == '0')){
+					reversedOutput += "0";
+					addToNext = "1";
+				}
+				else { // 1 + 1
+					reversedOutput += "1";
+					addToNext = "1";
+				}
+			}
+			if (i == a.length() - 1 && !addToNext.isEmpty()) {
+				reversedOutput += "1";
+			}
+		}
+
+		String output = "";
+		for (int i = 0; i < reversedOutput.length(); i ++) {
+			output += reversedOutput.charAt(reversedOutput.length() - i - 1);
+		}
+
+		return output;
 	}
 
 
