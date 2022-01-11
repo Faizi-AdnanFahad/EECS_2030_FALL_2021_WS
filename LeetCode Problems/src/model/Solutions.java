@@ -1,5 +1,7 @@
 package model;
 
+import java.rmi.server.RemoteServer;
+import java.security.DrbgParameters.Reseed;
 import java.util.ArrayList;
 
 public class Solutions {
@@ -529,77 +531,249 @@ public class Solutions {
 	/*
 	 * Given two binary strings a and b, return their sum as a binary string.
 	 */
+	//		public static String addBinary(String a, String b) {
+	//	
+	//			String reversedOutput = "";
+	//	
+	//			if (a.length() > b.length()) {
+	//				String newB = "";
+	//				int extra0toAdd = a.length() - b.length();
+	//				for (int i = 0; i < extra0toAdd; i ++) {
+	//					newB += "0";
+	//				}
+	//				newB += b;
+	//				b = newB;
+	//			}
+	//			else if (b.length() > a.length()) {
+	//				String newA = "";
+	//				int extra0toAdd = b.length() - a.length();
+	//				for (int i = 0; i < extra0toAdd; i ++) {
+	//					newA += "0";
+	//				}
+	//				newA += a;
+	//				a = newA;
+	//			}
+	//	
+	//	
+	//			String addToNext = "";
+	//	
+	//			for (int i = 0; i < a.length(); i ++) {
+	//				if (addToNext.isEmpty()) {
+	//					if ((a.charAt(a.length() - i - 1) == '1' && b.charAt(b.length() - i - 1) == '0')
+	//							||  (b.charAt(a.length() - i - 1) == '1' && a.charAt(b.length() - i - 1) == '0')){
+	//						reversedOutput += "1";
+	//					}
+	//					else if ((a.charAt(a.length() - i - 1) == '0' && b.charAt(b.length() - i - 1) == '0')
+	//							||  (b.charAt(a.length() - i - 1) == '0' && a.charAt(b.length() - i - 1) == '0')){
+	//						reversedOutput += "0";
+	//					}
+	//					else { // "1" + "1" = "10"
+	//						reversedOutput += "0";
+	//						addToNext = "1";
+	//					}
+	//				}
+	//				else {
+	//					addToNext = "";
+	//					if ((a.charAt(a.length() - i - 1) == '0' && b.charAt(b.length() - i - 1) == '0')
+	//							||  (b.charAt(a.length() - i - 1) == '0' && a.charAt(b.length() - i - 1) == '0')){
+	//						reversedOutput += "1";
+	//					}
+	//					else if ((a.charAt(a.length() - i - 1) == '1' && b.charAt(b.length() - i - 1) == '0')
+	//							||  (b.charAt(a.length() - i - 1) == '1' && a.charAt(b.length() - i - 1) == '0')){
+	//						reversedOutput += "0";
+	//						addToNext = "1";
+	//					}
+	//					else { // 1 + 1
+	//						reversedOutput += "1";
+	//						addToNext = "1";
+	//					}
+	//				}
+	//				if (i == a.length() - 1 && !addToNext.isEmpty()) {
+	//					reversedOutput += "1";
+	//				}
+	//			}
+	//	
+	//			String output = "";
+	//			for (int i = 0; i < reversedOutput.length(); i ++) {
+	//				output += reversedOutput.charAt(reversedOutput.length() - i - 1);
+	//			}
+	//	
+	//			return output;
+	//		}
+
+	//	/*
+	//	 * Using Recursion - incompelete
+	//	 */
+	//	public static String addBinary(String a, String b) {
+	//
+	//		String result = "";
+	//		result = result 
+	//				+ addBinaryHelper(a, b, 0, a.length(), "");
+	//
+	//		return result;
+	//	}
+	//
+	//	private static String addBinaryHelper(String a, String b, int from, int to, String extra) {
+	//		String reversedOutput = "";
+	//
+	//		String newA = a.substring(from, to);
+	//		String newB = b.substring(from, to);
+	//
+	//		if (extra.isEmpty()) {
+	//			if (newA.equals("0") && newB.equals("0") || newB.equals("0") && newA.equals("0")) {
+	//				reversedOutput += "0";
+	//			}
+	//			else if (newA.equals("1") && newB.equals("0") || newB.equals("1") && newA.equals("0")) {
+	//				reversedOutput += "1";
+	//			}
+	//			else if (newA.equals("1") && newB.equals("1")) {
+	//				reversedOutput += "0";
+	//				extra += "1";
+	//			}
+	//			else {
+	//				reversedOutput += 
+	//						addBinaryHelper(newA, newB, 0, 1, extra) 
+	//						+  addBinaryHelper(a, b, from + 1, a.length(), extra);
+	//			}
+	//		}
+	//		else {
+	//			if (newA.equals("0") && newB.equals("0") || newB.equals("0") && newA.equals("0")) {
+	//				reversedOutput += "0";
+	//			}
+	//			else if (newA.equals("1") && newB.equals("0") || newB.equals("1") && newA.equals("0")) {
+	//				reversedOutput += "1";
+	//			}
+	//			else if (newA.equals("1") && newB.equals("1")) {
+	//				reversedOutput += "0";
+	//				extra += "1";
+	//			}
+	//			else {
+	//				reversedOutput += addBinary3(newA, newB);
+	//			}
+	//		}
+	//		return reversedOutput;
+	//	}
+	//
+	//	private static String addBinary3(String a, String b) {
+	//		String result = "";
+	//
+	//		if (a.equals("0") && b.equals("0") || b.equals("0") && a.equals("0")) {
+	//			result += "1";
+	//		}
+	//		else if (a.equals("1") && b.equals("0") || b.equals("0") && a.equals("1")) {
+	//			result += "0";
+	//		}
+	//		else if (a.equals("1") && b.equals("1")) {
+	//			result += "1";
+	//		}
+	//
+	//		return result;
+	//	}
+
+	// Second version
 	public static String addBinary(String a, String b) {
 
-		String reversedOutput = "";
-
-		if (a.length() > b.length()) {
-			String newB = "";
-			int extra0toAdd = a.length() - b.length();
-			for (int i = 0; i < extra0toAdd; i ++) {
-				newB += "0";
-			}
-			newB += b;
-			b = newB;
+		if (a.equals("0") && b.equals("0") || b.equals("0") && a.equals("0")) {
+			return "0";
 		}
-		else if (b.length() > a.length()) {
-			String newA = "";
-			int extra0toAdd = b.length() - a.length();
-			for (int i = 0; i < extra0toAdd; i ++) {
-				newA += "0";
-			}
-			newA += a;
-			a = newA;
+		else if (a.equals("1") && b.equals("0") || b.equals("1") && a.equals("0")) {
+			return "1";
+		}
+		else if (a.equals("1") && b.equals("1")) {
+			return "10";
+		}	
+		else {
+			int firstBinaryNum = changeToBinary(a);
+			int secondBinNum = changeToBinary(b);
+
+			String result = changeToINT(firstBinaryNum + secondBinNum);
+
+			return result;
 		}
 
+	}
 
-		String addToNext = "";
+	public static int changeToBinary(String a) {
+		int result = 0;
 
 		for (int i = 0; i < a.length(); i ++) {
-			if (addToNext.isEmpty()) {
-				if ((a.charAt(a.length() - i - 1) == '1' && b.charAt(b.length() - i - 1) == '0')
-						||  (b.charAt(a.length() - i - 1) == '1' && a.charAt(b.length() - i - 1) == '0')){
-					reversedOutput += "1";
-				}
-				else if ((a.charAt(a.length() - i - 1) == '0' && b.charAt(b.length() - i - 1) == '0')
-						||  (b.charAt(a.length() - i - 1) == '0' && a.charAt(b.length() - i - 1) == '0')){
-					reversedOutput += "0";
-				}
-				else { // "1" + "1" = "10"
-					reversedOutput += "0";
-					addToNext = "1";
-				}
-			}
-			else {
-				addToNext = "";
-				if ((a.charAt(a.length() - i - 1) == '0' && b.charAt(b.length() - i - 1) == '0')
-						||  (b.charAt(a.length() - i - 1) == '0' && a.charAt(b.length() - i - 1) == '0')){
-					reversedOutput += "1";
-				}
-				else if ((a.charAt(a.length() - i - 1) == '1' && b.charAt(b.length() - i - 1) == '0')
-						||  (b.charAt(a.length() - i - 1) == '1' && a.charAt(b.length() - i - 1) == '0')){
-					reversedOutput += "0";
-					addToNext = "1";
-				}
-				else { // 1 + 1
-					reversedOutput += "1";
-					addToNext = "1";
-				}
-			}
-			if (i == a.length() - 1 && !addToNext.isEmpty()) {
-				reversedOutput += "1";
+			int digitINInt = Character.getNumericValue(a.charAt(a.length() - i - 1));
+			result += Math.pow(2, i) * digitINInt;
+		}
+
+		return result;
+	}
+
+	public static String changeToINT(int a) {
+
+		String result = "";
+		while (a != 1) {
+			result += a % 2;
+			a = a / 2;
+			if (a == 1) {
+				result += 1;
 			}
 		}
 
 		String output = "";
-		for (int i = 0; i < reversedOutput.length(); i ++) {
-			output += reversedOutput.charAt(reversedOutput.length() - i - 1);
+		for (int i = 0; i < result.length(); i ++) {
+			output += result.charAt(result.length() - i - 1);
 		}
 
 		return output;
 	}
 
 
+	/*
+	 * Given a non-negative integer x, compute and return the square root of x.
+	 * Since the return type is an integer, the decimal digits are truncated, 
+	 * and only the integer part of the result is returned.
+	 * Note: You are not allowed to use any built-in exponent function or operator, 
+	 * such as pow(x, 0.5) or x ** 0.5.
+	 */
+//	public static int mySqrt(int x) {
+//		int result = 0;
+//
+//		if (x == 0) {
+//			return 0;
+//		}
+//		
+//		ArrayList<Integer> oddNums = new ArrayList<>();
+//		
+//		int counter = 0;
+//		for (int i = 1; i < x + 1; i ++) {
+//			counter ++;
+//			
+//			if (!isInList(oddNums, counter) && counter % 2 == 1) {
+//				result ++;
+//				oddNums.add(counter);
+//				counter = 0;
+//			}
+//		}
+//
+//		return result;
+//	}
+//	
+//	public static boolean isInList(ArrayList<Integer> list, int counter) {
+//		boolean result = false;
+//		for (int i = 0; i < list.size(); i ++) {
+//			if (list.get(i) == counter) {
+//				result = true;
+//				break;
+//			}
+//		}
+//		
+//		return result;
+//	}
+	
+	public static int mySqrt(int x) {
+		
+		int result = 0;
+		for (int i = 1; i < x + 1; i += 2) {
+			result ++;
+		}
+		return result;
+	}
 }
 
 

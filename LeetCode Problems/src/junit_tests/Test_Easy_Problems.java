@@ -562,8 +562,74 @@ public class Test_Easy_Problems {
 	String calculation = Solutions.addBinary(a, b);
 	assertEquals("1011011", calculation);
 	}
-
-
+	
+	@Test
+	public void addBinary_9() {
+	String a = "10110";
+	String b = "01111";
+	String calculation = Solutions.addBinary(a, b);
+	assertEquals("100101", calculation);
+	}
+	
+	@Test
+	public void addBinary_10() {
+	String a = "0";
+	String b = "0";
+	String calculation = Solutions.addBinary(a, b);
+	assertEquals("0", calculation);
+	}
+	
+	
+	/*
+	 * Tests related to 'mySqrt'
+	 */
+	@Test
+	public void mysqrt_1() {
+	int calculation = Solutions.mySqrt(4);
+	assertEquals(2, calculation);
+	}
+	
+	@Test
+	public void mysqrt_2() {
+	int calculation = Solutions.mySqrt(8);
+	assertEquals(2, calculation);
+	}
+	
+	@Test
+	public void mysqrt_3() {
+ 	int calculation = Solutions.mySqrt(9);
+	assertEquals(3, calculation);
+	}
+	
+	@Test
+	public void mysqrt_4() {
+ 	int calculation = Solutions.mySqrt(0);
+	assertEquals(0, calculation);
+	}
+	
+	@Test
+	public void mysqrt_5() {
+ 	int calculation = Solutions.mySqrt(123);
+	assertEquals(11, calculation);
+	}
+	
+	@Test
+	public void mysqrt_6() {
+ 	int calculation = Solutions.mySqrt(1);
+	assertEquals(1, calculation);
+	}
+	
+	@Test
+	public void mysqrt_7() {
+ 	int calculation = Solutions.mySqrt(25);
+	assertEquals(5, calculation);
+	}
+	
+	@Test
+	public void mysqrt_8() {
+ 	int calculation = Solutions.mySqrt(2147395599);
+	assertEquals(46339, calculation);
+	}
 }
 
 

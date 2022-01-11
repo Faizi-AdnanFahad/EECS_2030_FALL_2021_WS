@@ -4,12 +4,16 @@ public class concole_tester {
 
 	public static void main(String[] args) {
 		
-//		String test = "HIhow";
-//		
-//		for (int i = 0; i < test.length(); i ++) {
-//			System.out.println(9876543210 + 1);
-//		}
-
+		int result = 0;
+		
+		String a = "1010";
+		
+		for (int i = 0; i < a.length(); i ++) {
+			int digitINInt = Character.getNumericValue(a.charAt(a.length() - i - 1));
+			result += Math.pow(2, i) * digitINInt;
+		}
+		
+		System.out.println(result);
 
 	}
 
