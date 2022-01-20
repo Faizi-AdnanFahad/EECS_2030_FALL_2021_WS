@@ -32,6 +32,7 @@ public class RecursiveMethodsTester {
 		System.out.println("\"madam\" is a palindrome: " + rm.isPalindrome("madam"));
 		System.out.println("\"racecar\" is a palindrome: " + rm.isPalindrome("racecar"));
 		System.out.println("\"man\" is a palindrome: " + rm.isPalindrome("man"));
+		System.out.println("\"abcba\" is a palindrome: " + rm.isPalindrome("abcba"));
 		
 		/* Tests of reverseOf */
 		System.out.println("====================");
