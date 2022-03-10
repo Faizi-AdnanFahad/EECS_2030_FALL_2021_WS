@@ -1,7 +1,7 @@
 
 public class RecursiveMethods {
-	
-	
+
+
 	int factorial(int i) {
 		//				 Base case: 
 		//				 Problem that is small enough to solve right away.
@@ -111,23 +111,23 @@ public class RecursiveMethods {
 					&& isSortedHelper(a, from + 1, to);
 		}
 	}
-	
+
 	/*******************************************************************************************************************************************************/
-	
+
 	/*
 	 * Adnan's implementations 
 	 */
-	
+
 	public static boolean palindrom(String s) {		
 		if (s.length() <= 1) {
 			return true;
 		}
 		else {
 			return s.charAt(0) == s.charAt(s.length() - 1) &&
-			palindrom(s.substring(1, s.length() - 1));
+					palindrom(s.substring(1, s.length() - 1));
 		}
 	}
-	
+
 	public static String reverse(String word) {
 		if (word.length() <= 1) {
 			return word;
@@ -136,7 +136,7 @@ public class RecursiveMethods {
 			return word.charAt(word.length() - 1) + reverse(word.substring(1, word.length() - 1)) + word.charAt(0);
 		}
 	}
-	
+
 	public static int occurance(String word, char c) {
 		if (word.isEmpty()) {
 			return 0;
@@ -154,15 +154,15 @@ public class RecursiveMethods {
 					+ occurance(word.substring(1, word.length()), c);
 		}
 	}
-	
+
 	/*
 	 * Solving the problem is there at least one positive number in an array?
 	 */
-	
+
 	public static boolean somePositive(int[] array) {
 		return somePositiveHelper(array, 0, array.length - 1);
 	}
-	
+
 	public static boolean somePositiveHelper(int[] array, int firstIndex, int lastIndex) {
 		if (firstIndex > lastIndex) { // When array is empty
 			return false;
@@ -174,15 +174,15 @@ public class RecursiveMethods {
 			return array[firstIndex] >= 0 || somePositiveHelper(array, firstIndex + 1, lastIndex);
 		}
 	}
-	
+
 	/*
 	 * non-descending order
 	 */
-	
+
 	public static boolean nonDescending(int[] array) {
 		return nonDescendingHelper(array, 0, array.length - 1);
 	}
-	
+
 	public static boolean nonDescendingHelper(int[] array, int firstIndex, int lastIndex) {
 		if (firstIndex >= lastIndex) {
 			return true;
@@ -190,10 +190,10 @@ public class RecursiveMethods {
 		else {
 			return (array[firstIndex] <= array[firstIndex + 1]) 
 					&& nonDescendingHelper(array, firstIndex + 1, lastIndex);
- 		}
+		}
 	}
-	
-	/*
+
+	/* From Recursion-2 > groupSum CODINGBAT.COM
 	 * Given an array of ints, is it possible to choose a group of some of the ints, 
 	 * such that the group sums to the given target? This is a classic backtracking recursion problem. 
 	 * Once you understand the recursive backtracking strategy in this problem, 
@@ -203,13 +203,19 @@ public class RecursiveMethods {
 	 * The caller can specify the whole array simply by passing start as 0. 
 	 * No loops are needed -- the recursive calls progress down the array.
 	 */
-	
+
+	/*
+	 * Example:
+	 * 		[3, 4, 6] -> 9 : TRUE
+	 * 		[3, 4, 1, 1, 7] -> 6: TRUE
+	 */
+
 	public boolean groupSum(int start, int[] nums, int target) {
 		return groupSumHelper(start, nums, 0, target);
 	}
-	
+
 	public boolean groupSumHelper(int startIndex, int[] nums, int sumSoFar, int target) {
-		
+
 		if (startIndex >= nums.length) { // at the end of the array
 			return sumSoFar == target;
 		}
@@ -222,31 +228,74 @@ public class RecursiveMethods {
 			}
 			else {
 				return 
-					groupSumHelper(startIndex + 1, nums, sumSoFar + nums[startIndex], target)
-					|| 
-					groupSumHelper(startIndex + 1, nums, sumSoFar, target);
+						groupSumHelper(startIndex + 1, nums, sumSoFar + nums[startIndex], target)
+						|| 
+						groupSumHelper(startIndex + 1, nums, sumSoFar, target);
 			}			
 		}
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+	/*
+	 * Given an array of ints, is it possible to choose a group of some of the ints, 
+	 * beginning at the start index, such that the group sums to the given target? 
+	 * However, with the additional constraint that all 6's must be chosen. (No loops needed.)
+	 */
+	public boolean groupSum6(int start, int[] nums, int target) {
+		int sumOf6s = 0;
+		for (int i = 0; i < nums.length; i ++) {
+			if (nums[i] == 6) {
+				sumOf6s += 6;
+			}
+		}
+		return groupSum6Helper(start, nums, sumOf6s, target, sumOf6s);
+	}
+
+
+	public boolean groupSum6Helper(int startIndex, int[] nums, int sumSoFar, int target, int sumOf6s) {
+
+		if (startIndex >= nums.length) { // at the end of the array
+			return sumSoFar == target;
+		}
+		else {
+			if (sumSoFar == target) { // Base Case 1
+				return true;
+			}
+			else if (sumSoFar > target) { // Base Case 2
+				return false;
+			}
+			else {
+				if (nums[startIndex] == 6) {
+					return 
+							groupSum6Helper(startIndex + 1, nums, sumSoFar + nums[startIndex + 1], target, sumOf6s)
+							|| 
+							groupSum6Helper(startIndex + 1, nums, sumSoFar, target, sumOf6s);						
+				}
+				else {
+					return
+					groupSum6Helper(startIndex + 1, nums, sumSoFar + nums[startIndex], target, sumOf6s)
+					|| 
+					groupSum6Helper(startIndex + 1, nums, sumSoFar, target, sumOf6s);
+				}
+
+			}			
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
